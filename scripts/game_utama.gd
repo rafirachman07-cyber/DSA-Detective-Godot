@@ -137,3 +137,7 @@ func _on_btn_reset_pressed():
 	label_status.text = "Sistem Reset. Berkas utuh."
 	for anak in daftar_temuan.get_children():
 		anak.queue_free()
+
+
+func _on_btn_back_pressed():
+	get_tree().change_scene_to_file("res://scripts/main_menu.tscn")

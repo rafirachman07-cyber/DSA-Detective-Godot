@@ -44,6 +44,11 @@ layout_mode = 2
 theme_override_constants/separation = 15
 alignment = 1
 
+[node name="BtnBack" type="Button" parent="MainLayout/BrokeBar" unique_id=57163803]
+layout_mode = 2
+text = "Back
+"
+
 [node name="BtnStack" type="Button" parent="MainLayout/BrokeBar" unique_id=601998026]
 layout_mode = 2
 text = "Stack"
@@ -124,6 +129,7 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="MainLayout/WorkArea/PanelContainer3/ScrollContainer" unique_id=722479545]
 layout_mode = 2
 
+[connection signal="pressed" from="MainLayout/BrokeBar/BtnBack" to="." method="_on_btn_back_pressed"]
 [connection signal="pressed" from="MainLayout/BrokeBar/BtnStack" to="." method="_on_btn_stack_pressed"]
 [connection signal="pressed" from="MainLayout/BrokeBar/BtnQueue" to="." method="_on_btn_queue_pressed"]
 [connection signal="pressed" from="MainLayout/BrokeBar/BtnGraph" to="." method="_on_btn_graph_pressed"]
