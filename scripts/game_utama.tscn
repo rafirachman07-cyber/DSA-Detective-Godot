@@ -1,0 +1,132 @@
+[gd_scene format=3 uid="uid://br1ga7yq0u0bl"]
+
+[ext_resource type="Script" uid="uid://55s45fq4mqwx" path="res://scripts/game_utama.gd" id="1_xywir"]
+[ext_resource type="Texture2D" uid="uid://burh4cfh2fqj6" path="res://icon.svg" id="2_xvgyi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_clwel"]
+bg_color = Color(0, 0, 0, 0.5882353)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_umvxc"]
+bg_color = Color(0, 0, 0, 0.5882353)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rfpw8"]
+bg_color = Color(0, 0, 0, 0.5882353)
+
+[node name="GameUtama" type="Control" unique_id=12890899]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xywir")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1241803636]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.17410457, 0.15147814, 0.19558716, 1)
+
+[node name="MainLayout" type="VBoxContainer" parent="." unique_id=546438822]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="BrokeBar" type="HBoxContainer" parent="MainLayout" unique_id=443910966]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="BtnStack" type="Button" parent="MainLayout/BrokeBar" unique_id=601998026]
+layout_mode = 2
+text = "Stack"
+
+[node name="BtnQueue" type="Button" parent="MainLayout/BrokeBar" unique_id=1737533134]
+layout_mode = 2
+text = "Queue"
+
+[node name="BtnGraph" type="Button" parent="MainLayout/BrokeBar" unique_id=1116811072]
+layout_mode = 2
+text = "Graph"
+
+[node name="BtnHashMap" type="Button" parent="MainLayout/BrokeBar" unique_id=1638106937]
+layout_mode = 2
+text = "Hash Map"
+
+[node name="BtnReset" type="Button" parent="MainLayout/BrokeBar" unique_id=1495416554]
+layout_mode = 2
+text = "Reset"
+
+[node name="WorkArea" type="HBoxContainer" parent="MainLayout" unique_id=1603875773]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="MainLayout/WorkArea" unique_id=1719182951]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_clwel")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainLayout/WorkArea/PanelContainer" unique_id=1528041885]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MainLayout/WorkArea/PanelContainer/VBoxContainer" unique_id=1725827970]
+modulate = Color(0, 0.7424724, 0.22413969, 1)
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+texture = ExtResource("2_xvgyi")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="InfoTinggi" type="Label" parent="MainLayout/WorkArea/PanelContainer/VBoxContainer" unique_id=1210932280]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2123639, 0.650439, 0.25328004, 1)
+
+[node name="InfoRambut" type="Label" parent="MainLayout/WorkArea/PanelContainer/VBoxContainer" unique_id=1250590458]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2751839, 0.73607725, 0.31323665, 1)
+
+[node name="PanelContainer2" type="PanelContainer" parent="MainLayout/WorkArea" unique_id=1889156448]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_umvxc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainLayout/WorkArea/PanelContainer2" unique_id=1062489263]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainLayout/WorkArea/PanelContainer2/VBoxContainer" unique_id=590151675]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4459049, 0.8840665, 0, 1)
+text = "Menunggu perintah"
+
+[node name="Button" type="Button" parent="MainLayout/WorkArea/PanelContainer2/VBoxContainer" unique_id=1050149369]
+layout_mode = 2
+text = "pop/dequeue"
+
+[node name="InputPencarian" type="LineEdit" parent="MainLayout/WorkArea/PanelContainer2/VBoxContainer" unique_id=402692411]
+layout_mode = 2
+placeholder_text = "Bagas Prakoso"
+
+[node name="PanelContainer3" type="PanelContainer" parent="MainLayout/WorkArea" unique_id=1031029347]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rfpw8")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MainLayout/WorkArea/PanelContainer3" unique_id=62280516]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainLayout/WorkArea/PanelContainer3/ScrollContainer" unique_id=722479545]
+layout_mode = 2
+
+[connection signal="pressed" from="MainLayout/BrokeBar/BtnStack" to="." method="_on_btn_stack_pressed"]
+[connection signal="pressed" from="MainLayout/BrokeBar/BtnQueue" to="." method="_on_btn_queue_pressed"]
+[connection signal="pressed" from="MainLayout/BrokeBar/BtnGraph" to="." method="_on_btn_graph_pressed"]
+[connection signal="pressed" from="MainLayout/BrokeBar/BtnHashMap" to="." method="_on_btn_hash_map_pressed"]
+[connection signal="pressed" from="MainLayout/BrokeBar/BtnReset" to="." method="_on_btn_reset_pressed"]
+[connection signal="pressed" from="MainLayout/WorkArea/PanelContainer2/VBoxContainer/Button" to="." method="_on_btn_aksi_pressed"]
