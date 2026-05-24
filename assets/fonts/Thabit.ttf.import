@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://bofyuirrk5ino"
-path="res://.godot/imported/Thabit.ttf-83432553888f40525295625fda70c148.fontdata"
+path="res://.godot/imported/Thabit.ttf-bac764770fd67288b193b29a9ed25b5d.fontdata"
 
 [deps]
 
-source_file="res://assets/characters/data/Thabit.ttf"
-dest_files=["res://.godot/imported/Thabit.ttf-83432553888f40525295625fda70c148.fontdata"]
+source_file="res://assets/fonts/Thabit.ttf"
+dest_files=["res://.godot/imported/Thabit.ttf-bac764770fd67288b193b29a9ed25b5d.fontdata"]
 
 [params]
 

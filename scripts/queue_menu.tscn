@@ -1,0 +1,130 @@
+[gd_scene format=3 uid="uid://c3lifwwvrn1my"]
+
+[ext_resource type="Script" uid="uid://caldptvapr46a" path="res://queue_menu.gd" id="1_row7b"]
+[ext_resource type="Texture2D" uid="uid://daxwxc8wcxgci" path="res://Layout Background/suspect_background.png" id="2_rsncr"]
+[ext_resource type="Texture2D" uid="uid://ci4eelcn0f26r" path="res://assets/suspect_board/Board.png" id="3_lh50e"]
+[ext_resource type="Texture2D" uid="uid://dnm6bcrkla54a" path="res://assets/suspect_board/Paper.png" id="4_xqao8"]
+[ext_resource type="Texture2D" uid="uid://dnnuakpykuc5y" path="res://assets/Lorong.png" id="5_u546c"]
+[ext_resource type="Texture2D" uid="uid://brbluatvbqw21" path="res://assets/KeepButton.png" id="6_04c5c"]
+[ext_resource type="Texture2D" uid="uid://bjbpib8bymefc" path="res://assets/Meja.png" id="6_rsncr"]
+[ext_resource type="Texture2D" uid="uid://b81ku206rf6yy" path="res://assets/keep_pressed.png" id="7_eo2rf"]
+[ext_resource type="Texture2D" uid="uid://jsytnpg5grav" path="res://assets/Pass Button.png" id="8_pdgxj"]
+[ext_resource type="Texture2D" uid="uid://hyv0ctpkrjdg" path="res://assets/pass_button_press.png" id="9_6qo2p"]
+[ext_resource type="Texture2D" uid="uid://iga1ffc8qpdd" path="res://assets/Undo Button.png" id="10_364kn"]
+[ext_resource type="Texture2D" uid="uid://xf8my1hqqssc" path="res://assets/undo_button_pressed.png" id="11_0wb74"]
+[ext_resource type="Texture2D" uid="uid://twanw7h554nx" path="res://assets/suspect_board/Clamp.png" id="12_gsuqh"]
+
+[node name="Queue Menu" type="Node2D" unique_id=569492925]
+script = ExtResource("1_row7b")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1280199727]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_rsncr")
+
+[node name="Board" type="TextureRect" parent="Background" unique_id=1301529902]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -791.0
+offset_top = -436.5
+offset_right = 791.0
+offset_bottom = 436.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_lh50e")
+
+[node name="Paper" type="TextureRect" parent="Background/Board" unique_id=1230961597]
+layout_mode = 1
+offset_left = 97.0
+offset_top = 50.5
+offset_right = 1479.0
+offset_bottom = 769.5
+texture = ExtResource("4_xqao8")
+
+[node name="Lorong" type="TextureRect" parent="Background/Board/Paper" unique_id=1133555249]
+layout_mode = 0
+offset_left = 113.0
+offset_top = 30.0
+offset_right = 662.0
+offset_bottom = 683.0
+texture = ExtResource("5_u546c")
+expand_mode = 1
+
+[node name="Meja" type="TextureRect" parent="Background/Board/Paper/Lorong" unique_id=1203390436]
+z_index = 101
+layout_mode = 0
+offset_left = 35.0
+offset_top = 516.0
+offset_right = 498.0
+offset_bottom = 647.0
+texture = ExtResource("6_rsncr")
+
+[node name="Slot4" type="Marker2D" parent="Background/Board/Paper/Lorong" unique_id=1277117859]
+position = Vector2(262, 152)
+
+[node name="Slot3" type="Marker2D" parent="Background/Board/Paper/Lorong" unique_id=1475836761]
+position = Vector2(262, 243)
+
+[node name="Slot2" type="Marker2D" parent="Background/Board/Paper/Lorong" unique_id=497204758]
+position = Vector2(262, 343)
+
+[node name="Slot1" type="Marker2D" parent="Background/Board/Paper/Lorong" unique_id=1342228453]
+position = Vector2(262, 446)
+
+[node name="CharacterHolder" type="Node2D" parent="Background/Board/Paper/Lorong" unique_id=1222880508]
+position = Vector2(262, 152)
+
+[node name="ColorRect" type="ColorRect" parent="Background/Board/Paper" unique_id=1243544109]
+layout_mode = 0
+offset_left = 685.0
+offset_top = 32.0
+offset_right = 1344.0
+offset_bottom = 362.0
+color = Color(0.63529414, 0.5803922, 0.5686275, 1)
+
+[node name="KeepButton" type="TextureButton" parent="Background/Board/Paper" unique_id=2132990420]
+layout_mode = 0
+offset_left = 620.0
+offset_top = 329.0
+offset_right = 1410.0
+offset_bottom = 578.0
+texture_normal = ExtResource("6_04c5c")
+texture_pressed = ExtResource("7_eo2rf")
+texture_hover = ExtResource("7_eo2rf")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="PassButton" type="TextureButton" parent="Background/Board/Paper" unique_id=1908006326]
+layout_mode = 0
+offset_left = 679.0
+offset_top = 526.0
+offset_right = 1006.0
+offset_bottom = 667.0
+texture_normal = ExtResource("8_pdgxj")
+texture_pressed = ExtResource("9_6qo2p")
+texture_hover = ExtResource("9_6qo2p")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="UndoButton" type="TextureButton" parent="Background/Board/Paper" unique_id=1750972995]
+layout_mode = 0
+offset_left = 1006.0
+offset_top = 526.0
+offset_right = 1333.0
+offset_bottom = 667.0
+texture_normal = ExtResource("10_364kn")
+texture_pressed = ExtResource("11_0wb74")
+texture_hover = ExtResource("11_0wb74")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="Clamp" type="TextureRect" parent="Background/Board" unique_id=1550110439]
+layout_mode = 0
+offset_top = 232.5
+offset_right = 187.0
+offset_bottom = 596.5
+texture = ExtResource("12_gsuqh")
