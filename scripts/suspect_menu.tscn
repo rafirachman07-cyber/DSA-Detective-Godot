@@ -1,0 +1,174 @@
+[gd_scene format=3 uid="uid://dkmpd8u07x7ls"]
+
+[ext_resource type="Texture2D" uid="uid://daxwxc8wcxgci" path="res://Layout Background/suspect_background.png" id="1_ho5fa"]
+[ext_resource type="Texture2D" uid="uid://ci4eelcn0f26r" path="res://assets/suspect_board/Board.png" id="2_44ix8"]
+[ext_resource type="Texture2D" uid="uid://dnm6bcrkla54a" path="res://assets/suspect_board/Paper.png" id="3_x42jf"]
+[ext_resource type="Texture2D" uid="uid://twanw7h554nx" path="res://assets/suspect_board/Clamp.png" id="4_o7cf8"]
+[ext_resource type="Texture2D" uid="uid://i55tulrwgdvg" path="res://assets/suspect_board/Suspect Card.png" id="5_ni62n"]
+[ext_resource type="Texture2D" uid="uid://dpfhtks5xqt02" path="res://assets/suspect_board/Suspect List.png" id="6_4gr25"]
+[ext_resource type="FontFile" uid="uid://bofyuirrk5ino" path="res://assets/characters/data/Thabit.ttf" id="6_ns53n"]
+[ext_resource type="Texture2D" uid="uid://b7q0v05n3t6mh" path="res://assets/suspect_board/Button Collection.png" id="7_lhv1b"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_68wai"]
+font = ExtResource("6_ns53n")
+font_size = 40
+font_color = Color(0.3372549, 0.28235295, 0.28235295, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ek1me"]
+line_spacing = 0.0
+font = ExtResource("6_ns53n")
+font_size = 70
+font_color = Color(0.3372549, 0.28235295, 0.28235295, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lquo6"]
+font = ExtResource("6_ns53n")
+font_color = Color(0.3372549, 0.28235295, 0.28235295, 1)
+
+[node name="SuspectMenu" type="Node2D" unique_id=2041330612]
+
+[node name="Background" type="TextureRect" parent="." unique_id=708356126]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_ho5fa")
+
+[node name="Board" type="TextureRect" parent="Background" unique_id=1373328985]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -791.0
+offset_top = -436.5
+offset_right = 791.0
+offset_bottom = 436.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_44ix8")
+
+[node name="Paper" type="TextureRect" parent="Background/Board" unique_id=168329709]
+layout_mode = 1
+offset_left = 97.0
+offset_top = 50.5
+offset_right = 1479.0
+offset_bottom = 769.5
+texture = ExtResource("3_x42jf")
+
+[node name="Clamp" type="TextureRect" parent="Background/Board" unique_id=214383555]
+layout_mode = 0
+offset_top = 232.5
+offset_right = 187.0
+offset_bottom = 596.5
+texture = ExtResource("4_o7cf8")
+
+[node name="Suspect Card" type="TextureRect" parent="Background/Board" unique_id=1888812954]
+layout_mode = 0
+offset_left = 194.0
+offset_top = 211.5
+offset_right = 1099.0
+offset_bottom = 753.5
+texture = ExtResource("5_ni62n")
+
+[node name="nama_suspect_Label" type="Label" parent="Background/Board/Suspect Card" unique_id=1037844684]
+layout_mode = 0
+offset_left = 486.0
+offset_top = 96.0
+offset_right = 809.0
+offset_bottom = 172.0
+label_settings = SubResource("LabelSettings_68wai")
+
+[node name="gender_suspect" type="Label" parent="Background/Board/Suspect Card" unique_id=228789756]
+layout_mode = 0
+offset_left = 410.0
+offset_top = 89.0
+offset_right = 495.0
+offset_bottom = 174.0
+label_settings = SubResource("LabelSettings_ek1me")
+
+[node name="id_suspect" type="Label" parent="Background/Board/Suspect Card" unique_id=1724366084]
+layout_mode = 0
+offset_left = 575.0
+offset_top = 189.0
+offset_right = 832.0
+offset_bottom = 212.0
+label_settings = SubResource("LabelSettings_lquo6")
+
+[node name="nama_suspect" type="Label" parent="Background/Board/Suspect Card" unique_id=1062497018]
+layout_mode = 0
+offset_left = 575.0
+offset_top = 231.0
+offset_right = 832.0
+offset_bottom = 254.0
+label_settings = SubResource("LabelSettings_lquo6")
+
+[node name="umur_suspect" type="Label" parent="Background/Board/Suspect Card" unique_id=156440708]
+layout_mode = 0
+offset_left = 575.0
+offset_top = 275.0
+offset_right = 832.0
+offset_bottom = 298.0
+label_settings = SubResource("LabelSettings_lquo6")
+
+[node name="beratbadan_suspect" type="Label" parent="Background/Board/Suspect Card" unique_id=1060085957]
+layout_mode = 0
+offset_left = 575.0
+offset_top = 323.0
+offset_right = 832.0
+offset_bottom = 346.0
+label_settings = SubResource("LabelSettings_lquo6")
+
+[node name="tinggibadan_suspect" type="Label" parent="Background/Board/Suspect Card" unique_id=208417254]
+layout_mode = 0
+offset_left = 575.0
+offset_top = 368.0
+offset_right = 832.0
+offset_bottom = 391.0
+label_settings = SubResource("LabelSettings_lquo6")
+
+[node name="golongandarah_suspect" type="Label" parent="Background/Board/Suspect Card" unique_id=1203031723]
+layout_mode = 0
+offset_left = 575.0
+offset_top = 413.0
+offset_right = 832.0
+offset_bottom = 436.0
+label_settings = SubResource("LabelSettings_lquo6")
+
+[node name="Suspect List" type="TextureRect" parent="Background/Board" unique_id=1116024625]
+layout_mode = 0
+offset_left = 1116.0
+offset_top = 54.5
+offset_right = 1449.95
+offset_bottom = 699.5
+texture = ExtResource("6_4gr25")
+
+[node name="TextureButton" type="TextureButton" parent="Background/Board" unique_id=1421644573]
+layout_mode = 0
+offset_left = 246.0
+offset_top = 75.5
+offset_right = 463.0
+offset_bottom = 186.5
+texture_normal = ExtResource("7_lhv1b")
+
+[node name="TextureButton3" type="TextureButton" parent="Background/Board" unique_id=2093192024]
+layout_mode = 0
+offset_left = 680.0
+offset_top = 75.5
+offset_right = 897.0
+offset_bottom = 186.5
+texture_normal = ExtResource("7_lhv1b")
+
+[node name="TextureButton4" type="TextureButton" parent="Background/Board" unique_id=1641228046]
+layout_mode = 0
+offset_left = 897.0
+offset_top = 75.5
+offset_right = 1114.0
+offset_bottom = 186.5
+texture_normal = ExtResource("7_lhv1b")
+
+[node name="TextureButton2" type="TextureButton" parent="Background/Board" unique_id=2111539320]
+layout_mode = 0
+offset_left = 463.0
+offset_top = 75.5
+offset_right = 680.0
+offset_bottom = 186.5
+texture_normal = ExtResource("7_lhv1b")
