@@ -13,21 +13,23 @@ var icon_font = preload("res://assets/fonts/Thabit.ttf")
 @onready var suspect_image = $Background/Board/SuspectCard/image_suspect
 
 var suspects: Array = []
-
 func _ready():
-	randomize()
-
-	gender_suspect.add_theme_font_override("font", icon_font)
-
 	load_suspects()
-	show_random_suspect()
+
+	if GlobalData.suspect_already_selected:
+		show_suspect(GlobalData.selected_suspect)
+	else:
+		var suspect = suspects.pick_random()
+		GlobalData.selected_suspect = suspect
+		GlobalData.suspect_already_selected = true
+		show_suspect(suspect)
 
 
 func load_suspects():
 	var file := FileAccess.open("res://assets/characters/characters.json", FileAccess.READ)
 
 	if file == null:
-		push_error("Cannot open suspects.json")
+		push_error("Cannot open characters.json")
 		return
 
 	var parsed = JSON.parse_string(file.get_as_text())
@@ -38,7 +40,7 @@ func load_suspects():
 
 	suspects = parsed
 
-	print("Loaded suspects: ", suspects.size())
+	print("Loaded characters: ", suspects.size())
 
 
 func show_random_suspect():
@@ -90,3 +92,7 @@ func load_suspect_image(sprite_path: String):
 
 func _on_queue_button_pressed():
 	get_tree().change_scene_to_file("res://scripts/queue_menu.tscn")
+
+
+func _on_back_button_pressed():
+		get_tree().change_scene_to_file("res://scripts/main_menu.tscn")

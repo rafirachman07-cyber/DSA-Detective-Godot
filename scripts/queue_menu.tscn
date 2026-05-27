@@ -1,18 +1,64 @@
 [gd_scene format=3 uid="uid://c3lifwwvrn1my"]
 
-[ext_resource type="Script" uid="uid://caldptvapr46a" path="res://queue_menu.gd" id="1_row7b"]
+[ext_resource type="Script" uid="uid://caldptvapr46a" path="res://scripts/queue_menu.gd" id="1_row7b"]
 [ext_resource type="Texture2D" uid="uid://daxwxc8wcxgci" path="res://Layout Background/suspect_background.png" id="2_rsncr"]
 [ext_resource type="Texture2D" uid="uid://ci4eelcn0f26r" path="res://assets/suspect_board/Board.png" id="3_lh50e"]
 [ext_resource type="Texture2D" uid="uid://dnm6bcrkla54a" path="res://assets/suspect_board/Paper.png" id="4_xqao8"]
-[ext_resource type="Texture2D" uid="uid://dnnuakpykuc5y" path="res://assets/Lorong.png" id="5_u546c"]
-[ext_resource type="Texture2D" uid="uid://brbluatvbqw21" path="res://assets/KeepButton.png" id="6_04c5c"]
-[ext_resource type="Texture2D" uid="uid://bjbpib8bymefc" path="res://assets/Meja.png" id="6_rsncr"]
-[ext_resource type="Texture2D" uid="uid://b81ku206rf6yy" path="res://assets/keep_pressed.png" id="7_eo2rf"]
-[ext_resource type="Texture2D" uid="uid://jsytnpg5grav" path="res://assets/Pass Button.png" id="8_pdgxj"]
-[ext_resource type="Texture2D" uid="uid://hyv0ctpkrjdg" path="res://assets/pass_button_press.png" id="9_6qo2p"]
-[ext_resource type="Texture2D" uid="uid://iga1ffc8qpdd" path="res://assets/Undo Button.png" id="10_364kn"]
-[ext_resource type="Texture2D" uid="uid://xf8my1hqqssc" path="res://assets/undo_button_pressed.png" id="11_0wb74"]
+[ext_resource type="Texture2D" uid="uid://5en6v10rkyl" path="res://assets/Lorong (2).png" id="5_lh50e"]
+[ext_resource type="Texture2D" uid="uid://bww1ajw1k480t" path="res://assets/Meja (1).png" id="6_xqao8"]
+[ext_resource type="FontFile" uid="uid://bofyuirrk5ino" path="res://assets/fonts/Thabit.ttf" id="7_u546c"]
+[ext_resource type="Texture2D" uid="uid://5div4jygausc" path="res://assets/mulai_peek.png" id="8_04c5c"]
+[ext_resource type="Texture2D" uid="uid://d4ha5e7vub77f" path="res://assets/mulai_peek_pressed.png" id="9_eo2rf"]
+[ext_resource type="Texture2D" uid="uid://bsnoi45velbv6" path="res://assets/dequeue.png" id="9_pdgxj"]
+[ext_resource type="Texture2D" uid="uid://dkhnquu0dnh13" path="res://assets/dequeue_active.png" id="10_6qo2p"]
+[ext_resource type="Texture2D" uid="uid://ca4sgmxme3hgj" path="res://assets/ODP.png" id="11_0wb74"]
+[ext_resource type="Texture2D" uid="uid://bf48yqiltdw62" path="res://assets/Buttons/BackButton (1).png" id="12_34i23"]
+[ext_resource type="Texture2D" uid="uid://cb00mf5e5ipme" path="res://assets/Buttons/KeepButton (3).png" id="12_364kn"]
 [ext_resource type="Texture2D" uid="uid://twanw7h554nx" path="res://assets/suspect_board/Clamp.png" id="12_gsuqh"]
+[ext_resource type="Texture2D" uid="uid://cwqa7pj0p77ox" path="res://assets/Buttons/KeepButton_active.png" id="13_0wb74"]
+[ext_resource type="Texture2D" uid="uid://dt5ock103ipui" path="res://assets/Brokers Card.png" id="14_gsuqh"]
+[ext_resource type="FontFile" uid="uid://cpk028llsjiuw" path="res://assets/fonts/Thabit-Bold.ttf" id="15_34i23"]
+[ext_resource type="Texture2D" uid="uid://cx1uj04fxwtek" path="res://assets/enqueue_button.png" id="15_gsuqh"]
+[ext_resource type="Texture2D" uid="uid://dkj1e2h18b8xl" path="res://assets/enqueue_button_active.png" id="16_34i23"]
+[ext_resource type="AudioStream" uid="uid://d1mddv2t3lx6k" path="res://assets/audio/bgm2.mp3" id="17_04c5c"]
+[ext_resource type="Texture2D" uid="uid://ybf7amw2ye6u" path="res://assets/Clip.png" id="19_1rf6j"]
+[ext_resource type="Texture2D" uid="uid://7nkjhs26exgp" path="res://assets/Mask Broker.png" id="20_dervd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_04c5c"]
+font = ExtResource("15_34i23")
+font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_eo2rf"]
+font = ExtResource("15_34i23")
+font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_u546c"]
+font = ExtResource("7_u546c")
+font_size = 35
+
+[sub_resource type="LabelSettings" id="LabelSettings_6qo2p"]
+font = ExtResource("15_34i23")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_364kn"]
+font = ExtResource("15_34i23")
+font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_0wb74"]
+font = ExtResource("15_34i23")
+font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_gsuqh"]
+font = ExtResource("15_34i23")
+font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_34i23"]
+font = ExtResource("15_34i23")
+font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_1rf6j"]
+font = ExtResource("7_u546c")
+font_size = 50
 
 [node name="Queue Menu" type="Node2D" unique_id=569492925]
 script = ExtResource("1_row7b")
@@ -51,17 +97,17 @@ offset_left = 113.0
 offset_top = 30.0
 offset_right = 662.0
 offset_bottom = 683.0
-texture = ExtResource("5_u546c")
+texture = ExtResource("5_lh50e")
 expand_mode = 1
 
 [node name="Meja" type="TextureRect" parent="Background/Board/Paper/Lorong" unique_id=1203390436]
 z_index = 101
 layout_mode = 0
 offset_left = 35.0
-offset_top = 516.0
+offset_top = 476.0
 offset_right = 498.0
-offset_bottom = 647.0
-texture = ExtResource("6_rsncr")
+offset_bottom = 624.0
+texture = ExtResource("6_xqao8")
 
 [node name="Slot4" type="Marker2D" parent="Background/Board/Paper/Lorong" unique_id=1277117859]
 position = Vector2(262, 152)
@@ -73,54 +119,186 @@ position = Vector2(262, 243)
 position = Vector2(262, 343)
 
 [node name="Slot1" type="Marker2D" parent="Background/Board/Paper/Lorong" unique_id=1342228453]
-position = Vector2(262, 446)
+position = Vector2(261, 446)
 
 [node name="CharacterHolder" type="Node2D" parent="Background/Board/Paper/Lorong" unique_id=1222880508]
 position = Vector2(262, 152)
 
-[node name="ColorRect" type="ColorRect" parent="Background/Board/Paper" unique_id=1243544109]
+[node name="PeekButton" type="TextureButton" parent="Background/Board/Paper" unique_id=2132990420]
+layout_mode = 0
+offset_left = 685.0
+offset_top = 495.0
+offset_right = 1338.0
+offset_bottom = 676.0
+texture_normal = ExtResource("8_04c5c")
+texture_pressed = ExtResource("9_eo2rf")
+texture_hover = ExtResource("9_eo2rf")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="PopButton" type="TextureButton" parent="Background/Board/Paper" unique_id=1908006326]
+layout_mode = 0
+offset_left = 685.0
+offset_top = 495.0
+offset_right = 1007.0
+offset_bottom = 683.0
+texture_normal = ExtResource("9_pdgxj")
+texture_pressed = ExtResource("10_6qo2p")
+texture_hover = ExtResource("10_6qo2p")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="HoverButton" type="TextureButton" parent="Background/Board/Paper" unique_id=78479541]
+layout_mode = 0
+offset_left = 1394.0
+offset_top = 260.0
+offset_right = 1600.0
+offset_bottom = 468.0
+texture_normal = ExtResource("11_0wb74")
+texture_pressed = ExtResource("11_0wb74")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="BackButton" type="TextureButton" parent="Background/Board/Paper" unique_id=271031766]
+layout_mode = 0
+offset_left = 1394.0
+offset_top = 30.0
+offset_right = 1588.0
+offset_bottom = 230.0
+texture_normal = ExtResource("12_34i23")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="KeepButton" type="TextureButton" parent="Background/Board/Paper" unique_id=1750972995]
+layout_mode = 0
+offset_left = 1027.0
+offset_top = 495.0
+offset_right = 1349.0
+offset_bottom = 683.0
+texture_normal = ExtResource("12_364kn")
+texture_pressed = ExtResource("13_0wb74")
+texture_hover = ExtResource("13_0wb74")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="EnqueueButton" type="TextureButton" parent="Background/Board/Paper" unique_id=1275022291]
+layout_mode = 0
+offset_left = 686.0
+offset_top = 495.0
+offset_right = 1357.0
+offset_bottom = 683.0
+texture_normal = ExtResource("15_gsuqh")
+texture_pressed = ExtResource("16_34i23")
+texture_hover = ExtResource("16_34i23")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="DataBox" type="TextureRect" parent="Background/Board/Paper" unique_id=1930987199]
 layout_mode = 0
 offset_left = 685.0
 offset_top = 32.0
-offset_right = 1344.0
-offset_bottom = 362.0
-color = Color(0.63529414, 0.5803922, 0.5686275, 1)
+offset_right = 1338.0
+offset_bottom = 476.0
+texture = ExtResource("14_gsuqh")
 
-[node name="KeepButton" type="TextureButton" parent="Background/Board/Paper" unique_id=2132990420]
+[node name="id_suspect" type="Label" parent="Background/Board/Paper/DataBox" unique_id=1968071019]
 layout_mode = 0
-offset_left = 620.0
-offset_top = 329.0
-offset_right = 1410.0
-offset_bottom = 578.0
-texture_normal = ExtResource("6_04c5c")
-texture_pressed = ExtResource("7_eo2rf")
-texture_hover = ExtResource("7_eo2rf")
-ignore_texture_size = true
+offset_left = 407.0
+offset_top = 140.0
+offset_right = 620.0
+offset_bottom = 171.0
+label_settings = SubResource("LabelSettings_04c5c")
+
+[node name="nama_suspect" type="Label" parent="Background/Board/Paper/DataBox" unique_id=1077330990]
+layout_mode = 0
+offset_left = 406.0
+offset_top = 184.0
+offset_right = 619.0
+offset_bottom = 215.0
+label_settings = SubResource("LabelSettings_eo2rf")
+
+[node name="gender_suspect" type="Label" parent="Background/Board/Paper/DataBox" unique_id=143929202]
+layout_mode = 0
+offset_left = 251.0
+offset_top = 94.0
+offset_right = 296.0
+offset_bottom = 145.0
+label_settings = SubResource("LabelSettings_u546c")
+
+[node name="nama_suspect_Label" type="Label" parent="Background/Board/Paper/DataBox" unique_id=610072833]
+layout_mode = 0
+offset_left = 292.0
+offset_top = 93.0
+offset_right = 618.0
+offset_bottom = 143.0
+label_settings = SubResource("LabelSettings_6qo2p")
+
+[node name="umur_suspect" type="Label" parent="Background/Board/Paper/DataBox" unique_id=1770529531]
+layout_mode = 0
+offset_left = 404.0
+offset_top = 228.0
+offset_right = 617.0
+offset_bottom = 259.0
+label_settings = SubResource("LabelSettings_364kn")
+
+[node name="berat_suspect" type="Label" parent="Background/Board/Paper/DataBox" unique_id=1826364748]
+layout_mode = 0
+offset_left = 405.0
+offset_top = 272.0
+offset_right = 618.0
+offset_bottom = 303.0
+label_settings = SubResource("LabelSettings_0wb74")
+
+[node name="tinggi_suspect" type="Label" parent="Background/Board/Paper/DataBox" unique_id=385971532]
+layout_mode = 0
+offset_left = 407.0
+offset_top = 318.0
+offset_right = 620.0
+offset_bottom = 349.0
+label_settings = SubResource("LabelSettings_gsuqh")
+
+[node name="goldar_suspect" type="Label" parent="Background/Board/Paper/DataBox" unique_id=362650029]
+layout_mode = 0
+offset_left = 411.0
+offset_top = 361.0
+offset_right = 624.0
+offset_bottom = 392.0
+label_settings = SubResource("LabelSettings_34i23")
+
+[node name="image_suspect" type="TextureRect" parent="Background/Board/Paper/DataBox" unique_id=1402408932]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 68.0
+offset_right = 256.0
+offset_bottom = 426.0
+expand_mode = 1
 stretch_mode = 4
 
-[node name="PassButton" type="TextureButton" parent="Background/Board/Paper" unique_id=1908006326]
+[node name="KosongLabel" type="Label" parent="Background/Board/Paper" unique_id=1981301384]
 layout_mode = 0
-offset_left = 679.0
-offset_top = 526.0
-offset_right = 1006.0
-offset_bottom = 667.0
-texture_normal = ExtResource("8_pdgxj")
-texture_pressed = ExtResource("9_6qo2p")
-texture_hover = ExtResource("9_6qo2p")
-ignore_texture_size = true
-stretch_mode = 4
+offset_left = 293.0
+offset_top = 307.0
+offset_right = 469.0
+offset_bottom = 367.0
+text = "Kosong"
+label_settings = SubResource("LabelSettings_1rf6j")
 
-[node name="UndoButton" type="TextureButton" parent="Background/Board/Paper" unique_id=1750972995]
+[node name="Clipping" type="TextureRect" parent="Background/Board/Paper" unique_id=941202968]
 layout_mode = 0
-offset_left = 1006.0
-offset_top = 526.0
-offset_right = 1333.0
-offset_bottom = 667.0
-texture_normal = ExtResource("10_364kn")
-texture_pressed = ExtResource("11_0wb74")
-texture_hover = ExtResource("11_0wb74")
-ignore_texture_size = true
-stretch_mode = 4
+offset_left = 120.0
+offset_top = 9.0
+offset_right = 172.0
+offset_bottom = 147.0
+texture = ExtResource("19_1rf6j")
+
+[node name="Mask" type="TextureRect" parent="Background/Board/Paper" unique_id=292882691]
+visible = false
+layout_mode = 0
+offset_left = 686.0
+offset_top = 30.0
+offset_right = 1345.0
+offset_bottom = 476.0
+texture = ExtResource("20_dervd")
 
 [node name="Clamp" type="TextureRect" parent="Background/Board" unique_id=1550110439]
 layout_mode = 0
@@ -128,3 +306,10 @@ offset_top = 232.5
 offset_right = 187.0
 offset_bottom = 596.5
 texture = ExtResource("12_gsuqh")
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="." unique_id=631106808]
+stream = ExtResource("17_04c5c")
+autoplay = true
+parameters/looping = true
+
+[connection signal="pressed" from="Background/Board/Paper/BackButton" to="." method="_on_back_button_pressed"]

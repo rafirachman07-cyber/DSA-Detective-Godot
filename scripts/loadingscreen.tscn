@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://c77pj05lis1xu"]
+
+[ext_resource type="Script" uid="uid://dvy2f0ovue1yd" path="res://scripts/loadingscreen.gd" id="1_lnhga"]
+[ext_resource type="Texture2D" uid="uid://d2gimu0vg1m88" path="res://assets/BackgroundLoading (1).png" id="2_20xba"]
+[ext_resource type="Texture2D" uid="uid://nm3hw8weqjvv" path="res://Title/Title.png" id="3_20xba"]
+[ext_resource type="Texture2D" uid="uid://ccxmgl1g2iyo8" path="res://assets/Shading.png" id="3_dee4g"]
+[ext_resource type="FontFile" uid="uid://bofyuirrk5ino" path="res://assets/fonts/Thabit.ttf" id="4_dee4g"]
+[ext_resource type="AudioStream" uid="uid://c05whq1dd6x18" path="res://assets/audio/bgm.mp3" id="5_2p21v"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_uifsq"]
+font = ExtResource("4_dee4g")
+font_size = 90
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1qepu"]
+bg_color = Color(0.29954743, 0.29954746, 0.2995473, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ka76f"]
+bg_color = Color(0.74138486, 0.74138457, 0.74138457, 1)
+border_blend = true
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_hr30l"]
+font = ExtResource("4_dee4g")
+font_size = 40
+
+[node name="Control" type="Control" unique_id=2076549542]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lnhga")
+
+[node name="Background" type="TextureRect" parent="." unique_id=625653348]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_20xba")
+
+[node name="CenterContainer" type="CenterContainer" parent="Background" unique_id=1681118753]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Background" unique_id=79507632]
+layout_mode = 0
+offset_top = 682.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("3_dee4g")
+
+[node name="Title" type="TextureRect" parent="Background" unique_id=730176890]
+layout_mode = 0
+offset_left = 523.0
+offset_top = 254.0
+offset_right = 1372.0
+offset_bottom = 589.0
+texture = ExtResource("3_20xba")
+
+[node name="Loading" type="Label" parent="Background" unique_id=1629820079]
+layout_mode = 0
+offset_left = 708.0
+offset_top = 701.0
+offset_right = 1291.0
+offset_bottom = 810.0
+text = "Loading ..."
+label_settings = SubResource("LabelSettings_uifsq")
+
+[node name="ProgressBar" type="ProgressBar" parent="Background" unique_id=280458098]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 895.0
+offset_right = 1805.0
+offset_bottom = 958.0
+theme_override_styles/background = SubResource("StyleBoxFlat_1qepu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ka76f")
+
+[node name="TipLabel" type="Label" parent="Background" unique_id=107780322]
+layout_mode = 0
+offset_left = 469.0
+offset_top = 980.0
+offset_right = 1422.0
+offset_bottom = 1029.0
+text = "Tip:"
+label_settings = SubResource("LabelSettings_hr30l")
+
+[node name="FadeRect" type="ColorRect" parent="Background" unique_id=448627239]
+visible = false
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 1)
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="." unique_id=1592362172]
+stream = ExtResource("5_2p21v")
+autoplay = true
+parameters/looping = true
