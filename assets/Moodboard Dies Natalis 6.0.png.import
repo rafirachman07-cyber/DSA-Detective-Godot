@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsr6xjr8vl3v1"
-path="res://.godot/imported/personDark.png-59ae464fed31da906bd353a2e689c191.ctex"
+uid="uid://7paaiqkjrfbj"
+path="res://.godot/imported/Moodboard Dies Natalis 6.0.png-ec1cf8ffc0ff2c3e86613674712ce87f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/characters/siluet/personDark.png"
-dest_files=["res://.godot/imported/personDark.png-59ae464fed31da906bd353a2e689c191.ctex"]
+source_file="res://assets/Moodboard Dies Natalis 6.0.png"
+dest_files=["res://.godot/imported/Moodboard Dies Natalis 6.0.png-ec1cf8ffc0ff2c3e86613674712ce87f.ctex"]
 
 [params]
 

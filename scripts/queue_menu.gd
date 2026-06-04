@@ -31,7 +31,6 @@ var is_processing := false
 var queue: Array = []
 var people_data: Array = []
 
-
 func _ready():
 	randomize()
 	
@@ -39,6 +38,7 @@ func _ready():
 	peek_button.pressed.connect(on_peek_pressed)
 	pop_button.pressed.connect(on_pop_pressed)
 	keep_button.pressed.connect(on_keep_pressed)
+	enqueue_button.pressed.connect(on_enqueue_pressed)
 	back_button.pressed.connect(on_back_pressed)
 	
 	mask.visible = true
@@ -53,6 +53,11 @@ func _ready():
 	update_queue_positions()
 	clear_data_box()
 
+func on_enqueue_pressed():
+	if is_processing:
+		return
+
+	enqueue()
 
 func load_people_data():
 	var file := FileAccess.open("res://assets/characters/characters.json", FileAccess.READ)
@@ -70,13 +75,28 @@ func load_people_data():
 	people_data = parsed
 	print("Loaded data: ", people_data.size())
 
+func enqueue():
+	if not queue.is_empty():
+		return
+		
+	create_queue(4)
+	update_queue_positions()
 
+	mask.visible = true
+	kosong.visible = false
+
+	peek_button.visible = true
+	pop_button.visible = false
+	keep_button.visible = false
+	enqueue_button.visible = false
+
+	clear_data_box()
+	
 func create_queue(amount: int):
-	for i in amount:
+	for i in range(amount):
 		var character = create_character()
 		character_holder.add_child(character)
 		queue.append(character)
-
 
 func create_character() -> Sprite2D:
 	var sprite := Sprite2D.new()
@@ -116,7 +136,7 @@ func get_slots() -> Array:
 func update_queue_positions():
 	var slots = get_slots()
 
-	for i in queue.size():
+	for i in range(queue.size()):
 		var character: Sprite2D = queue[i]
 		character.global_position = slots[i]
 		character.z_index = 100 - i
@@ -125,7 +145,6 @@ func update_queue_positions():
 func on_peek_pressed():
 	if is_processing or queue.is_empty():
 		return
-	
 	
 	peek_button.visible = false
 	mask.visible = false
@@ -166,15 +185,22 @@ func on_pop_pressed():
 		peek_front_character()
 		
 func show_empty_queue_popup():
+
 	clear_data_box()
-	
+
+	suspect_image.texture = null
+
+	mask.visible = true
+	kosong.visible = true
+
 	pop_button.disabled = true
 	keep_button.disabled = true
+
 	pop_button.visible = false
 	keep_button.visible = false
 	peek_button.visible = false
 
-	kosong.visible = true
+	enqueue_button.visible = true
 	
 func on_keep_pressed():
 	if is_processing or queue.is_empty():
@@ -183,19 +209,34 @@ func on_keep_pressed():
 	is_processing = true
 
 	var front_character: Sprite2D = queue.pop_front()
-	queue.append(front_character)
+
+	var exit_position := front_character.global_position + Vector2(500, 0)
+
+	var tween := create_tween()
+	tween.tween_property(
+		front_character,
+		"global_position",
+		exit_position,
+		0.5
+	)
+
+	await tween.finished
+	front_character.queue_free()
 
 	await move_queue_forward()
 
 	is_processing = false
-	peek_front_character()
 
+	if queue.size() <= 0:
+		show_empty_queue_popup()
+	else:
+		peek_front_character()
 
 func move_queue_forward():
 	var slots = get_slots()
 	var tween := create_tween()
 
-	for i in queue.size():
+	for i in range(queue.size()):
 		var character: Sprite2D = queue[i]
 		character.z_index = 100 - i
 
@@ -207,7 +248,6 @@ func move_queue_forward():
 		)
 
 	await tween.finished
-
 
 func peek_front_character():
 	if queue.is_empty():
@@ -264,6 +304,7 @@ func clear_data_box():
 	height_label.text = ""
 	weight_label.text = ""
 	blood_label.text = ""
+	suspect_image.texture = null 
 
 
 func get_gender_text(is_male: bool) -> String:

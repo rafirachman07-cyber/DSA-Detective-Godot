@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsr6xjr8vl3v1"
-path="res://.godot/imported/personDark.png-59ae464fed31da906bd353a2e689c191.ctex"
+uid="uid://c53sy3yplsrht"
+path="res://.godot/imported/Logo.png-f4b7c4ba7d9b168635416fce503fab9f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/characters/siluet/personDark.png"
-dest_files=["res://.godot/imported/personDark.png-59ae464fed31da906bd353a2e689c191.ctex"]
+source_file="res://assets/Logo.png"
+dest_files=["res://.godot/imported/Logo.png-f4b7c4ba7d9b168635416fce503fab9f.ctex"]
 
 [params]
 

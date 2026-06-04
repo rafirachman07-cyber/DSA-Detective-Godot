@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsr6xjr8vl3v1"
-path="res://.godot/imported/personDark.png-59ae464fed31da906bd353a2e689c191.ctex"
+uid="uid://decxwr3f45jbi"
+path="res://.godot/imported/Logo & Filosofi.png-88cb89a63e386d48c7862874684bb140.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/characters/siluet/personDark.png"
-dest_files=["res://.godot/imported/personDark.png-59ae464fed31da906bd353a2e689c191.ctex"]
+source_file="res://assets/Logo & Filosofi.png"
+dest_files=["res://.godot/imported/Logo & Filosofi.png-88cb89a63e386d48c7862874684bb140.ctex"]
 
 [params]
 

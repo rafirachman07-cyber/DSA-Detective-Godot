@@ -207,19 +207,19 @@ texture_hover = ExtResource("11_4dj1p")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="QueueButton2" type="TextureButton" parent="Background/Board" unique_id=2111539320]
+[node name="StackButton" type="TextureButton" parent="Background/Board" unique_id=2111539320]
 layout_mode = 0
 offset_left = 207.0
-offset_top = 80.5
-offset_right = 407.0
-offset_bottom = 193.5
+offset_top = 81.5
+offset_right = 423.0
+offset_bottom = 187.5
 texture_normal = SubResource("CompressedTexture2D_4dj1p")
 texture_pressed = ExtResource("12_i6ehh")
 texture_hover = ExtResource("13_qxujp")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="TextureButton4" type="TextureButton" parent="Background/Board" unique_id=1641228046]
+[node name="HashMap" type="TextureButton" parent="Background/Board" unique_id=1641228046]
 layout_mode = 0
 offset_left = 833.0
 offset_top = 70.5

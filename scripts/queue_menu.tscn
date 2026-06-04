@@ -181,11 +181,11 @@ texture_hover = ExtResource("13_0wb74")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="EnqueueButton" type="TextureButton" parent="Background/Board/Paper" unique_id=1275022291]
+[node name="EnqueueButton" type="TextureButton" parent="Background/Board/Paper" unique_id=1943414099]
 layout_mode = 0
-offset_left = 686.0
+offset_left = 685.0
 offset_top = 495.0
-offset_right = 1357.0
+offset_right = 1358.0
 offset_bottom = 683.0
 texture_normal = ExtResource("15_gsuqh")
 texture_pressed = ExtResource("16_34i23")
