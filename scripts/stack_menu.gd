@@ -10,6 +10,7 @@ var icon_font = preload("res://assets/fonts/Thabit.ttf")
 @onready var pop_button = $Background/Board/Paper/PopButton
 @onready var keep_button = $Background/Board/Paper/KeepButton
 @onready var back_button = $Background/Board/Paper/BackButton
+@onready var push_button = $Background/Board/Paper/PushButton
 
 @onready var id_label = $Background/Board/Paper/DataBox/id_suspect
 @onready var name_suspect_Label = $Background/Board/Paper/DataBox/nama_suspect_Label
@@ -46,9 +47,10 @@ func _ready():
 
 	mask.visible = true
 	kosong.visible = false
-	peek_button.visible = true
+	push_button.visible = false
 	pop_button.visible = false
 	keep_button.visible = false
+	peek_button.visible = true
 
 	load_people_data()
 
@@ -100,26 +102,25 @@ func rebuild_stack():
 	var front_x = origin_x + total_spread
 	var front_y = origin_y
 
-	var throw_start_x = card_size.x + 30.0
+	var throw_start_x = card_stack_control.size.x + 500.0
 
-	for i in range(visible_count - 1, -1, -1):
+	# i=0 is back card, i=visible_count-1 is front card
+	for i in range(visible_count):
 		var card = card_scene.instantiate()
 		card_stack_control.add_child(card)
 
 		var depth = visible_count - 1 - i
-		var target_pos = Vector2(front_x + STACK_OFFSET.x * depth, front_y)
+		var target_pos = Vector2(front_x - abs(STACK_OFFSET.x) * depth, front_y)
 
-		# start off to the left
 		card.position = Vector2(throw_start_x, front_y)
 		card.z_index = i
 
-		if i == 0:
+		if i == visible_count - 1:
 			card.setup(queue.back())
 		else:
 			card.setup(null)
 
-		# stagger delay so back cards land first, front card last
-		var delay = (visible_count - 1 - i) * 0.08
+		var delay = i * 0.08 
 
 		var tween = create_tween()
 		tween.tween_interval(delay)
@@ -146,15 +147,72 @@ func on_pop_pressed():
 
 	is_processing = true
 
-	queue.pop_back()  # was pop_front()
-	rebuild_stack()
+	var all_children = card_stack_control.get_children()
+	var top_card = all_children.back()
+	var remaining_children = all_children.slice(0, all_children.size() - 1)
 
-	is_processing = false
+	# slide top card downward
+	var exit_y = card_stack_control.size.y + 40.0
+	var tween = create_tween()
+	tween.tween_property(top_card, "position:y", exit_y, 0.3)\
+		.set_ease(Tween.EASE_IN)\
+		.set_trans(Tween.TRANS_BACK)
+
+	await tween.finished
+	top_card.queue_free()
+	queue.pop_back()
 
 	if queue.is_empty():
+		is_processing = false
 		show_empty_state()
-	else:
-		peek_front()
+		return
+
+	var visible_count = min(queue.size(), MAX_BEHIND + 1)
+	var total_spread = abs(STACK_OFFSET.x) * (visible_count - 1)
+	var stack_width = card_size.x + total_spread
+	var origin_x = (card_stack_control.size.x - stack_width) / 2.0
+	var origin_y = (card_stack_control.size.y - card_size.y) / 2.0
+	var front_x = origin_x + total_spread
+
+	# spawn new back card at its final position immediately (no offset)
+	if queue.size() > remaining_children.size():
+		var new_card = card_scene.instantiate()
+		card_stack_control.add_child(new_card)
+		card_stack_control.move_child(new_card, 0)
+		new_card.setup(null)
+		new_card.z_index = 0
+
+		var back_depth = visible_count - 1
+		var back_pos = Vector2(front_x - abs(STACK_OFFSET.x) * back_depth, origin_y)
+		new_card.position = back_pos
+
+	# shift existing cards (not the new one) rightward first to reveal new card
+	var reveal_tween = create_tween()
+	var existing = card_stack_control.get_children()
+	# skip index 0 which is the new back card
+	for i in range(1, existing.size()):
+		var current_pos = existing[i].position
+		reveal_tween.parallel().tween_property(existing[i], "position", current_pos + Vector2(abs(STACK_OFFSET.x), 0), 0.15)\
+			.set_ease(Tween.EASE_OUT)\
+			.set_trans(Tween.TRANS_QUART)
+
+	await reveal_tween.finished
+
+	# now shift everything including new card into final centered positions
+	var shift_tween = create_tween()
+	var all_cards = card_stack_control.get_children()
+	for i in all_cards.size():
+		var depth = all_cards.size() - 1 - i
+		var target_pos = Vector2(front_x - abs(STACK_OFFSET.x) * depth, origin_y)
+		shift_tween.parallel().tween_property(all_cards[i], "position", target_pos, 0.25)\
+			.set_ease(Tween.EASE_OUT)\
+			.set_trans(Tween.TRANS_QUART)
+		all_cards[i].z_index = i
+
+	await shift_tween.finished
+
+	is_processing = false
+	peek_front()
 
 
 func on_keep_pressed():

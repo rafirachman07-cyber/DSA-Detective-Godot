@@ -8,14 +8,14 @@
 [ext_resource type="Script" uid="uid://dmaujmd3y76kj" path="res://scripts/card_stack.gd" id="6_epyy0"]
 [ext_resource type="Texture2D" uid="uid://5div4jygausc" path="res://assets/mulai_peek.png" id="7_ibcu1"]
 [ext_resource type="Texture2D" uid="uid://d4ha5e7vub77f" path="res://assets/mulai_peek_pressed.png" id="8_81iyd"]
-[ext_resource type="Texture2D" uid="uid://bsnoi45velbv6" path="res://assets/dequeue.png" id="9_e0l40"]
-[ext_resource type="Texture2D" uid="uid://dkhnquu0dnh13" path="res://assets/dequeue_active.png" id="10_uw4ka"]
+[ext_resource type="Texture2D" uid="uid://c2l18sapnti73" path="res://assets/pop.png" id="9_epyy0"]
+[ext_resource type="Texture2D" uid="uid://bdsr7j23ro1w5" path="res://assets/pop_pressed.png" id="10_thggk"]
 [ext_resource type="Texture2D" uid="uid://ca4sgmxme3hgj" path="res://assets/ODP.png" id="11_asxyh"]
 [ext_resource type="Texture2D" uid="uid://bf48yqiltdw62" path="res://assets/Buttons/BackButton (1).png" id="12_av6x2"]
 [ext_resource type="Texture2D" uid="uid://cb00mf5e5ipme" path="res://assets/Buttons/KeepButton (3).png" id="13_fad0k"]
 [ext_resource type="Texture2D" uid="uid://cwqa7pj0p77ox" path="res://assets/Buttons/KeepButton_active.png" id="14_7rhsf"]
-[ext_resource type="Texture2D" uid="uid://cx1uj04fxwtek" path="res://assets/enqueue_button.png" id="15_y0uar"]
-[ext_resource type="Texture2D" uid="uid://dkj1e2h18b8xl" path="res://assets/enqueue_button_active.png" id="16_3pwaq"]
+[ext_resource type="Texture2D" uid="uid://ba6te6mm0sp8e" path="res://assets/push.png" id="15_epyy0"]
+[ext_resource type="Texture2D" uid="uid://0440f7xkidna" path="res://assets/push_pressed.png" id="16_thggk"]
 [ext_resource type="Texture2D" uid="uid://dt5ock103ipui" path="res://assets/Brokers Card.png" id="17_v38ny"]
 [ext_resource type="FontFile" uid="uid://cpk028llsjiuw" path="res://assets/fonts/Thabit-Bold.ttf" id="18_tsrxd"]
 [ext_resource type="FontFile" uid="uid://bofyuirrk5ino" path="res://assets/fonts/Thabit.ttf" id="19_a2bbc"]
@@ -101,6 +101,7 @@ texture = ExtResource("5_3ndq3")
 expand_mode = 1
 
 [node name="CardStack" type="Control" parent="Background/Board/Paper/Bg" unique_id=79250697]
+clip_contents = true
 anchors_preset = 0
 offset_left = 36.0
 offset_top = 45.0
@@ -126,9 +127,9 @@ offset_left = 685.0
 offset_top = 495.0
 offset_right = 1007.0
 offset_bottom = 683.0
-texture_normal = ExtResource("9_e0l40")
-texture_pressed = ExtResource("10_uw4ka")
-texture_hover = ExtResource("10_uw4ka")
+texture_normal = ExtResource("9_epyy0")
+texture_pressed = ExtResource("10_thggk")
+texture_hover = ExtResource("10_thggk")
 ignore_texture_size = true
 stretch_mode = 4
 
@@ -165,15 +166,15 @@ texture_hover = ExtResource("14_7rhsf")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="EnqueueButton" type="TextureButton" parent="Background/Board/Paper" unique_id=1275022291]
+[node name="PushButton" type="TextureButton" parent="Background/Board/Paper" unique_id=1275022291]
 layout_mode = 0
 offset_left = 686.0
 offset_top = 495.0
 offset_right = 1357.0
 offset_bottom = 683.0
-texture_normal = ExtResource("15_y0uar")
-texture_pressed = ExtResource("16_3pwaq")
-texture_hover = ExtResource("16_3pwaq")
+texture_normal = ExtResource("15_epyy0")
+texture_pressed = ExtResource("16_thggk")
+texture_hover = ExtResource("16_thggk")
 ignore_texture_size = true
 stretch_mode = 4
 
