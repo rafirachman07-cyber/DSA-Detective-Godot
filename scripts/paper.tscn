@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://lw0pdhethwdj"]
+
+[ext_resource type="Texture2D" uid="uid://drpx6nwa63luu" path="res://assets/kertas_stack.png" id="1_8sgqd"]
+[ext_resource type="Script" uid="uid://bqjj4gdic6ys7" path="res://scripts/paper.gd" id="2_0f511"]
+
+[node name="Paper" type="TextureRect" unique_id=1253269019]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_8sgqd")
+script = ExtResource("2_0f511")
