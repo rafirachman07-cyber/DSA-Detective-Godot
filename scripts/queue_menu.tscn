@@ -23,6 +23,10 @@
 [ext_resource type="AudioStream" uid="uid://d1mddv2t3lx6k" path="res://assets/audio/bgm2.mp3" id="17_04c5c"]
 [ext_resource type="Texture2D" uid="uid://ybf7amw2ye6u" path="res://assets/Clip.png" id="19_1rf6j"]
 [ext_resource type="Texture2D" uid="uid://7nkjhs26exgp" path="res://assets/Mask Broker.png" id="20_dervd"]
+[ext_resource type="Texture2D" uid="uid://emodgo2vfi32" path="res://assets/Buttons/Batalkan.png" id="23_7vt4s"]
+[ext_resource type="Texture2D" uid="uid://bu5cfriyix1sf" path="res://assets/Buttons/BatalkanButtonActive.png" id="24_3odm8"]
+[ext_resource type="Texture2D" uid="uid://cap8y2b54li8i" path="res://assets/Buttons/Setuju Button.png" id="25_dmw8e"]
+[ext_resource type="Texture2D" uid="uid://2px8w7ys8u3i" path="res://assets/Buttons/SetujuButtonActive.png" id="26_j4bix"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_04c5c"]
 font = ExtResource("15_34i23")
@@ -59,6 +63,11 @@ font_size = 25
 [sub_resource type="LabelSettings" id="LabelSettings_1rf6j"]
 font = ExtResource("7_u546c")
 font_size = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_tewvw"]
+font = ExtResource("7_u546c")
+font_size = 45
+font_color = Color(0, 0, 0, 1)
 
 [node name="Queue Menu" type="Node2D" unique_id=569492925]
 script = ExtResource("1_row7b")
@@ -101,7 +110,7 @@ texture = ExtResource("5_lh50e")
 expand_mode = 1
 
 [node name="Meja" type="TextureRect" parent="Background/Board/Paper/Lorong" unique_id=1203390436]
-z_index = 101
+z_index = 57
 layout_mode = 0
 offset_left = 35.0
 offset_top = 476.0
@@ -276,11 +285,11 @@ stretch_mode = 4
 
 [node name="KosongLabel" type="Label" parent="Background/Board/Paper" unique_id=1981301384]
 layout_mode = 0
-offset_left = 293.0
-offset_top = 307.0
-offset_right = 469.0
-offset_bottom = 367.0
-text = "Kosong"
+offset_left = 219.0
+offset_top = 304.0
+offset_right = 395.0
+offset_bottom = 364.0
+text = "Antrian Habis"
 label_settings = SubResource("LabelSettings_1rf6j")
 
 [node name="Clipping" type="TextureRect" parent="Background/Board/Paper" unique_id=941202968]
@@ -306,6 +315,131 @@ offset_top = 232.5
 offset_right = 187.0
 offset_bottom = 596.5
 texture = ExtResource("12_gsuqh")
+
+[node name="dark_overlay" type="ColorRect" parent="Background" unique_id=1972049953]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.53333336)
+
+[node name="KeepConfirmPanel" type="ColorRect" parent="." unique_id=1541583196]
+z_index = 60
+offset_left = 266.0
+offset_top = 154.0
+offset_right = 1172.0
+offset_bottom = 893.0
+
+[node name="DataBox" type="TextureRect" parent="KeepConfirmPanel" unique_id=825440378]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 216.0
+offset_right = 749.0
+offset_bottom = 660.0
+texture = ExtResource("14_gsuqh")
+
+[node name="id_suspect_confirm" type="Label" parent="KeepConfirmPanel/DataBox" unique_id=1765135986]
+layout_mode = 0
+offset_left = 411.0
+offset_top = 135.0
+offset_right = 624.0
+offset_bottom = 166.0
+label_settings = SubResource("LabelSettings_04c5c")
+
+[node name="nama_suspect_confirm" type="Label" parent="KeepConfirmPanel/DataBox" unique_id=786941516]
+layout_mode = 0
+offset_left = 410.0
+offset_top = 179.0
+offset_right = 623.0
+offset_bottom = 210.0
+label_settings = SubResource("LabelSettings_eo2rf")
+
+[node name="gender_suspect_confirm" type="Label" parent="KeepConfirmPanel/DataBox" unique_id=1473170473]
+layout_mode = 0
+offset_left = 255.0
+offset_top = 89.0
+offset_right = 300.0
+offset_bottom = 140.0
+label_settings = SubResource("LabelSettings_u546c")
+
+[node name="nama_suspect_Label_confirm" type="Label" parent="KeepConfirmPanel/DataBox" unique_id=1655548166]
+layout_mode = 0
+offset_left = 296.0
+offset_top = 88.0
+offset_right = 622.0
+offset_bottom = 138.0
+label_settings = SubResource("LabelSettings_6qo2p")
+
+[node name="umur_suspect_confirm" type="Label" parent="KeepConfirmPanel/DataBox" unique_id=1316515311]
+layout_mode = 0
+offset_left = 408.0
+offset_top = 223.0
+offset_right = 621.0
+offset_bottom = 254.0
+label_settings = SubResource("LabelSettings_364kn")
+
+[node name="berat_suspect_confirm" type="Label" parent="KeepConfirmPanel/DataBox" unique_id=1269719043]
+layout_mode = 0
+offset_left = 409.0
+offset_top = 267.0
+offset_right = 622.0
+offset_bottom = 298.0
+label_settings = SubResource("LabelSettings_0wb74")
+
+[node name="tinggi_suspect_confirm" type="Label" parent="KeepConfirmPanel/DataBox" unique_id=1660038572]
+layout_mode = 0
+offset_left = 411.0
+offset_top = 313.0
+offset_right = 624.0
+offset_bottom = 344.0
+label_settings = SubResource("LabelSettings_gsuqh")
+
+[node name="goldar_suspect_confirm" type="Label" parent="KeepConfirmPanel/DataBox" unique_id=1406077837]
+layout_mode = 0
+offset_left = 415.0
+offset_top = 356.0
+offset_right = 628.0
+offset_bottom = 387.0
+label_settings = SubResource("LabelSettings_34i23")
+
+[node name="image_suspect_confirm" type="TextureRect" parent="KeepConfirmPanel/DataBox" unique_id=1596039014]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 57.0
+offset_right = 262.0
+offset_bottom = 415.0
+expand_mode = 1
+stretch_mode = 4
+
+[node name="LabelConfirmation" type="Label" parent="KeepConfirmPanel" unique_id=38194276]
+z_index = 90
+layout_mode = 0
+offset_left = 113.0
+offset_top = 54.0
+offset_right = 717.0
+offset_bottom = 127.0
+text = "Yakin Ingin Keep \"Person X\"
+	     ke suspect list"
+label_settings = SubResource("LabelSettings_tewvw")
+
+[node name="BatalkanButton" type="TextureButton" parent="KeepConfirmPanel" unique_id=438191351]
+layout_mode = 0
+offset_left = 936.0
+offset_top = 412.0
+offset_right = 1385.0
+offset_bottom = 594.0
+texture_normal = ExtResource("23_7vt4s")
+texture_pressed = ExtResource("24_3odm8")
+texture_hover = ExtResource("24_3odm8")
+
+[node name="SetujuButton" type="TextureButton" parent="KeepConfirmPanel" unique_id=1038165165]
+layout_mode = 0
+offset_left = 936.0
+offset_top = 172.0
+offset_right = 1385.0
+offset_bottom = 354.0
+texture_normal = ExtResource("25_dmw8e")
+texture_pressed = ExtResource("26_j4bix")
+texture_hover = ExtResource("26_j4bix")
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="." unique_id=631106808]
 stream = ExtResource("17_04c5c")

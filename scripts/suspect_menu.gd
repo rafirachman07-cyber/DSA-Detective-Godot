@@ -11,9 +11,11 @@ var icon_font = preload("res://assets/fonts/Thabit.ttf")
 @onready var tinggibadan_suspect = $Background/Board/SuspectCard/tinggibadan_suspect
 @onready var golongandarah_suspect = $Background/Board/SuspectCard/golongandarah_suspect
 @onready var suspect_image = $Background/Board/SuspectCard/image_suspect
+@onready var suspect_list_box = $Background/Board/SuspectList/VBoxContainer
 
 var suspects: Array = []
 func _ready():
+	refresh_suspect_list()
 	load_suspects()
 
 	if GlobalData.suspect_already_selected:
@@ -24,7 +26,35 @@ func _ready():
 		GlobalData.suspect_already_selected = true
 		show_suspect(suspect)
 
+	refresh_suspect_list()
 
+	if GlobalData.suspect_already_selected:
+		show_suspect(GlobalData.selected_suspect)
+	else:
+		var suspect = suspects.pick_random()
+		GlobalData.selected_suspect = suspect
+		GlobalData.suspect_already_selected = true
+		show_suspect(suspect)
+
+
+func refresh_suspect_list():
+	for child in suspect_list_box.get_children():
+		child.queue_free()
+
+	for suspect in GlobalData.kept_suspects:
+		var button := Button.new()
+		button.text = str(suspect.get("name", "-"))
+
+		button.mouse_entered.connect(func():
+			show_suspect(suspect)
+		)
+
+		button.pressed.connect(func():
+			show_suspect(suspect)
+		)
+
+		suspect_list_box.add_child(button)
+		
 func load_suspects():
 	var file := FileAccess.open("res://assets/characters/characters.json", FileAccess.READ)
 
