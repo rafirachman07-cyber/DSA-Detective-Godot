@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://cnirmfurfs6gf" path="res://assets/Buttons stack (2).png" id="13_qxujp"]
 [ext_resource type="Texture2D" uid="uid://dhlg085tqlcwl" path="res://assets/Buttons hashmap (1).png" id="16_6dn2a"]
 [ext_resource type="Texture2D" uid="uid://di4nbsgy2njg7" path="res://assets/Buttons hashmap.png" id="17_r1aac"]
+[ext_resource type="PackedScene" uid="uid://bhu1w5qfnbqax" path="res://Dialog System/DialogBox.tscn" id="20_fn13d"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_68wai"]
 line_spacing = 1.0
@@ -375,6 +376,9 @@ stretch_mode = 4
 stream = ExtResource("11_lquo6")
 autoplay = true
 parameters/looping = true
+
+[node name="DialogBox" parent="." unique_id=517866619 instance=ExtResource("20_fn13d")]
+visible = false
 
 [connection signal="pressed" from="Background/Board/QueueButton" to="." method="_on_queue_button_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://bhu1w5qfnbqax"]
+
+[ext_resource type="Script" uid="uid://bboq7vvns8u1k" path="res://Dialog System/DialogueBox.gd" id="1_32qms"]
+[ext_resource type="FontFile" uid="uid://bofyuirrk5ino" path="res://assets/fonts/Thabit.ttf" id="1_k5wbu"]
+[ext_resource type="FontFile" uid="uid://cpk028llsjiuw" path="res://assets/fonts/Thabit-Bold.ttf" id="2_sg7mc"]
+[ext_resource type="Texture2D" uid="uid://cq0iiyf16d2rh" path="res://assets/npc/mc.png" id="3_sg7mc"]
+
+[sub_resource type="Gradient" id="Gradient_32qms"]
+colors = PackedColorArray(1, 1, 1, 0.8352941, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bs5o4"]
+gradient = SubResource("Gradient_32qms")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0.00390625)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0nvhq"]
+content_margin_left = 320.0
+content_margin_top = 88.0
+content_margin_right = 32.0
+content_margin_bottom = 16.0
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[node name="DialogBox" type="CanvasLayer" unique_id=517866619]
+process_mode = 3
+layer = 0
+script = ExtResource("1_32qms")
+
+[node name="DialogPanel" type="Control" parent="." unique_id=560314639]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bgGradient" type="TextureRect" parent="DialogPanel" unique_id=1520642141]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_bs5o4")
+
+[node name="PanelContainer" type="PanelContainer" parent="DialogPanel" unique_id=907518611]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1875.0
+offset_top = -258.0
+offset_right = -30.0
+offset_bottom = -17.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0nvhq")
+
+[node name="dialog" type="RichTextLabel" parent="DialogPanel/PanelContainer" unique_id=674317501]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("1_k5wbu")
+theme_override_fonts/bold_font = ExtResource("2_sg7mc")
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+bbcode_enabled = true
+text = "Jangan panik, Leo. Di sinilah fungsi operasi terakhir Stack bekerja. Coba lihat tombol baru yang muncul, tulisannya [push()]. Di dalam teori struktur data, operasi push() digunakan untuk memasukkan atau menambahkan elemen baru ke dalam tumpukan, dan data baru tersebut akan selalu diletakkan di posisi paling atas."
+scroll_active = false
+
+[node name="Label_name" type="Label" parent="DialogPanel" unique_id=1436384135]
+layout_mode = 0
+offset_left = 367.0
+offset_top = 835.0
+offset_right = 1740.0
+offset_bottom = 915.0
+theme_override_fonts/font = ExtResource("2_sg7mc")
+theme_override_font_sizes/font_size = 48
+text = "NAMA"
+
+[node name="potrait_char" type="Sprite2D" parent="DialogPanel" unique_id=2131042122]
+position = Vector2(188, 899)
+scale = Vector2(0.7036613, 0.7036613)
+texture = ExtResource("3_sg7mc")

@@ -1,0 +1,758 @@
+{
+	"prolog": [
+		{
+			"name": "Sofyan",
+			"text": "Akhirnya! Hari pertama resmi jadi detektif berlisensi! Mulai hari ini, dunia kriminal akan gemetar mendengar namaku.",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior",
+			"text": "Haha, Semangat yang luar biasa anak baru. Selamat datang di agensi Anak baru. Aku [b]Bram[/b], yang akan bertanggung jawab membimbingmu dilapangan.",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Wah, Anda Senior Bram?! Detektif legendaris yang sering masuk koran itu? Suatu kehormatan! Perkenalkan, namaku Sofyan, detektif baru yang siap menyapu bersih semua kejahatan!",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Tenang dulu, ambisimu itu bagus. Menjadi seorang detektif bukan cuma soal menangkap penjahat, ini soal \"ketekunan\" dan juga \"ketelitian\". Paham?",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Tentu saja! Kasus sesulit apa pun pasti bisa kuselesaikan dalam sekejap!",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Polisi",
+			"text": "Selamat pagi, Detektif Bram. Dan... ah, ini detektif baru yang dirumorkan itu?",
+			"portrait": "res://assets/npc/polisi.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Selamat pagi, [b]Inspektur Rama[/b]. Benar, ini Sofyan, dia baru saja menginjakkan kaki di kantor ini beberapa menit yang lalu. Ada situasi darurat dari kepolisian?",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Inspektur Rama",
+			"text": "Situasinya darurat. Kami baru saja menggerebek markas sindikat penggelapan dana jalan. Sialnya, tepat sebelum kami dobrak pintunya, pelaku sempat memasukkan dokumen identitas mereka ke [shake]mesin penghancur kertas[/shake].",
+			"portrait": "res://assets/npc/polisi.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Hah! jadi dokumennya hancur jadi bubur?!",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Inspektur Rama",
+			"text": "Tidak hancur total, tapi robekannya sangat parah. Teksnya terpotong dan datanya rusak tidak terbaca. Kami butuh agensi kalian untuk melengkapi data dokumen yang rusak ini!",
+			"portrait": "res://assets/npc/polisi.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Serahkan padaku, Inspektur! aku akan melengkapi data data ini seperti bermain puzzle! ",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Tenang dulu, Sofyan. Biar kujelaskan sistem kerja kita. Di kota ini, ada yang namanya [b]Boker Data[/b]. Untuk mencari potongan informasi yang hilang, kita akan [b]mencocokan informasi[/b] yang kita punya ke para broker di kota ini.",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Inspektur Rama",
+			"text": "Benar.. Cari informasi dari para broker itu,  untuk melengkapi robekan kertas dokumen ini. Begitu datanya utuh, serahkan padaku untuk penangkapan.",
+			"portrait": "res://assets/npc/polisi.png"
+		}
+	],
+	"suspect_menu": [
+		{
+			"name": "Sofyan",
+			"text": "Tunggu apalagi senior. ayo sekarang kita cari informasi untuk penjahat itu!",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Tenang dulu, Sofyan. Sebelum kamu mulai, biar kujelaskan [b]tiga bagian[/b] penting di antarmuka mejamu ini agar kamu tidak bingung saat menganalisis kasus.",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Perhatikan [b]\"kartu identitas di bagian tengah\"[/b] itu. ",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		
+		{
+			"name": "Senior Bram",
+			"text": "Itu adalah Dokumen Data Kriminal utama yang kita dapatkan dari kepolisian. Di sana ada [b]foto pelaku, nama, nomor ID, umur, berat badan, tinggi badan dan golongan darah.[/b]",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Wah, kondisinya parah banget! kertasnya terpotong-potong dan banyak sekali yang bolong begini!",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		 {
+			"name": "Senior Bram",
+			"text": "Benar. Data krusial seperti nama asli tersangka dan nomor ID sudah sulit untuk di identifikasi. Tugasmu adalah [b]memulihkan dan melengkapi informasi yang hilang[/b].",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Lalu, \"[b]tombol-tombol di bagian atas[/b]\" ini apa, Senior? Tulisannya kok beda-beda? Ada yang [b][wave]Stack, Queue, sama HashMap[/wave][/b]. Ini kode rahasia agensi, ya?",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+		   "name": "Senior Bram",
+		   "text": "Bukan kode rahasia Sofyan. itu adalah tiga tipe Jaringan Broker Informasi yang kita miliki. Broker di kota kita menggunakan [b][wave]konsep struktur data[/wave][/b] dalam menyimpan informasi. Masing-masing broker punya cara kerja yang unik tersendiri. Kamu harus paham sifat mereka agar tidak salah strategi.",
+		   "portrait": "res://assets/npc/senior.png"
+	   },
+	{
+		   "name": "Senior Bram",
+		   "text": "Broker di kota kita menggunakan [b]konsep struktur data[/b] dalam menyimpan informasi. Masing-masing broker punya cara kerja yang unik tersendiri. Kamu harus paham sifat mereka agar tidak salah strategi.",
+		   "portrait": "res://assets/npc/senior.png"
+	   },
+		{
+		   "name": "Senior Bram",
+		   "text": "Tombol pertama adalah jaringan [b]Broker Stack[/b].",
+		   "portrait": "res://assets/npc/senior.png"
+	   },
+		{
+		   "name": "Senior Bram",
+		   "text": "Broker di sini sangat sibuk, mereka [b]menumpuk semua dokumen kertas dari bawah ke atas[/b]. Akibatnya, dokumen yang paling [b]terakhir masuk[/b] akan berada di posisi paling atas, dan itu yang harus kamu [b]ambil duluan[/b].",
+		   "portrait": "res://assets/npc/senior.png"
+	   },
+	   {
+			"name": "Sofyan",
+			"text": " Ah, aku tahu! [b]\"Konsep Last-In, First-Out (LIFO)!\"[/b] Sifatnya mirip seperti tumpukan baju di lemari. Baju yang paling terakhir dicuci dan ditaruh di atas, pasti itu yang diambil duluan kalau mau pergi, kan?",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+		   "name": "Senior Bram",
+		   "text": "Haha, analogi yang polos tapi tepat sekali, Leo. Di Broker Stack, kamu [b]tidak bisa[/b] memilih dokumen di bawah sebelum dokumen teratasnya kamu ambil.",
+		   "portrait": "res://assets/npc/senior.png"
+	   },
+	   {
+		   "name": "Senior Bram",
+		   "text": "Tombol kedua adalah jaringan [b]Broker Queue[/b].",
+		   "portrait": "res://assets/npc/senior.png"
+	   },
+	{
+		   "name": "Senior Bram",
+		   "text": "Di kota ini ada dua broker berbeda yang menggunakan sistem ini. Berbeda dengan Stack, broker di sini menerapkan [b]aturan antrean[/b] yang berdasarkan prinsip [b]\"First-In, First-Out (FIFO)\"[/b].",
+		   "portrait": "res://assets/npc/senior.png"
+	   },
+	   {
+		   "name": "Sofyan",
+		   "text": "Eh, ada dua broker yang pakai antrean? Memangnya apa bedanya, Senior Bram?",
+		   "portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "[b]Broker Queue[/b] yang pertama bergerak langsung di lapangan. Informan mereka mengumpulkan bukti dengan cara meminta kesaksian langsung dari [b]antrean orang-orang[/b] atau [b]saksi mata yang berbaris[/b]. Siapa saksi yang datang dan mengantre [b]paling depan[/b], akan memberikan kesaksiannya [b]duluan[/b]",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+		   "name": "Sofyan",
+		   "text": "Oh, paham! Jadi mirip seperti antrean loket bioskop, ya. Harus tertib nunggu giliran orang di depannya selesai bicara. Lalu broker queue yang kedua bagaimana?",
+		   "portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Nah, kalau [b]Broker Queue yang kedua[/b], mereka bergerak secara rahasia lewat jaringan telekomunikasi. Informasi yang mereka dapatkan harus diprint dulu lewat antrean mesin fax di pojok ruangan itu.",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Dokumen laporan yang dikirim [b]pertama kali[/b] oleh broker akan dicetak [b]paling awal[/b] oleh mesin fax kita. Dokumen lainnya harus mengantre di dalam memori mesin sampai kertas di depannya selesai dicetak.",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+		   "name": "Sofyan",
+		   "text": "Ah! Jadi intinya sama-sama [b]konsep antrean![/b] Jadi kalau kita butuh data penting yang kebetulan ada di [b]urutan belakang[b], kita harus memproses data di [b]depannya duluan[/b], kan?",
+		   "portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Tepat sekali, Sofyan. Analisis yang bagus untuk seorang pemula.",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Nah, yang terakhir ini yang paling canggih dan efisien, jaringan [b]Broker HashMap[/b].",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Mereka sama sekali tidak menggunakan sistem tumpukan ataupun antrean kertas. Mereka menggunakan [b]sistem pemetaan langsung[/b]. Caranya, kamu cukup memasukkan [b]\"Nomor ID\"[/b] dari data pelaku yang ada di dokumen rusak milik kepolisian tadi sebagai [b]\"Kunci\"[/b] pencariannya.",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+		   "name": "Sofyan",
+		   "text": "Oh! selama kita memiliki [b]nomor ID[/b] dari si pelaku sistem akan langsung mencocokan secara instan dan seluruh data diri pelaku tersebut akan langsung diberikan secara utuh tanpa potongan",
+		   "portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Benar sekali. HashMap bisa menjadi jalan pintas untuk mendapatkan data pelaku",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+		   "name": "Sofyan",
+		   "text": "Ah, aku melihat ada kertas kosong dengan klip [b]\"di sebelah kanan\"[/b]. Tulisannya... \"Suspect List\"?",
+		   "portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Betul. Itu adalah [b]papan catatan sementaramu[/b]. Berbagai informasi atau nama-nama terduga yang kamu dapatkan setelah mendapat informasi dari Broker, tidak akan langsung ditetapkan mejadi tersangka. Semuanya akan ditampung di lembaran Suspect List ini terlebih dahulu.",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Aha! Paham, paham! Jadi lembaran kanan ini buat kita pilah-pilih dulu, ya? mencocokkan Informasi bukti yang kita miliki dari polisi",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Hebat Sofyan. Kamu sudah mengerti dasar-dasar untuk menjadi detektif yang hebat. Tapi ingat, untuk menjadi detektif nomor satu kamu harus \"teliti\" dengan informasi yang diberikan oleh para broker",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Sekarang, coba kamu klik salah satu tombol [wave]STACK[/wave] di atas untuk memulai gali informasi dari broker itu.",
+			"portrait": "res://assets/npc/senior.png"
+		}
+	],
+	
+	
+	"stack_menu": [
+		{
+			"name": "Senior Bram",
+			"text": "Sofyan, perkenalkan. Ini adalah Anton. Broker Informasi paling sibuk dan... yah, agak sedikit berantakan. Tapi datanya selalu akurat.",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Anton",
+			"text": "Astaga kertas-kertas ini tidak mau rapi! Oh, Bram? Ada apa? Cepetan, aku harus segera pergi mengurus transaksi lain. Polisi sedang gencar-gencarnya berpatroli!.",
+			"portrait": "res://assets/npc/anton.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Tenang dulu, Anton. Jangan ceroboh begitu. Ini Sofyan, detektif baru agensi kami. Kami butuh akses ke dalam informasimu untuk melacak dalang dari penggelapan dana jalan.",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Anton",
+			"text": "Rookie? fine. Ambil saja diatas tumpukan dokumen itu. semua datanya sudah ku taruh disitu. Pakai saja. Sudah ya, aku sibuk! Bye!.",
+			"portrait": "res://assets/npc/anton.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Wah... dia benar-benar sibuk. Tapi Senior Bram, bagaimana cara kita mencari nama penjahat di antara tumpukan dokumen ini?.",
+			"portrait": "res://assets/npc/mc.png"
+		},
+
+		{
+			"name": "Senior Bram",
+			"text": "Itulah ciri khas Anton, Sofyan. Secara tidak sadar, dia selalu menggunakan metode Struktur Data STACK (Tumpukan) secara manual pada kertas-kertas laporannya.",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Ah! Aku tahu logika itu! Konsep Last-In, First-Out (LIFO). Karena Anton menumpuk kertas ini dari bawah ke atas, berarti kertas laporan yang paling terakhir dia dapatkan berada di posisi paling atas!",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Tepat sekali! Nah, karena tumpukan sangat tinggi dan kita tidak mau dokumen ini jatuh berantakan, kita tidak bisa langsung melihat data di tengah atau di bawah. Kita harus mulai dari kertas teratas. Sekarang, coba kamu tekan tombol [Mulai peek()] itu..",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Mulai peek()? Apa artinya itu, Senior?.",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Dalam konsep Stack, operasi peek() digunakan untuk melihat atau memeriksa elemen yang berada di posisi paling atas tumpukan tanpa menghapusnya. Jadi, kita bisa membaca isinya terlebih dahulu tanpa mengubah struktur tumpukan kertas ini. Coba klik tombolnya..",
+			"portrait": "res://assets/npc/senior.png"
+		},
+
+		{
+			"name": "Sofyan",
+			"text": "Hmm, lembaran teratas ini berisi profil {person 1} Tapi lihat Senior, datanya sama sekali tidak cocok dengan petunjuk awal dari Inspektur Rama!.",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Karena datanya tidak cocok, kita harus menyingkirkannya. Perhatikan tombol biru bertuliskan [pop()] di bawah kertas itu. Di dalam struktur data Stack, operasi pop() berfungsi untuk menghapus atau mengeluarkan elemen yang berada di posisi teratas tumpukan.",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Oh! Jadi kalau aku klik [pop()], kertas {person 1} ini akan dikeluarkan dan dibuang secara permanen?.",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Benar. Dan setelah elemen teratas berhasil di-pop(), kertas yang berada tepat di bawahnya secara otomatis akan naik menjadi elemen teratas yang baru untuk bisa kita periksa lagi. Itulah sifat asli Stack.Tapi, Kalau datanya ternyata cocok, kamu jangan pakai pop(), melainkan tekan tombol [Keep] untuk menjadikannya tersangka..",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": " Paham! Kalau datanya sampah, kita pop(). Kalau datanya berguna, kita Keep. Aku coba tekan Keep dulu untuk berjaga-jaga!.",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Pop-up konfirmasi ini muncul untuk memastikan apakah kamu yakin ingin memasukkan nama tersebut ke dalam Suspect List agensi. Jika kamu klik [SETUJUI], kertas itu akan berpindah ke papan daftar tersangka di sebelah kanan. Ingat, papan jepitan kita terbatas, maksimal hanya muat 6 lembar kertas tersangka..",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Tenang saja, Senior! Calon detektif nomor satu sepertiku tidak akan salah pilih. Aku akan membuang kertas yang tidak valid dengan pop() dan hanya menyimpan bukti yang akurat!",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Bagus. Nah, jika kamu terus melakukan pop() atau memindahkan kertas ke daftar tersangka, lama-lama tumpukan kertas di dalam map itu akan habis sampai tidak ada yang tersisa.",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Lho, Senior Bram! Kertas di dalam mapnya sudah habis! Tulisannya 'Kosong'! Tapi aku belum menemukan nama pelaku sindikat yang asli!.",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Jangan panik, Leo. Di sinilah fungsi operasi terakhir Stack bekerja. Coba lihat tombol baru yang muncul, tulisannya [push()]. Di dalam teori struktur data, operasi push() digunakan untuk memasukkan atau menambahkan elemen baru ke dalam tumpukan, dan data baru tersebut akan selalu diletakkan di posisi paling atas.",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Aha! Jadi kalau aku klik [push()], kita memerintahkan informan Anton di luar sana untuk menambahkan data-data baru, lalu data itu akan dimasukkan dan ditumpuk kembali di sini!.",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Tepat sekali! Tumpukannya akan terisi kembali dan kamu bisa memulai siklusnya dari awal lagi dengan peek().  Tapi ingat, data lapangan Anton itu terbatas. Untuk kasus ini, kamu hanya bisa melakukan push() maksimal 2 kali saja. Setelah 2 kali meminta data baru, informan Anton akan benar-benar kehabisan petunjuk..",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Hah? Cuma bisa 2 kali push()? Berarti aku harus benar-benar memanfaatkan kesempatan ini dengan jeli agar tidak melewatkan satu kertas pun!.",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Benar. Nah, ini poin paling penting jika kamu menemui jalan buntu. Seandainya jatah 2 kali push() milikmu sudah habis, semua kertas sudah kamu pop(), dan folder akan bertuliskan  \"Habis\"....",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Dan ternyata data lengkap si bos besar masih belum ketemu juga di sini? Kita harus bagaimana, Senior?.",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Jika itu terjadi, artinya potongan informasi yang kita cari memang tidak disimpan oleh Anton. Kamu harus keluar dari layar ini dengan menekan tombol [Kembali/Arrow] di pojok kanan atas, lalu beralihlah ke jaringan broker lainnya.",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Ah! Maksud Senior, aku harus mencari sisa informasi tambahan ke jaringan Broker Queue atau Broker HashMap tadi?.",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Luar biasa, 100 untukmu. Kasus besar ini tidak bisa dipecahkan hanya dari satu tempat.Oh iya. jika kamu sedang sibuk memilah kertas dan ingin meninjau kembali siapa saja yang sudah kamu jepit di papan tersangka agensi, kamu cukup menekan Tombol dengan Ikon Target (Bidikan) di sebelah kanan layar untuk membuka daftar mereka..",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Luar biasa! Teori Stack ini ternyata sangat berguna di dunia detektif! Cukup duduk di meja, mengintip dengan peek(), membuang dengan pop(), dan menambah data dengan push()! Kasus ini akan selesai dalam hitungan menit!.",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Logika yang bagus, Leo. Sekarang, mari kita selesaikan tumpukan kertas pertama ini. Pekerjaanmu dimulai dari sekarang!",
+			"portrait": "res://assets/npc/senior.png"
+		}
+	],
+	"queue_orang_menu": [
+		{
+			"name": "Raditya",
+			"text": "Selamat pagi, Mas Bram. Sungguh kehormatan bisa bertemu lagi di sini. Semua interogasi saksi hari ini berjalan sangat tertib dan sesuai jadwal.",
+			"portrait": "res://assets/npc/raditya.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Selamat pagi, Pak Raditya. Senang melihat kedisiplinan Anda tidak pernah mengendur. Perkenalkan, ini {user}, detektif muda baru kami. Kami ke sini untuk memeriksa kesaksian warga terkait kasus pemalsuan dokumen..",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Raditya",
+			"text": "Ah, selamat datang di agensi, Mas Leo. Jangan khawatir, tim informan saya di lapangan mengumpulkan data dengan sangat adil. Siapa saksi yang datang duluan ke posko, akan kami layani pertama. Kami tidak suka ada yang menyerobot antrean..",
+			"portrait": "res://assets/npc/raditya.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Wah, beda banget sama Anton yang main tumpuk kertas berantakan tadi ya, Senior? Pak Raditya ini rapi sekali, saksinya bahkan disuruh berbaris langsung. Tapi Senior Bram, bagaimana cara kita mulai memintai kesaksian warga yang mengantre ini?.",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Sifat Pak Raditya yang disiplin ini tercermin dari sistemnya, Leo. Jaringan ini menerapkan Struktur Data QUEUE (Antrean) dengan prinsip FIFO (First-In, First-Out)..",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Aha! Ini konsep antrean yang kita bahas tadi! Orang yang pertama kali datang dan mengantre di depan, dia yang akan keluar duluan dan yang pertama kali kita catat kesaksiannya!.",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Tepat sekali. Kalau di Stack kita harus membongkar tumpukan dari atas, di Queue kita wajib mendengarkan orang yang berdiri di barisan paling depan. Sekarang, coba kamu tekan tombol hijau [Mulai peek()].",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Apakah fungsi peek() di sini sama dengan yang di Stack, Senior?.",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Secara prinsip sama, Leo. Di dalam struktur data Queue, operasi peek() digunakan untuk melihat atau mengintip elemen yang berada di posisi paling depan antrean tanpa mengubah susunannya. Jadi, kita bisa mendengarkan dulu kesaksian orang pertama ini tanpa membubarkan atau mengubah posisi barisannya. Klik tombolnya..",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Hmm... Saksi pertama ini, si  {person 1}. Tapi setelah kudengar ceritanya langsung, alibinya sangat kuat dan ciri fisik pelaku yang dia sebutkan melenceng jauh dari petunjuk kepolisian, Senior!.",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Kalau kesaksiannya tidak cocok, kita harus mempersilakannya jalan. Perhatikan tombol ungu bertuliskan [dequeue()] di bawah datanya. Nah, dalam teori Queue, operasi dequeue() berfungsi untuk menghapus atau mengeluarkan elemen dari posisi terdepan antrean..",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Oh! Jadi kalau aku klik [dequeue()], artinya kita selesai mendengarkan saksi pertama, lalu mempersilakannya pulang dan keluar dari area interogasi?.",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Betul sekali. Dan begitu orang pertama keluar lewat proses dequeue(), orang yang berada tepat di belakangnya secara otomatis akan maju menjadi barisan terdepan yang baru untuk kita dengarkan kesaksiannya. Antrean akan terus bergerak maju ke depan. Tapi ingat, jika kesaksian warga tersebut sangat mencurigakan dan mengarah ke pelaku, jangan di-dequeue(), melainkan tekan tombol [Keep]..",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Tombol Keep ini sama seperti penjelasan ku ketika di tempat anton.",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Paham, Senior! Kalau kesaksiannya tidak berguna kita dequeue() biar orang di belakangnya bisa maju memberikan keterangan. Kalau mencurigakan kita Keep! Aku akan menyaring barisan saksi ini dengan sangat ketat!.",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Bagus. Namun ingat, jika kamu terus melakukan dequeue() atau memindahkan orang ke daftar tersangka, barisan warga di depan meja Pak Raditya lama-lama akan habis.",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Ah, barisannya sudah 'Kosong' dan tidak ada orang lagi yang tersisa di ruangan, Senior! Tapi petunjuknya masih kurang sedikit lagi untuk membuka sensor dokumen utama. Bagaimana ini?.",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Di sinilah fungsi operasi terakhir Queue bekerja. Coba lihat tombol baru yang muncul, tulisannya [enqueue()]. Di dalam ilmu struktur data, operasi enqueue() digunakan untuk memasukkan atau menambahkan elemen baru ke dalam antrean, dan elemen baru tersebut akan selalu diletakkan di posisi paling belakang (ekor antrean)..",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Oalah! Jadi kalau aku klik [enqueue()], Pak Raditya akan memanggil rombongan warga baru yang menunggu di luar posko, lalu meminta mereka berbaris masuk menyambung dari belakang antrean yang kosong tadi!.",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Tepat sekali, antrean warga akan terisi kembali dari belakang. Namun, Pak Raditya juga memiliki batasan waktu demi keamanan warga. Kamu hanya bisa melakukan enqueue() maksimal 2 kali saja. Setelah 2 kali panggilan, tidak ada saksi lagi yang berani datang ke posko ini.",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Nah, dengarkan baik-baik, {user}. Sama seperti di jaringan Anton. Jika kamu sudah menghabiskan jatah 2 kali enqueue() milikmu, semua warga sudah selesai diinterogasi dan di-dequeue(), barisan menjadi “Habis”, dan saksi pelaku utama masih belum ketemu.",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Berarti tandanya pelaku utama tidak pernah melewati area atau wilayah posko milik Pak Raditya ya, Senior?.",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Betul. Jika hal itu terjadi, jangan buang-buang waktu mendengarkan keheningan di sini. Segera tekan tombol [Kembali/Arrow] di pojok kanan atas untuk keluar dari area Pak Raditya, lalu beralihlah ke jaringan broker yang lain..",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Siap, Senior Bram! Logikanya sudah tersimpan rapi di otakku! Mendengarkan yang depan dengan peek(), melepas yang selesai dengan dequeue(), menambah barisan dari belakang dengan enqueue() maksimal 2 kali, dan kalau mentok tinggal ganti broker! Para saksi di barisan Pak Raditya, mari kita temukan kebenaran dari ucapan kalian!.",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Bagus, {user}. Tetap fokus mendengarkan dan selamat bertugas!.",
+			"portrait": "res://assets/npc/senior.png"
+		}
+	],
+	"queue_fax_menu": [
+		{
+			"name": "SFX: Kreeeeek... bzzzt... ",
+			"text": "(Suara konstan mesin faks yang sedang mencetak dokumen secara berurutan, diikuti dering telepon).",
+			"portrait": "res://assets/npc/system.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Bram di sini. Bagaimana situasi di lapangan, Yudi?.",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Yudi",
+			"text": "Data profil kaki tangan sindikat sudah selesai kurangkum, Bram. Jalur komunikasi agensi sedang sibuk, jadi seluruh dokumen ini kukirim secara berurutan ke mesin faks mejamu sekarang juga. Aku mengirimkannya satu demi satu sesuai urutan kronologis keterlibatan mereka di lapangan!.",
+			"portrait": "res://assets/npc/yudi.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Dimengerti, Yudi. Kami akan langsung memprosesnya dari sini..",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "{user}, ini Yudi, broker informasi andalan agensi untuk wilayah pusat. Dia mengirimkan data real-time lewat jaringan faks kita.",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Salam kenal, Bang Yudi! Wah, Senior Bram, lihat ini! Kertas faksnya tercetak satu demi satu.Lembaran yang pertama kali selesai dicetak langsung menjadi yang pertama kali untuk diperiksa!.",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Yudi",
+			"text": "Benar, Anak Muda! Mesin faks itu mencetak sesuai urutan sinyal data yang kumasukkan dari sini. Jadi, periksa kertas yang keluar duluan secara berurutan agar alur datanya tidak kacau! Selamat bekerja!.",
+			"portrait": "res://assets/npc/yudi.png"
+		},
+		
+		{
+			"name": "Sofyan",
+			"text": "Senior Bram, apa kita perlu belajar teori baru lagi untuk menyaring kertas faks ini?.",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Tidak perlu, {user}. Secara mekanik, sistem faks ini sama persis dengan Queue Pak Raditya. Konsepnya tetap FIFO (First-In, First-Out), di mana kertas yang dicetak paling pertama otomatis mengantre di urutan terdepan..",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Oh, berarti semua fungsi tombolnya tidak berubah sama sekali, ya?.Tinggal klik [Mulai peek()] untuk mengintip data terdepan.Tekan [dequeue()] untuk membuang kertas salah agar antrean faks di belakangnya otomatis maju.Klik [Keep] untuk memunculkan konfirmasi simpan data tersangka.",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Tepat sekali. Aturan kuotanya juga identik: daftar tersangka maksimal 6 slot). Jika kertas di papan sudah 'Kosong', kamu bisa tekan [enqueue()] maksimal 2 kali untuk menarik sisa data tambahan dari Yudi. Kalau tetap mentok, tinggal klik tombol [Kembali/Arrow] untuk cari broker lain..",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Luar biasa! Karena mekaniknya sama persis, aku bisa langsung tancap gas tanpa bingung. Mari kita saring dokumen faks pertama ini sekarang, Senior!.",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Bagus. Gunakan ketelitianmu dan selamat bekerja!.",
+			"portrait": "res://assets/npc/senior.png"
+		}
+	],
+	"hasmap_menu": [
+		{
+			"name": "Senior Bram",
+			"text": "Halo, Zero. Kami butuh akses ke database kependudukan milikmu untuk melacak nomor ID pelaku utama..",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Zero",
+			"text": "To the point, Bram. Waktuku mahal. Masukkan ID-nya. Biar sistemku yang bekerja.",
+			"portrait": "res://assets/npc/zero.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Badas... Berbeda jauh dengan Pak Raditya atau Anton yang banyak menjelaskan lewat kertas dan antrean.",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Itulah Zero. Dia tidak suka basa-basi karena dia adalah seorang hacker. Di dunianya, waktu pemrosesan data adalah segalanya.",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": " Zero menggunakan Struktur Data HASH MAP (atau Dictionary), Leo. Berbeda dengan Stack atau Queue yang harus diperiksa satu per satu dari ujung ke ujung, Hash Map menggunakan konsep Key-Value Pair (Pasangan Kunci dan Nilai).",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Maksudnya Key-Value, Senior?.",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Dalam kasus kita, ID Penjahat adalah 'Key' (Kunci), sedangkan Profil Lengkap Tersangka adalah 'Value' (Nilai). Saat kamu memasukkan ID, sistem akan menggunakan fungsi matematika khusus bernama Hash Function untuk langsung menembak alamat memori tempat data itu disimpan. Pencariannya instan, konstan, dan tidak peduli seberapa banyak data di dalamnya..",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Zero",
+			"text": "Tanpa mencari satu persatu. Tanpa buang waktu.",
+			"portrait": "res://assets/npc/zero.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": " Benar kata Zero. Sekarang giliranmu, {user}. Coba ketikkan nomor ID yang kita dapatkan dari petunjuk sebelumnya ke dalam kolom Input ID.",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Sudah ku isi nomor ID, Senior! Lalu bagaimana?.",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Tinggal tekan tombol Cari (ikon kaca pembesar) di sebelah kolom tersebut. Nah, di sini ada dua kemungkinan skenario hasil dari database Zero:",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Skenario 1: ID Ditemukan (FOUND) Jika ID yang kamu masukkan valid dan terdaftar di database Zero, panel kiri terminal akan langsung berubah menjadi warna hijau cerah dengan teks > FOUND. Seluruh informasi {person 1} mulai dari Nama, Umur, hingga Golongan Darah akan langsung ditarik keluar secara instan di panel kanan.",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Skenario 2: ID Tidak Ditemukan (NOT FOUND) Sebaliknya, jika kamu salah ketik atau ID tersebut memang tidak ada dalam catatan hacker miliknya, terminal kiri akan berubah menjadi warna merah dengan teks > NOT FOUND. Panel data broker akan tetap kosong karena tidak ada Value yang cocok dengan Key tersebut.",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Wah! Sekali klik langsung ketemu atau tidak ya? Berarti kita tidak perlu melakukan operasi pop() atau dequeue() berulang-ulang untuk mencari data spesifik!.",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Tepat sekali. Di jaringan Hash Map ini, tugasmu murni memasukkan Key ID yang tepat berdasarkan bukti yang kamu kumpulkan dari broker lain. .",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Siap, Senior Bram! Konsep Hash Map ini benar-benar jalan pintas yang super cepat. Mari kita masukkan ID targetnya dan bongkar kedok sindikat ini!.",
+			"portrait": "res://assets/npc/mc.png"
+		}
+	],
+
+	"choose_suspect_menu": [
+		{
+			"name": "Senior Bram",
+			"text": "Kerja bagus, {user}. Kamu sudah berhasil mengumpulkan data dari berbagai broker. Sekarang lihat ke papan analisismu.",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Wah, semua tersangka yang kemarin aku pilih tombol Keep otomatis masuk dan berbaris di kolom Suspect List sebelah kanan ya, Senior?.",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Tepat Sekali. Tugas akhirmu di misi ini adalah menetapkan satu orang sebagai Pelaku Utama untuk diserahkan kepada pihak kepolisian..",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Mari kita mulai analisisnya, {user}. Sekarang, perhatikan suspect list disebalh kanan. Coba kamu klik salah satu foto tersangka yang paling mencurigakan dari Suspect List tersebut..",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Wah, muncul jendela pop-up detail profilnya.",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Layar berganti lagi, Senior Bram! Sekarang ada dua lembar data di sebelah kliri.",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": " Ini adalah tahap penentuan, {user}. Perhatikan baik-baik:Lembar Atas: Adalah data suspect yang baru saja kamu pilih dari broker kita.Lembar Bawah: Adalah data resmi/DPO yang dicari oleh pihak Kepolisian.Sekarang tugasmu adalah mencocokkan setiap poinnya dengan teliti. Apakah ID, umur, berat badan, tinggi, hingga golongan darah di kedua lembar itu sudah 100% identik?.",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Ah, aku mengerti! Jadi aku harus mengawasi kedua data ini dengan super teliti!.",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": " Tepat. Jika setelah kamu amati ada satu saja data yang meleset, langsung klik tombol merah [BATALKAN] untuk kembali ke papan awal. Tapi, jika semua data dari atas sampai bawah sudah sama persis...",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "..Aku tinggal klik tombol hijau [SETUJUI] untuk menjadikannya pelaku utama, kan Senior?.",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Benar, {user}. Sekali tombol itu ditekan, Polisi akan langsung bergerak melakukan penangkapan. Pikirkan matang-matang, cocokkan sekali lagi, dan ambil keputusanmu!.",
+			"portrait": "res://assets/npc/senior.png"
+		}
+	],
+
+	"correct_answer": [
+		{
+			"name": "Inspektur Rama",
+			"text": "Target berhasil diamankan! Semua data kecocokan fisik dan ID yang Anda berikan 100% akurat. Kerja yang luar biasa, Detektif {user}!.",
+			"portrait": "res://assets/npc/polisi.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "Yesss! Analisisku tidak pernah meleset! Pelaku utamanya memang tidak bisa berkutik di hadapan struktur data kita!.",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Selamat, Leo! Keberhasilan ini membuat popularitasmu di agensi melonjak tajam. Kamu membuktikan bahwa kamu punya potensi besar menjadi detektif nomor 1.",
+			"portrait": "res://assets/npc/senior.png"
+		}
+	],
+	"wrong_answer": [
+		{
+			"name": "Inspektur Rama",
+			"text": "Blunder besar! Kita menangkap orang yang salah! data-datanya tidak cocok dengan pelaku asli di lapangan! Reputasi kepolisian hancur karena analisis amatir ini!.",
+			"portrait": "res://assets/npc/polisi.png"
+		},
+		{
+			"name": "Sofyan",
+			"text": "-tidak mungkin... Aku salah melihat detail datanya... Maafkan aku....",
+			"portrait": "res://assets/npc/mc.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Sudah dibilang untuk teliti, Leo. Kecerobohanmu membuat orang tidak bersalah mendekam di penjara. Kamu tidak pantas berada di agensi ini..",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Inspektur Rama",
+			"text": " Atas perintah atasan, akibat kelalaian fatal ini, Detektif {user}... Anda resmi diberhentikan secara tidak hormat. Silakan tinggalkan ruangan..",
+			"portrait": "res://assets/npc/polisi.png"
+		}
+	]
+}
