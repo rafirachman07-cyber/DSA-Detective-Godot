@@ -1,7 +1,9 @@
 extends Node2D
 
 var icon_font = preload("res://assets/fonts/Thabit.ttf")
+var kept_item_scene = preload("res://scripts/kept_suspect_item.tscn")
 
+#Suspect
 @onready var id_suspect = $Background/Board/SuspectCard/id_suspect
 @onready var nama_suspect_Label = $Background/Board/SuspectCard/nama_suspect_Label
 @onready var nama_suspect = $Background/Board/SuspectCard/nama_suspect
@@ -11,10 +13,25 @@ var icon_font = preload("res://assets/fonts/Thabit.ttf")
 @onready var tinggibadan_suspect = $Background/Board/SuspectCard/tinggibadan_suspect
 @onready var golongandarah_suspect = $Background/Board/SuspectCard/golongandarah_suspect
 @onready var suspect_image = $Background/Board/SuspectCard/image_suspect
+
+#Suspect Hover
 @onready var suspect_list_box = $Background/Board/SuspectList/VBoxContainer
+@onready var suspect_list_grid = $Background/Board/SuspectList/GridContainer
+@onready var hover_preview = $Background/Board/SuspectList/HoverPreviewPanel
+
+@onready var preview_image = $Background/Board/SuspectList/HoverPreviewPanel/image_suspect_preview
+@onready var preview_name = $Background/Board/SuspectList/HoverPreviewPanel/nama_suspect_preview
+@onready var preview_name_label = $Background/Board/SuspectList/HoverPreviewPanel/nama_suspect_Label_preview
+@onready var preview_id = $Background/Board/SuspectList/HoverPreviewPanel/id_suspect_preview
+@onready var preview_age = $Background/Board/SuspectList/HoverPreviewPanel/umur_suspect_preview
+@onready var preview_gender = $Background/Board/SuspectList/HoverPreviewPanel/gender_suspect_preview
+@onready var preview_height = $Background/Board/SuspectList/HoverPreviewPanel/tinggi_suspect_preview
+@onready var preview_weight = $Background/Board/SuspectList/HoverPreviewPanel/berat_suspect_preview
+@onready var preview_blood = $Background/Board/SuspectList/HoverPreviewPanel/goldar_suspect_preview
 
 var suspects: Array = []
 func _ready():
+	hover_preview.visible = false
 	refresh_suspect_list()
 	load_suspects()
 
@@ -38,23 +55,56 @@ func _ready():
 
 
 func refresh_suspect_list():
-	for child in suspect_list_box.get_children():
+	for child in suspect_list_grid.get_children():
 		child.queue_free()
 
+	suspect_list_grid.columns = 2
+
 	for suspect in GlobalData.kept_suspects:
-		var button := Button.new()
-		button.text = str(suspect.get("name", "-"))
+		var item = kept_item_scene.instantiate()
 
-		button.mouse_entered.connect(func():
-			show_suspect(suspect)
+		item.custom_minimum_size = Vector2(90, 120)
+		item.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+		item.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+
+		suspect_list_grid.add_child(item)
+		item.setup(suspect)
+
+		item.mouse_entered.connect(func():
+			show_hover_preview(suspect)
 		)
 
-		button.pressed.connect(func():
-			show_suspect(suspect)
+		item.mouse_exited.connect(func():
+			hide_hover_preview()
 		)
-
-		suspect_list_box.add_child(button)
 		
+func load_suspect_texture(sprite_path: String):
+	if sprite_path == "":
+		return null
+
+	var fixed_path := sprite_path.replace("./", "res://assets/characters/")
+	var texture = load(fixed_path)
+
+	if texture == null:
+		push_error("Cannot load suspect image: " + fixed_path)
+
+	return texture
+
+func show_hover_preview(suspect: Dictionary):
+	preview_name_label.text = str(suspect.get("name", "-"))
+	preview_name.text = str(suspect.get("first_name", "-"))
+	preview_id.text = str(suspect.get("id", "-"))
+	preview_age.text = str(suspect.get("age", "-"))
+	preview_gender.text = get_gender_icon(bool(suspect.get("is_male", true)))
+	preview_height.text = "%s cm" % str(suspect.get("height_cm", "-"))
+	preview_weight.text = "%s kg" % str(suspect.get("weight_kg", "-"))
+	preview_blood.text = str(suspect.get("blood_type", "-"))
+
+	preview_image.texture = load_suspect_texture(str(suspect.get("sprite", "")))
+
+	hover_preview.visible = true
+	hover_preview.z_index = 999
+
 func load_suspects():
 	var file := FileAccess.open("res://assets/characters/characters.json", FileAccess.READ)
 
@@ -72,7 +122,9 @@ func load_suspects():
 
 	print("Loaded characters: ", suspects.size())
 
-
+func hide_hover_preview():
+	hover_preview.visible = false
+	
 func show_random_suspect():
 	if suspects.is_empty():
 		push_error("No suspect data found")

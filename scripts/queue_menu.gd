@@ -10,23 +10,15 @@ var icon_font = preload("res://assets/fonts/Thabit.ttf")
 @onready var suspect_image = $Background/Board/Paper/DataBox/image_suspect
 @onready var mask = $Background/Board/Paper/Mask
 @onready var kosong = $Background/Board/Paper/KosongLabel
-#Confirm Box
-@onready var keepConfirmPanel = $KeepConfirmPanel
-@onready var confirmDataBox = $KeepConfirmPanel/DataBox
-@onready var labelConfirmation = $KeepConfirmPanel/LabelConfirmation
-@onready var confirmIdSuspect = $KeepConfirmPanel/DataBox/id_suspect_confirm
-@onready var genderSuspectConfirm = $KeepConfirmPanel/DataBox/gender_suspect_confirm
-@onready var namaSuspectConfirm = $KeepConfirmPanel/DataBox/nama_suspect_confirm
-@onready var umurSuspsectConfirm = $KeepConfirmPanel/DataBox/umur_suspect_confirm
-@onready var beratSuspectConfirm = $KeepConfirmPanel/DataBox/berat_suspect_confirm
-@onready var tinggiSuspectConfirm = $KeepConfirmPanel/DataBox/tinggi_suspect_confirm
-@onready var goldarSuspectConfirm = $KeepConfirmPanel/DataBox/goldar_suspect_confirm
-@onready var labelNamaSuspectConfirm = $KeepConfirmPanel/DataBox/nama_suspect_Label_confirm
-@onready var imageSuspectConfirm = $KeepConfirmPanel/DataBox/image_suspect_confirm
+@onready var front_label = $Background/Board/Paper/Lorong/Front
+@onready var rear_label = $Background/Board/Paper/Lorong/Rear
 
+#Confirm Box
+@onready var meja = $Background/Board/Paper/Lorong/Meja
+@onready var confirmation_tab = $ConfirmationTab
 @onready var batalkanButton = $KeepConfirmPanel/BatalkanButton
 @onready var setujuButton = $KeepConfirmPanel/SetujuButton
-@onready var darkOverlay = $Background/dark_overlay
+@onready var darkOverlay = $Background/darkOverlay
 
 #main page
 @onready var peek_button = $Background/Board/Paper/PeekButton
@@ -52,18 +44,25 @@ var people_data: Array = []
 
 func _ready():
 	randomize()
-
+	
+	meja.z_as_relative = false
+	meja.z_index = 200
+	character_holder.z_as_relative = false
+	character_holder.z_index = 50
 	gender_label.add_theme_font_override("font", icon_font)
-	batalkanButton.pressed.connect(on_cancel_keep_pressed)
-	setujuButton.pressed.connect(on_confirm_keep_pressed)
+	#batalkanButton.pressed.connect(on_cancel_keep_pressed)
+	#setujuButton.pressed.connect(on_confirm_keep_pressed)
 	peek_button.pressed.connect(on_peek_pressed)
 	pop_button.pressed.connect(on_pop_pressed)
 	keep_button.pressed.connect(on_keep_pressed)
 	enqueue_button.pressed.connect(on_enqueue_pressed)
 	back_button.pressed.connect(on_back_pressed)
+	confirmation_tab.confirmed.connect(on_keep_confirmed)
+	confirmation_tab.cancelled.connect(on_keep_cancelled)
 	
+	darkOverlay.color = Color(0, 0, 0, 0.55)
 	darkOverlay.visible = false
-	keepConfirmPanel.visible = false
+	darkOverlay.z_index = 900
 	load_people_data()
 
 	reset_ui_to_start()
@@ -71,7 +70,35 @@ func _ready():
 	update_queue_positions()
 	clear_data_box()
 
+func on_keep_confirmed(data: Dictionary):
+	darkOverlay.visible = false
 
+	if not GlobalData.kept_suspects.has(data):
+		GlobalData.kept_suspects.append(data)
+
+	process_and_remove_front()
+
+func on_keep_cancelled():
+	darkOverlay.visible = false
+
+	pop_button.disabled = false
+	keep_button.disabled = false
+
+func update_front_rear_labels():
+	if queue.is_empty():
+		front_label.visible = false
+		rear_label.visible = false
+		return
+
+	front_label.visible = true
+	rear_label.visible = true
+
+	var front_character: Sprite2D = queue[0]
+	var rear_character: Sprite2D = queue[queue.size() - 1]
+
+	front_label.global_position = front_character.global_position + Vector2(-230, -50)
+	rear_label.global_position = rear_character.global_position + Vector2(100, -20)
+		
 func reset_ui_to_start():
 	is_processing = false
 
@@ -111,7 +138,7 @@ func create_queue(amount: int):
 		var character := create_character(i)
 		character_holder.add_child(character)
 		queue.append(character)
-
+	update_front_rear_labels()
 
 func create_character(index: int) -> Sprite2D:
 	var sprite := Sprite2D.new()
@@ -127,7 +154,7 @@ func create_character(index: int) -> Sprite2D:
 	sprite.scale = Vector2(0.90, 0.90)
 	sprite.modulate.a = 1.0
 	sprite.z_as_relative = false
-	sprite.z_index = 55
+	sprite.z_index = 10
 
 	if not people_data.is_empty():
 		sprite.set_meta("person_data", people_data.pick_random())
@@ -159,6 +186,7 @@ func update_queue_positions():
 		character.global_position = slots[i]
 		character.z_index = 100 - i
 		character.modulate.a = 1.0
+	update_front_rear_labels()
 
 
 func on_peek_pressed():
@@ -177,74 +205,26 @@ func on_pop_pressed():
 	process_and_remove_front()
 
 
+
 func on_keep_pressed():
 	if is_processing or queue.is_empty():
 		return
 
-	show_keep_confirmation()
-	var front_character: Sprite2D = queue[0]
-
-	if front_character.has_meta("person_data"):
-		var data: Dictionary = front_character.get_meta("person_data")
-
-		if not GlobalData.kept_suspects.has(data):
-			GlobalData.kept_suspects.append(data)
-
-
-func show_keep_confirmation():
 	var front_character: Sprite2D = queue[0]
 
 	if not front_character.has_meta("person_data"):
 		return
 
-	var data: Dictionary = front_character.get_meta("person_data")
-	
-	labelConfirmation.text = 'Yakin ingin keep \n "%s" ke suspect list?' % str(data.get("first_name", "-"))
-	labelNamaSuspectConfirm.text = str(data.get("name", "-"))
-	confirmIdSuspect.text = str(data.get("id", "-"))
-	namaSuspectConfirm.text = str(data.get("name", "-"))
-	umurSuspsectConfirm.text = str(data.get("age", "-"))
-	genderSuspectConfirm.text = get_gender_text(data.get("is_male", true))
-	tinggiSuspectConfirm.text = "%s cm" % str(data.get("height_cm", "-"))
-	beratSuspectConfirm.text = "%s kg" % str(data.get("weight_kg", "-"))
-	goldarSuspectConfirm.text = str(data.get("blood_type", "-"))
-
-	var sprite_path := str(data.get("sprite", ""))
-	var fixed_path := sprite_path.replace("./", "res://assets/characters/")
-	imageSuspectConfirm.texture = load(fixed_path)
-
-	darkOverlay.visible = true
-	keepConfirmPanel.visible = true
-	darkOverlay.z_index = 900
-	keepConfirmPanel.z_index = 1000
+	var queue_person: Dictionary = front_character.get_meta("person_data")
+	var odp_person: Dictionary = GlobalData.selected_suspect
 
 	pop_button.disabled = true
 	keep_button.disabled = true
-			
-func on_confirm_keep_pressed():
-	if queue.is_empty():
-		return
 
-	var front_character: Sprite2D = queue[0]
+	darkOverlay.visible = true
+	confirmation_tab.open(odp_person, queue_person)
 
-	if front_character.has_meta("person_data"):
-		var data: Dictionary = front_character.get_meta("person_data")
 
-		if not GlobalData.kept_suspects.has(data):
-			GlobalData.kept_suspects.append(data)
-
-	close_keep_confirmation()
-	process_and_remove_front()
-
-func on_cancel_keep_pressed():
-	close_keep_confirmation()
-
-	pop_button.disabled = false
-	keep_button.disabled = false
-
-func close_keep_confirmation():
-	darkOverlay.visible = false
-	keepConfirmPanel.visible = false
 	
 func process_and_remove_front():
 	if is_processing or queue.is_empty():
@@ -284,7 +264,7 @@ func process_and_remove_front():
 
 	is_processing = false
 	peek_front_character()
-
+	update_front_rear_labels()
 
 func move_queue_forward():
 	var slots = get_slots()
@@ -303,11 +283,9 @@ func move_queue_forward():
 		)
 
 	await tween.finished
-
+	update_front_rear_labels()
 
 func show_empty_queue_popup():
-	print("QUEUE EMPTY - SHOW ENQUEUE")
-
 	clear_data_box()
 	suspect_image.texture = null
 
@@ -337,8 +315,6 @@ func on_enqueue_pressed():
 
 
 func enqueue():
-	print("ENQUEUE PRESSED")
-
 	if not queue.is_empty():
 		print("Queue still has: ", queue.size())
 		return
@@ -352,7 +328,7 @@ func enqueue():
 	update_queue_positions()
 	reset_ui_to_start()
 	clear_data_box()
-
+	update_front_rear_labels()
 
 func peek_front_character():
 	if queue.is_empty():

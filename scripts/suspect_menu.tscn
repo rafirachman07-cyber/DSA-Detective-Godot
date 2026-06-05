@@ -12,8 +12,10 @@
 [ext_resource type="Texture2D" uid="uid://tmlhu84xe4yb" path="res://assets/Buttons queue (2).png" id="10_04cts"]
 [ext_resource type="Texture2D" uid="uid://cfixkgixiilt5" path="res://assets/Buttons/BackButton.png" id="10_ek1me"]
 [ext_resource type="Texture2D" uid="uid://chms03yq36otu" path="res://assets/Buttons queue fax active.png" id="11_4dj1p"]
+[ext_resource type="Texture2D" uid="uid://br6n2sldhri7j" path="res://assets/characters/output3/5.png" id="11_dke3u"]
 [ext_resource type="AudioStream" uid="uid://d1mddv2t3lx6k" path="res://assets/audio/bgm2.mp3" id="11_lquo6"]
 [ext_resource type="Texture2D" uid="uid://ckuwnck5tq0h3" path="res://assets/Buttons stack active.png" id="12_i6ehh"]
+[ext_resource type="Texture2D" uid="uid://dt5ock103ipui" path="res://assets/Brokers Card.png" id="12_r5gxk"]
 [ext_resource type="Texture2D" uid="uid://cnirmfurfs6gf" path="res://assets/Buttons stack (2).png" id="13_qxujp"]
 [ext_resource type="Texture2D" uid="uid://dhlg085tqlcwl" path="res://assets/Buttons hashmap (1).png" id="16_6dn2a"]
 [ext_resource type="Texture2D" uid="uid://di4nbsgy2njg7" path="res://assets/Buttons hashmap.png" id="17_r1aac"]
@@ -35,6 +37,37 @@ font = ExtResource("7_lquo6")
 font_size = 20
 font_color = Color(0.3372549, 0.28235295, 0.28235295, 1)
 outline_color = Color(0.3372549, 0.28235295, 0.28235295, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qjhol"]
+font = ExtResource("7_lquo6")
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_jspmt"]
+font = ExtResource("7_lquo6")
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_6dn2a"]
+font = ExtResource("6_ns53n")
+font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_r1aac"]
+font = ExtResource("7_lquo6")
+
+[sub_resource type="LabelSettings" id="LabelSettings_7vwor"]
+font = ExtResource("7_lquo6")
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_c2aeu"]
+font = ExtResource("7_lquo6")
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_jervk"]
+font = ExtResource("7_lquo6")
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_o7i1w"]
+font = ExtResource("7_lquo6")
+font_size = 12
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lquo6"]
 load_path = "res://.godot/imported/Buttons queue.png-935aec29e1f2ffb483c9ae56b1f36d8c.ctex"
@@ -104,10 +137,10 @@ rotation = 0.04363323
 
 [node name="nama_suspect_Label" type="Label" parent="Background/Board/SuspectCard" unique_id=1037844684]
 layout_mode = 0
-offset_left = 511.00006
-offset_top = 109.0
-offset_right = 851.7816
-offset_bottom = 162.98373
+offset_left = 471.78635
+offset_top = 105.21895
+offset_right = 853.14636
+offset_bottom = 154.21895
 rotation = 0.02617994
 label_settings = SubResource("LabelSettings_68wai")
 
@@ -183,10 +216,103 @@ offset_right = 1449.95
 offset_bottom = 699.5
 texture = ExtResource("6_4gr25")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/Board/SuspectList" unique_id=55125589]
+[node name="HoverPreviewPanel" type="TextureRect" parent="Background/Board/SuspectList" unique_id=385104230]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -269.0
+offset_top = 154.0
+offset_right = 51.0
+offset_bottom = 403.0
+texture = ExtResource("12_r5gxk")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="id_suspect_preview" type="Label" parent="Background/Board/SuspectList/HoverPreviewPanel" unique_id=702343651]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 64.0
+offset_right = 320.0
+offset_bottom = 95.0
+text = "10"
+label_settings = SubResource("LabelSettings_qjhol")
+
+[node name="nama_suspect_preview" type="Label" parent="Background/Board/SuspectList/HoverPreviewPanel" unique_id=1143822025]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 83.0
+offset_right = 300.0
+offset_bottom = 99.0
+label_settings = SubResource("LabelSettings_jspmt")
+
+[node name="gender_suspect_preview" type="Label" parent="Background/Board/SuspectList/HoverPreviewPanel" unique_id=1654835735]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 40.0
+offset_right = 144.0
+offset_bottom = 70.0
+label_settings = SubResource("LabelSettings_6dn2a")
+
+[node name="nama_suspect_Label_preview" type="Label" parent="Background/Board/SuspectList/HoverPreviewPanel" unique_id=1877768315]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 43.0
+offset_right = 200.0
+offset_bottom = 67.0
+text = "Udin"
+label_settings = SubResource("LabelSettings_r1aac")
+
+[node name="umur_suspect_preview" type="Label" parent="Background/Board/SuspectList/HoverPreviewPanel" unique_id=1957948292]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 104.0
+offset_right = 381.0
+offset_bottom = 135.0
+text = "18"
+label_settings = SubResource("LabelSettings_7vwor")
+
+[node name="berat_suspect_preview" type="Label" parent="Background/Board/SuspectList/HoverPreviewPanel" unique_id=2428804]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 124.0
+offset_right = 208.0
+offset_bottom = 140.0
+text = "45"
+label_settings = SubResource("LabelSettings_c2aeu")
+
+[node name="tinggi_suspect_preview" type="Label" parent="Background/Board/SuspectList/HoverPreviewPanel" unique_id=1757339847]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 144.0
+offset_right = 215.0
+offset_bottom = 160.0
+text = "120"
+label_settings = SubResource("LabelSettings_jervk")
+
+[node name="goldar_suspect_preview" type="Label" parent="Background/Board/SuspectList/HoverPreviewPanel" unique_id=598689965]
+layout_mode = 0
+offset_left = 193.0
+offset_top = 164.0
+offset_right = 366.0
+offset_bottom = 195.0
+text = "AB+"
+label_settings = SubResource("LabelSettings_o7i1w")
+
+[node name="image_suspect_preview" type="TextureRect" parent="Background/Board/SuspectList/HoverPreviewPanel" unique_id=1683974291]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 40.0
+offset_right = 120.0
+offset_bottom = 184.0
+texture = ExtResource("11_dke3u")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="GridContainer" type="GridContainer" parent="Background/Board/SuspectList" unique_id=2063207944]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 146.0
+offset_right = 299.0
+offset_bottom = 594.0
+columns = 2
 
 [node name="QueueButton" type="TextureButton" parent="Background/Board" unique_id=1421644573]
 layout_mode = 0

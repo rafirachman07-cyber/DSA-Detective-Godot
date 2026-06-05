@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://nlph6rgr7tel"]
+
+[ext_resource type="Script" uid="uid://ccxti8vbe3s5m" path="res://scripts/kept_suspect_item.gd" id="1_3y3xj"]
+[ext_resource type="Texture2D" uid="uid://bawg3huikxiw4" path="res://assets/Buttons/Frame suspect.png" id="2_61nn1"]
+[ext_resource type="Texture2D" uid="uid://br6n2sldhri7j" path="res://assets/characters/output3/5.png" id="3_wxy4h"]
+
+[node name="MiniSuspectCard" type="Control" unique_id=124230084]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3y3xj")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1715349662]
+layout_mode = 0
+offset_right = 112.0
+offset_bottom = 164.0
+texture = ExtResource("2_61nn1")
+
+[node name="SuspectPhoto" type="TextureRect" parent="." unique_id=2061209140]
+layout_mode = 0
+offset_top = 5.0
+offset_right = 104.0
+offset_bottom = 173.0
+texture = ExtResource("3_wxy4h")
+expand_mode = 1
+stretch_mode = 4
