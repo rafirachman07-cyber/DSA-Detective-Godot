@@ -48,30 +48,51 @@ func _ready():
 		dialogue_box.dialogue_finished.connect(_on_tutorial_selesai)
 		dialogue_step = "suspect_menu"
 		dialogue_box.start_dialogue("suspect_menu") # Memanggil key "suspect_menu" dari JSON
-		
+	
+	# 3. CHOOSE SUSPECT
+	elif _apakah_semua_broker_selesai() and not GlobalData.tutorials_completed.get("choose_suspect_menu", false):
+		dialogue_box.dialogue_finished.connect(_on_tutorial_selesai)
+		dialogue_step = "choose_suspect_menu"
+		dialogue_box.start_dialogue("choose_suspect_menu")
 	else:
 		dialogue_box.hide()
 		
 	start_game_logic() #mindahin reload suspect ke fungsi ini
 
+#====================== fungsi buat dialog start =====================
 func _on_tutorial_selesai():
 	if dialogue_step == "prolog":
-		# Kunci status prolog di GlobalData
 		GlobalData.tutorials_completed["prolog"] = true
 		
-		# Cek apakah harus lanjut ke suspect_menu
 		if not GlobalData.tutorials_completed.get("suspect_menu", false):
 			dialogue_step = "suspect_menu"
 			dialogue_box.start_dialogue("suspect_menu")
 		else:
-			dialogue_step = "none"
-			start_game_logic()
+			_check_broker_and_go_next()
 			
 	elif dialogue_step == "suspect_menu":
-		# Kunci status suspect_menu di GlobalData
 		GlobalData.tutorials_completed["suspect_menu"] = true
+		_check_broker_and_go_next()
+			
+	elif dialogue_step == "choose_suspect_menu":
+		GlobalData.tutorials_completed["choose_suspect_menu"] = true
 		dialogue_step = "none"
 		start_game_logic()
+
+func _check_broker_and_go_next():
+	if _apakah_semua_broker_selesai() and not GlobalData.tutorials_completed.get("choose_suspect_menu", false):
+		dialogue_step = "choose_suspect_menu"
+		dialogue_box.start_dialogue("choose_suspect_menu")
+	else:
+		dialogue_step = "none"
+		start_game_logic()
+
+func _apakah_semua_broker_selesai() -> bool:
+	return GlobalData.tutorials_completed.get("stack_menu", false) \
+	   and GlobalData.tutorials_completed.get("queue_orang_menu", false) \
+	   and GlobalData.tutorials_completed.get("queue_fax_menu", false) \
+	   and GlobalData.tutorials_completed.get("hashmap_menu", false)
+# ======================= fungsi buat dialog end ======================
 
 func start_game_logic():
 	hover_preview.visible = false
@@ -88,7 +109,6 @@ func start_game_logic():
 		show_suspect(suspect)
 	
 	refresh_suspect_list()
-
 
 func refresh_suspect_list():
 	for child in suspect_list_grid.get_children():

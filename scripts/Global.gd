@@ -13,7 +13,7 @@ var tutorials_completed: Dictionary = {
 	"stack_menu": false,
 	"queue_orang_menu": false,
 	"queue_fax_menu": false,
-	"hasmap_menu": false,
+	"hashmap_menu": false,
 	"choose_suspect_menu": false,
 }
 

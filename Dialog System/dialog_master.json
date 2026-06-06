@@ -699,10 +699,10 @@
 			"portrait": "res://assets/npc/senior.png"
 		}
 	],
-	"hasmap_menu": [
+	"hashmap_menu": [
 		{
 			"name": "Senior Bram",
-			"text": "Halo, Zero. Kami butuh akses ke database kependudukan milikmu untuk melacak nomor ID pelaku utama..",
+			"text": "Halo, Zero. Kami butuh akses ke database kependudukan milikmu untuk melacak pelaku utama.",
 			"portrait": "res://assets/npc/senior.png"
 		},
 		{
@@ -722,17 +722,27 @@
 		},
 		{
 			"name": "Senior Bram",
-			"text": " Zero menggunakan Struktur Data HASH MAP (atau Dictionary), Leo. Berbeda dengan Stack atau Queue yang harus diperiksa satu per satu dari ujung ke ujung, Hash Map menggunakan konsep Key-Value Pair (Pasangan Kunci dan Nilai).",
+			"text": "Zero menggunakan [b]\"Struktur Data Hash Map (atau Dictionary)\"[/b], Sofyan. Berbeda dengan \"Stack\" atau \"Queue\" yang harus diperiksa satu per satu dari ujung ke ujung, Hash Map menggunakan [b]konsep Key-Value Pair (Pasangan Kunci dan Nilai)[/b].",
 			"portrait": "res://assets/npc/senior.png"
 		},
 		{
 			"name": "Sofyan (kamu)",
-			"text": "Maksudnya Key-Value, Senior?.",
+			"text": "Maksudnya \"Key-Value\", Senior?",
 			"portrait": "res://assets/npc/mc.png"
 		},
 		{
 			"name": "Senior Bram",
-			"text": "Dalam kasus kita, ID Penjahat adalah 'Key' (Kunci), sedangkan Profil Lengkap Tersangka adalah 'Value' (Nilai). Saat kamu memasukkan ID, sistem akan menggunakan fungsi matematika khusus bernama Hash Function untuk langsung menembak alamat memori tempat data itu disimpan. Pencariannya instan, konstan, dan tidak peduli seberapa banyak data di dalamnya..",
+			"text": "Dalam kasus kita, [b]ID[/b] Penjahat adalah [b]\"Key\" (Kunci)[/b], sedangkan [b]Profil Lengkap[/b] Tersangka adalah [b]\"Value\" (Nilai)[/b].",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Saat kamu [b[memasukkan ID[/b], sistem akan menggunakan fungsi matematika khusus bernama [b]Hash Function[/b] untuk langsung menembak [b]alamat memori[/b] tempat data itu disimpan.",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Pencariannya instan, konstan, dan tidak peduli seberapa banyak data di dalamnya.",
 			"portrait": "res://assets/npc/senior.png"
 		},
 		{
@@ -742,7 +752,7 @@
 		},
 		{
 			"name": "Senior Bram",
-			"text": " Benar kata Zero. Sekarang giliranmu, Sofyan. Coba ketikkan nomor ID yang kita dapatkan dari petunjuk sebelumnya ke dalam kolom Input ID.",
+			"text": "Benar kata Zero. Sekarang giliranmu, Sofyan. Coba ketikkan [b]nomor ID[/b] yang kita dapatkan dari petunjuk sebelumnya ke dalam [b]kolom Input ID[/b].",
 			"portrait": "res://assets/npc/senior.png"
 		},
 		{
@@ -752,27 +762,52 @@
 		},
 		{
 			"name": "Senior Bram",
-			"text": "Tinggal tekan tombol Cari (ikon kaca pembesar) di sebelah kolom tersebut. Nah, di sini ada dua kemungkinan skenario hasil dari database Zero:",
+			"text": "Tinggal tekan [wave]tombol Cari[/wave] di sebelah kolom tersebut atau menekan [wave]Enter[/wave] pada keyboard.",
 			"portrait": "res://assets/npc/senior.png"
 		},
 		{
 			"name": "Senior Bram",
-			"text": "Skenario 1: ID Ditemukan (FOUND) Jika ID yang kamu masukkan valid dan terdaftar di database Zero, panel kiri terminal akan langsung berubah menjadi warna hijau cerah dengan teks > FOUND. Seluruh informasi {person 1} mulai dari Nama, Umur, hingga Golongan Darah akan langsung ditarik keluar secara instan di panel kanan.",
+			"text": "Nah, di sini ada [b]dua skenario[/b] hasil dari database Zero",
 			"portrait": "res://assets/npc/senior.png"
 		},
 		{
 			"name": "Senior Bram",
-			"text": "Skenario 2: ID Tidak Ditemukan (NOT FOUND) Sebaliknya, jika kamu salah ketik atau ID tersebut memang tidak ada dalam catatan hacker miliknya, terminal kiri akan berubah menjadi warna merah dengan teks > NOT FOUND. Panel data broker akan tetap kosong karena tidak ada Value yang cocok dengan Key tersebut.",
+			"text": "[b]Skenario 1: ID Ditemukan (FOUND)[/b].",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Jika ID yang kamu masukkan \"valid\" dan \"terdaftar\" di database Zero, panel kiri terminal akan langsung berubah menjadi warna hijau cerah dengan teks > FOUND.",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "[b]Seluruh informasi[/b] seseorang mulai dari Nama, Umur, hingga Golongan Darah akan langsung ditarik keluar [b]secara instan[/b] di panel kanan.",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "[b]Skenario 2: ID Tidak Ditemukan (NOT FOUND)[/b] ",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Sebaliknya, jika kamu \"salah ketik\" atau ID tersebut memang \"tidak ada\" dalam database miliknya, terminal kiri akan berubah menjadi warna merah dengan teks > NOT FOUND.",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Panel data broker akan [b]tetap kosong[/b] karena [b]tidak ada Value[/b] yang cocok dengan [b]Key[/b] tersebut.",
 			"portrait": "res://assets/npc/senior.png"
 		},
 		{
 			"name": "Sofyan (kamu)",
-			"text": "Wah! Sekali klik langsung ketemu atau tidak ya? Berarti kita tidak perlu melakukan operasi pop() atau dequeue() berulang-ulang untuk mencari data spesifik!.",
+			"text": "Wah! [b]Sekali klik[/b] langsung ketemu atau tidak ya? Berarti kita tidak perlu melakukan operasi pop() atau dequeue() berulang-ulang untuk mencari data spesifik!.",
 			"portrait": "res://assets/npc/mc.png"
 		},
 		{
 			"name": "Senior Bram",
-			"text": "Tepat sekali. Di jaringan Hash Map ini, tugasmu murni memasukkan Key ID yang tepat berdasarkan bukti yang kamu kumpulkan dari broker lain. .",
+			"text": "Tepat sekali. Di jaringan Broker Hash Map ini, tugasmu murni memasukkan [b]Key ID[/b] yang tepat berdasarkan bukti yang kamu kumpulkan dari broker lain.",
 			"portrait": "res://assets/npc/senior.png"
 		},
 		{
@@ -790,17 +825,22 @@
 		},
 		{
 			"name": "Sofyan (kamu)",
-			"text": "Wah, semua tersangka yang kemarin aku pilih tombol Keep otomatis masuk dan berbaris di kolom Suspect List sebelah kanan ya, Senior?.",
+			"text": "Wah, semua tersangka yang kemarin aku pilih [b]tombol Keep[/b] otomatis masuk dan berbaris di kolom [b]Suspect List[/b] sebelah kanan ya, Senior?",
 			"portrait": "res://assets/npc/mc.png"
 		},
 		{
 			"name": "Senior Bram",
-			"text": "Tepat Sekali. Tugas akhirmu di misi ini adalah menetapkan satu orang sebagai Pelaku Utama untuk diserahkan kepada pihak kepolisian..",
+			"text": "Tepat Sekali. Tugas akhirmu di misi ini adalah [b]menetapkan satu orang[/b] sebagai Pelaku Utama untuk diserahkan kepada pihak kepolisian.",
 			"portrait": "res://assets/npc/senior.png"
 		},
 		{
 			"name": "Senior Bram",
-			"text": "Mari kita mulai analisisnya, Sofyan. Sekarang, perhatikan suspect list disebalh kanan. Coba kamu klik salah satu foto tersangka yang paling mencurigakan dari Suspect List tersebut..",
+			"text": "Mari kita mulai analisisnya, Sofyan.",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Sekarang, perhatikan \"suspect list\" disebelah kanan. Coba kamu [wave]klik salah satu foto tersangka[/wave] yang paling mencurigakan dari Suspect List tersebut.",
 			"portrait": "res://assets/npc/senior.png"
 		},
 		{
@@ -809,13 +849,33 @@
 			"portrait": "res://assets/npc/mc.png"
 		},
 		{
+			"name": "Senior Bram",
+			"text": "Benar. Jendela itu untuk memastikan ingatanmu. Jika kamu merasa salah klik atau profilnya tidak cocok dengan petunjuk, [wave]klik tombol [X][/wave] untuk menutupnya. Tapi karena kita yakin dengan bukti orang ini, sekarang [wave]klik tombol [TINDAK LANJUT][/wave] itu.",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
 			"name": "Sofyan (kamu)",
 			"text": "Layar berganti lagi, Senior Bram! Sekarang ada dua lembar data di sebelah kliri.",
 			"portrait": "res://assets/npc/mc.png"
 		},
 		{
 			"name": "Senior Bram",
-			"text": " Ini adalah tahap penentuan, Sofyan. Perhatikan baik-baik:Lembar Atas: Adalah data suspect yang baru saja kamu pilih dari broker kita.Lembar Bawah: Adalah data resmi/DPO yang dicari oleh pihak Kepolisian.Sekarang tugasmu adalah mencocokkan setiap poinnya dengan teliti. Apakah ID, umur, berat badan, tinggi, hingga golongan darah di kedua lembar itu sudah 100% identik?.",
+			"text": "Ini adalah tahap penentuan, Sofyan. Perhatikan baik-baik. ",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "[b]Lembar Atas:[/b] Adalah data suspect yang baru saja kamu \"pilih\" dari broker kita.",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "[b]Lembar Bawah:[/b] Adalah data \"bukti DPO\" yang dicari oleh pihak Kepolisian. ",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Sekarang tugasmu adalah [b]mencocokkan setiap poinnya[/b] dengan teliti. Apakah [b]ID, umur, berat badan, tinggi, hingga golongan darah[/b] di kedua lembar itu sudah \"100%\" identik?",
 			"portrait": "res://assets/npc/senior.png"
 		},
 		{
@@ -825,12 +885,17 @@
 		},
 		{
 			"name": "Senior Bram",
-			"text": " Tepat. Jika setelah kamu amati ada satu saja data yang meleset, langsung klik tombol merah [BATALKAN] untuk kembali ke papan awal. Tapi, jika semua data dari atas sampai bawah sudah sama persis...",
+			"text": "Tepat. Jika setelah kamu amati ada satu saja data yang meleset, langsung klik [wave]tombol merah [BATALKAN][/wave] untuk kembali ke papan awal. ",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Tapi, jika semua data dari atas sampai bawah sudah sama [b]persis[/b]...",
 			"portrait": "res://assets/npc/senior.png"
 		},
 		{
 			"name": "Sofyan (kamu)",
-			"text": "..Aku tinggal klik tombol hijau [SETUJUI] untuk menjadikannya pelaku utama, kan Senior?.",
+			"text": "...Aku tinggal klik [wave]tombol hijau [SETUJUI][/wave] untuk menjadikannya pelaku utama, kan Senior?",
 			"portrait": "res://assets/npc/mc.png"
 		},
 		{

@@ -43,8 +43,21 @@ func switch_texture(key: String) -> void:
 var is_processing := false
 var people_map: Dictionary = {}   # id (int) → person (Dictionary)
 
+#dialog
+@onready var dialogue_box = $DialogBox
 
 func _ready():
+	#DIALOG
+	# 1. CEK APAKAH TUTORIAL BELUM PERNAH DIJALANKAN
+	if not GlobalData.tutorials_completed.get("hashmap_menu", false):
+		dialogue_box.dialogue_finished.connect(_on_tutorial_selesai)
+		dialogue_box.start_dialogue("hashmap_menu")
+		GlobalData.tutorials_completed["hashmap_menu"] = true
+	else:
+		#JIKA SUDAH DI HIDE
+		dialogue_box.hide()
+		print("Tutorial untuk Hashmap Menu sudah pernah dilewati.")
+	
 	randomize()
 
 	gender_label.add_theme_font_override("font", icon_font)
@@ -60,6 +73,8 @@ func _ready():
 	clear_data_box()
 	switch_texture("searching")
 
+func _on_tutorial_selesai():
+	print("Player selesai membaca tutorial, game bisa dilanjutkan!")
 
 func load_people_data():
 	var list = GlobalData.get_list(GlobalData.Broker.HASH_MAP)

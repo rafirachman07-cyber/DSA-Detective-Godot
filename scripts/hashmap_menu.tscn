@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://7nkjhs26exgp" path="res://assets/Mask Broker.png" id="21_0iox8"]
 [ext_resource type="Texture2D" uid="uid://twanw7h554nx" path="res://assets/suspect_board/Clamp.png" id="22_rup4u"]
 [ext_resource type="AudioStream" uid="uid://d1mddv2t3lx6k" path="res://assets/audio/bgm2.mp3" id="23_dipiw"]
+[ext_resource type="PackedScene" uid="uid://bhu1w5qfnbqax" path="res://Dialog System/DialogBox.tscn" id="23_ud4ve"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_04c5c"]
 font = ExtResource("18_ljb3g")
@@ -281,5 +282,7 @@ position = Vector2(913, 497)
 stream = ExtResource("23_dipiw")
 autoplay = true
 parameters/looping = true
+
+[node name="DialogBox" parent="." unique_id=517866619 instance=ExtResource("23_ud4ve")]
 
 [connection signal="pressed" from="Background/Board/Paper/BackButton" to="." method="_on_back_button_pressed"]
