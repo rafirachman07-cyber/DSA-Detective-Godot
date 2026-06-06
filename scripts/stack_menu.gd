@@ -27,13 +27,17 @@ var icon_font = preload("res://assets/fonts/Thabit.ttf")
 const CARD_SIZE = Vector2(100, 150)  # replace with your actual PNG size
 const STACK_OFFSET = Vector2(-30, 0)
 const MAX_BEHIND = 6
+const ONE_LOOP_COUNT = 8
 
 var card_scene = preload("res://scripts/paper.tscn")
 var card_size := Vector2.ZERO
 
 var is_processing := false
-var queue: Array = []
 var people_data: Array = []
+
+var current_loop_data: Array = []
+var current_loop_count = ONE_LOOP_COUNT
+var is_loop_empty = false
 
 
 func _ready():
@@ -44,6 +48,7 @@ func _ready():
 	pop_button.pressed.connect(on_pop_pressed)
 	keep_button.pressed.connect(on_keep_pressed)
 	back_button.pressed.connect(on_back_pressed)
+	push_button.pressed.connect(on_push_pressed)
 
 	mask.visible = true
 	kosong.visible = false
@@ -53,6 +58,7 @@ func _ready():
 	peek_button.visible = true
 
 	load_people_data()
+	current_loop_data = pick_and_pop()
 
 	# measure actual card size after one frame
 	var temp = card_scene.instantiate()
@@ -60,9 +66,6 @@ func _ready():
 	await get_tree().process_frame
 	card_size = temp.size
 	temp.queue_free()
-
-	# fill queue from people_data
-	queue = people_data.duplicate()
 
 	rebuild_stack()
 	clear_data_box()
@@ -75,14 +78,21 @@ func load_people_data():
 	print("Loaded data: ", people_data.size())
 
 
+func pick_and_pop() -> Array:
+	var picked := people_data.slice(0, ONE_LOOP_COUNT)
+	people_data = people_data.slice(ONE_LOOP_COUNT)
+	GlobalData.lists[GlobalData.Broker.STACK] = people_data  # ← sync back
+	return picked
+
+
 func rebuild_stack():
 	for child in card_stack_control.get_children():
 		child.queue_free()
 
-	if queue.is_empty():
+	if current_loop_data.is_empty():
 		return
 
-	var visible_count = min(queue.size(), MAX_BEHIND + 1)
+	var visible_count = min(current_loop_data.size(), MAX_BEHIND + 1)
 	var total_spread = abs(STACK_OFFSET.x) * (visible_count - 1)
 	var stack_width = card_size.x + total_spread
 	var stack_height = card_size.y
@@ -106,7 +116,7 @@ func rebuild_stack():
 		card.z_index = i
 
 		if i == visible_count - 1:
-			card.setup(queue.back())
+			card.setup(current_loop_data.back())
 		else:
 			card.setup(null)
 
@@ -120,7 +130,7 @@ func rebuild_stack():
 
 
 func on_peek_pressed():
-	if is_processing or queue.is_empty():
+	if is_processing or current_loop_data.is_empty():
 		return
 
 	peek_button.visible = false
@@ -132,7 +142,8 @@ func on_peek_pressed():
 
 
 func on_pop_pressed():
-	if is_processing or queue.is_empty():
+	
+	if is_processing or current_loop_data.is_empty() or current_loop_count <= 0:
 		return
 
 	is_processing = true
@@ -150,14 +161,16 @@ func on_pop_pressed():
 
 	await tween.finished
 	top_card.queue_free()
-	queue.pop_back()
+	current_loop_data.pop_back()
+	
+	current_loop_count -= 1
 
-	if queue.is_empty():
+	if current_loop_data.is_empty() or current_loop_count <= 0:
 		is_processing = false
 		show_empty_state()
 		return
 
-	var visible_count = min(queue.size(), MAX_BEHIND + 1)
+	var visible_count = min(current_loop_data.size(), MAX_BEHIND + 1)
 	var total_spread = abs(STACK_OFFSET.x) * (visible_count - 1)
 	var stack_width = card_size.x + total_spread
 	var origin_x = (card_stack_control.size.x - stack_width) / 2.0
@@ -165,7 +178,7 @@ func on_pop_pressed():
 	var front_x = origin_x + total_spread
 
 	# spawn new back card at its final position immediately (no offset)
-	if queue.size() > remaining_children.size():
+	if current_loop_data.size() > remaining_children.size():
 		var new_card = card_scene.instantiate()
 		card_stack_control.add_child(new_card)
 		card_stack_control.move_child(new_card, 0)
@@ -206,13 +219,13 @@ func on_pop_pressed():
 
 
 func on_keep_pressed():
-	if is_processing or queue.is_empty():
+	if is_processing or current_loop_data.is_empty():
 		return
 
 	is_processing = true
 
-	var top = queue.pop_back()   # was pop_front()
-	queue.push_front(top)        # put it at the bottom of the stack
+	var top = current_loop_data.pop_back()   # was pop_front()
+	current_loop_data.push_front(top)        # put it at the bottom of the stack
 	rebuild_stack()
 
 	is_processing = false
@@ -220,13 +233,13 @@ func on_keep_pressed():
 
 
 func peek_front():
-	if queue.is_empty():
+	if current_loop_data.is_empty():
 		clear_data_box()
 		pop_button.disabled = true
 		keep_button.disabled = true
 		return
 
-	var data: Dictionary = queue.back()  # was queue[0]
+	var data: Dictionary = current_loop_data.back()  # was queue[0]
 	show_data_box(data)
 
 	pop_button.disabled = false
@@ -238,6 +251,7 @@ func show_empty_state():
 	pop_button.visible = false
 	keep_button.visible = false
 	peek_button.visible = false
+	push_button.visible = true
 	kosong.visible = true
 
 
@@ -268,6 +282,22 @@ func load_suspect_image(sprite_path: String):
 
 	suspect_image.texture = texture
 
+func reset_ui_to_start():
+	is_processing = false
+
+	mask.visible = true
+	kosong.visible = false
+
+	peek_button.visible = true
+	pop_button.visible = false
+	keep_button.visible = false
+	push_button.visible = false
+
+	peek_button.disabled = false
+	pop_button.disabled = false
+	keep_button.disabled = false
+	push_button.disabled = false
+
 
 func clear_data_box():
 	id_label.text = ""
@@ -285,3 +315,13 @@ func get_gender_text(is_male: bool) -> String:
 
 func on_back_pressed():
 	get_tree().change_scene_to_file("res://scripts/suspect_menu.tscn")
+	
+func on_push_pressed():
+	if people_data.is_empty() and current_loop_data.is_empty():
+		print("No more data on stack")
+		return
+		
+	current_loop_data = pick_and_pop()
+	current_loop_count = ONE_LOOP_COUNT
+	reset_ui_to_start()
+	rebuild_stack()

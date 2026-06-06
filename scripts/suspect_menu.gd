@@ -84,17 +84,10 @@ func start_game_logic():
 		var suspect = suspects.pick_random()
 		GlobalData.selected_suspect = suspect
 		GlobalData.suspect_already_selected = true
+		GlobalData.load_and_split(GlobalData.selected_suspect)
 		show_suspect(suspect)
 	
 	refresh_suspect_list()
-	
-	if GlobalData.suspect_already_selected:
-		show_suspect(GlobalData.selected_suspect)
-	else:
-		var suspect = suspects.pick_random()
-		GlobalData.selected_suspect = suspect
-		GlobalData.suspect_already_selected = true
-		show_suspect(suspect)
 
 
 func refresh_suspect_list():
@@ -219,6 +212,7 @@ func _on_queue_button_pressed():
 
 
 func _on_back_button_pressed():
+	GlobalData.reset()
 	get_tree().change_scene_to_file("res://scripts/main_menu.tscn")
 
 

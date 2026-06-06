@@ -26,17 +26,15 @@ enum Broker {
 
 # --- Configuration ---
 var json_path := "res://assets/characters/characters.json"
-var total_to_use := 40           # how many suspects to pull from the full list
+var total_to_use := 50           # how many suspects to pull from the full list
 var min_per_list := [5, 5, 5, 5] # minimum for each of the 4 lists
-var max_per_list := [15, 15, 15, 15] # maximum for each of the 4 lists
+var max_per_list := [40, 40, 40, 10] # maximum for each of the 4 lists
 
 # --- Output ---
 var lists: Array[Array] = [[], [], [], []]
+var amount: Array[Array] = [[], [], [], []]
 
-func _ready() -> void:
-	load_and_split()
-
-func load_and_split() -> void:
+func load_and_split(guaranteed: Dictionary = {}) -> void:
 	var suspects := _load_json(json_path)
 	if suspects.is_empty():
 		push_error("SuspectLoader: failed to load or empty JSON")
@@ -46,6 +44,13 @@ func load_and_split() -> void:
 	suspects.shuffle()
 	if suspects.size() > total_to_use:
 		suspects = suspects.slice(0, total_to_use)
+		
+	# Ensure guaranteed suspect is in the pool
+	if not guaranteed.is_empty():
+		var already_in := suspects.any(func(s): return s["id"] == guaranteed["id"])
+		if not already_in:
+			# Replace a random entry to keep total_to_use intact
+			suspects[randi() % suspects.size()] = guaranteed
 
 	# Randomly split into 4 lists within [min, max] per list
 	var split := _random_split(suspects.size(), min_per_list, max_per_list)
@@ -59,6 +64,27 @@ func load_and_split() -> void:
 		lists[i] = suspects.slice(cursor, cursor + split[i])
 		cursor += split[i]
 
+	# Ensure guaranteed suspect is in at least one list
+	if not guaranteed.is_empty():
+		var found := false
+		for lst in lists:
+			for s in lst:
+				if s["id"] == guaranteed["id"]:
+					found = true
+					break
+			if found:
+				break
+		if not found:
+			# Insert into a random list, replacing a random entry there
+			var target_list := randi() % 4
+			lists[target_list][randi() % lists[target_list].size()] = guaranteed
+		for i in 4:
+			for j in lists[i].size():
+				if lists[i][j]["id"] == guaranteed["id"]:
+					print("Guaranteed suspect '%s' is in list %d at index %d" % [guaranteed["name"], i, j])
+	else:
+		print("Something wrong on guaranteed suspect")
+			
 	# Debug print
 	for i in 4:
 		print("List %d: %d suspects" % [i, lists[i].size()])
@@ -117,3 +143,24 @@ func _random_split(total: int, mins: Array, maxs: Array) -> Array:
 		remaining -= 1
 
 	return sizes
+	
+# ---------------------------------------------------------------------------------------------------
+# Reset
+# ---------------------------------------------------------------------------------------------------
+
+func reset():
+	lists = [[], [], [], []]
+	selected_suspect = {}
+	suspect_already_selected = false
+	current_odp = {}
+	kept_suspects = []
+
+	tutorials_completed = {
+		"prolog": false,
+		"suspect_menu": false,
+		"stack_menu": false,
+		"queue_orang_menu": false,
+		"queue_fax_menu": false,
+		"hasmap_menu": false,
+		"choose_suspect_menu": false,
+	}
