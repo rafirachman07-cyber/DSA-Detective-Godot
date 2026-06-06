@@ -4,13 +4,10 @@ var icon_font = preload("res://assets/fonts/Thabit.ttf")
 
 @onready var suspect_image = $Background/Board/Paper/DataBox/image_suspect
 @onready var mask = $Background/Board/Paper/Mask
-@onready var kosong = $Background/Board/Paper/KosongLabel
 
-@onready var peek_button = $Background/Board/Paper/PeekButton
 @onready var pop_button = $Background/Board/Paper/PopButton
 @onready var keep_button = $Background/Board/Paper/KeepButton
 @onready var back_button = $Background/Board/Paper/BackButton
-@onready var push_button = $Background/Board/Paper/PushButton
 
 @onready var id_label = $Background/Board/Paper/DataBox/id_suspect
 @onready var name_suspect_Label = $Background/Board/Paper/DataBox/nama_suspect_Label
@@ -21,238 +18,79 @@ var icon_font = preload("res://assets/fonts/Thabit.ttf")
 @onready var weight_label = $Background/Board/Paper/DataBox/berat_suspect
 @onready var blood_label = $Background/Board/Paper/DataBox/goldar_suspect
 
-# point this to your Control node
-@onready var card_stack_control = $Background/Board/Paper/Bg/CardStack
+@onready var form = $Background/Board/Paper/TextureRect/LineEdit
+@onready var search_button = $Background/Board/Paper/SearchButton
 
-const CARD_SIZE = Vector2(100, 150)  # replace with your actual PNG size
-const STACK_OFFSET = Vector2(-30, 0)
-const MAX_BEHIND = 6
-const ONE_LOOP_COUNT = 8
+# ==================================
+# Texture handler
+# ==================================
+@onready var bg_card = $Background/Board/Paper/bg
 
-var card_scene = preload("res://scripts/paper.tscn")
-var card_size := Vector2.ZERO
+var textures: Dictionary = {
+	"searching" : preload("res://assets/hashmap_searching.png"),
+	"found" : preload("res://assets/hashmap_found.png"),
+	"not_found" : preload("res://assets/hashmap_notfound.png"),
+}
+
+func switch_texture(key: String) -> void:
+	if not textures.has(key):
+		push_error("Texture key not found: %s" % key)
+		return
+	bg_card.texture = textures[key]
+
+# ==================================
 
 var is_processing := false
-var people_data: Array = []
-
-var current_loop_data: Array = []
-var current_loop_count = ONE_LOOP_COUNT
-var is_loop_empty = false
+var people_map: Dictionary = {}   # id (int) → person (Dictionary)
 
 
 func _ready():
 	randomize()
 
 	gender_label.add_theme_font_override("font", icon_font)
-	peek_button.pressed.connect(on_peek_pressed)
-	pop_button.pressed.connect(on_pop_pressed)
-	keep_button.pressed.connect(on_keep_pressed)
 	back_button.pressed.connect(on_back_pressed)
-	push_button.pressed.connect(on_push_pressed)
+	search_button.pressed.connect(on_search_pressed)
+	form.text_submitted.connect(func(_t): on_search_pressed())
 
 	mask.visible = true
-	kosong.visible = false
-	push_button.visible = false
 	pop_button.visible = false
 	keep_button.visible = false
-	peek_button.visible = true
 
 	load_people_data()
-	current_loop_data = pick_and_pop()
-
-	# measure actual card size after one frame
-	var temp = card_scene.instantiate()
-	card_stack_control.add_child(temp)
-	await get_tree().process_frame
-	card_size = temp.size
-	temp.queue_free()
-
-	rebuild_stack()
 	clear_data_box()
+	switch_texture("searching")
 
 
 func load_people_data():
-	var type = GlobalData.Broker.STACK
-	people_data = GlobalData.get_list(type)
-
-	print("Loaded data: ", people_data.size())
-
-
-func pick_and_pop() -> Array:
-	var picked := people_data.slice(0, ONE_LOOP_COUNT)
-	people_data = people_data.slice(ONE_LOOP_COUNT)
-	GlobalData.lists[GlobalData.Broker.STACK] = people_data  # ← sync back
-	return picked
+	var list = GlobalData.get_list(GlobalData.Broker.HASH_MAP)
+	for person in list:
+		people_map[person["id"]] = person
+	print("Loaded into hashmap: ", people_map.size(), " entries")
 
 
-func rebuild_stack():
-	for child in card_stack_control.get_children():
-		child.queue_free()
-
-	if current_loop_data.is_empty():
-		return
-
-	var visible_count = min(current_loop_data.size(), MAX_BEHIND + 1)
-	var total_spread = abs(STACK_OFFSET.x) * (visible_count - 1)
-	var stack_width = card_size.x + total_spread
-	var stack_height = card_size.y
-
-	var origin_x = (card_stack_control.size.x - stack_width) / 2.0
-	var origin_y = (card_stack_control.size.y - stack_height) / 2.0
-	var front_x = origin_x + total_spread
-	var front_y = origin_y
-
-	var throw_start_x = card_stack_control.size.x + 500.0
-
-	# i=0 is back card, i=visible_count-1 is front card
-	for i in range(visible_count):
-		var card = card_scene.instantiate()
-		card_stack_control.add_child(card)
-
-		var depth = visible_count - 1 - i
-		var target_pos = Vector2(front_x - abs(STACK_OFFSET.x) * depth, front_y)
-
-		card.position = Vector2(throw_start_x, front_y)
-		card.z_index = i
-
-		if i == visible_count - 1:
-			card.setup(current_loop_data.back())
-		else:
-			card.setup(null)
-
-		var delay = i * 0.08 
-
-		var tween = create_tween()
-		tween.tween_interval(delay)
-		tween.tween_property(card, "position", target_pos, 0.35)\
-			.set_ease(Tween.EASE_OUT)\
-			.set_trans(Tween.TRANS_BACK)
-
-
-func on_peek_pressed():
-	if is_processing or current_loop_data.is_empty():
-		return
-
-	peek_button.visible = false
-	mask.visible = false
-	pop_button.visible = true
-	keep_button.visible = true
-
-	peek_front()
-
-
-func on_pop_pressed():
+func on_search_pressed():
+	var raw: String= form.text.strip_edges()
+	print(raw)
 	
-	if is_processing or current_loop_data.is_empty() or current_loop_count <= 0:
-		return
-
-	is_processing = true
-
-	var all_children = card_stack_control.get_children()
-	var top_card = all_children.back()
-	var remaining_children = all_children.slice(0, all_children.size() - 1)
-
-	# slide top card downward
-	var exit_y = card_stack_control.size.y + 40.0
-	var tween = create_tween()
-	tween.tween_property(top_card, "position:y", exit_y, 0.3)\
-		.set_ease(Tween.EASE_IN)\
-		.set_trans(Tween.TRANS_BACK)
-
-	await tween.finished
-	top_card.queue_free()
-	current_loop_data.pop_back()
-	
-	current_loop_count -= 1
-
-	if current_loop_data.is_empty() or current_loop_count <= 0:
-		is_processing = false
-		show_empty_state()
-		return
-
-	var visible_count = min(current_loop_data.size(), MAX_BEHIND + 1)
-	var total_spread = abs(STACK_OFFSET.x) * (visible_count - 1)
-	var stack_width = card_size.x + total_spread
-	var origin_x = (card_stack_control.size.x - stack_width) / 2.0
-	var origin_y = (card_stack_control.size.y - card_size.y) / 2.0
-	var front_x = origin_x + total_spread
-
-	# spawn new back card at its final position immediately (no offset)
-	if current_loop_data.size() > remaining_children.size():
-		var new_card = card_scene.instantiate()
-		card_stack_control.add_child(new_card)
-		card_stack_control.move_child(new_card, 0)
-		new_card.setup(null)
-		new_card.z_index = 0
-
-		var back_depth = visible_count - 1
-		var back_pos = Vector2(front_x - abs(STACK_OFFSET.x) * back_depth, origin_y)
-		new_card.position = back_pos
-
-	# shift existing cards (not the new one) rightward first to reveal new card
-	var reveal_tween = create_tween()
-	var existing = card_stack_control.get_children()
-	# skip index 0 which is the new back card
-	for i in range(1, existing.size()):
-		var current_pos = existing[i].position
-		reveal_tween.parallel().tween_property(existing[i], "position", current_pos + Vector2(abs(STACK_OFFSET.x), 0), 0.15)\
-			.set_ease(Tween.EASE_OUT)\
-			.set_trans(Tween.TRANS_QUART)
-
-	await reveal_tween.finished
-
-	# now shift everything including new card into final centered positions
-	var shift_tween = create_tween()
-	var all_cards = card_stack_control.get_children()
-	for i in all_cards.size():
-		var depth = all_cards.size() - 1 - i
-		var target_pos = Vector2(front_x - abs(STACK_OFFSET.x) * depth, origin_y)
-		shift_tween.parallel().tween_property(all_cards[i], "position", target_pos, 0.25)\
-			.set_ease(Tween.EASE_OUT)\
-			.set_trans(Tween.TRANS_QUART)
-		all_cards[i].z_index = i
-
-	await shift_tween.finished
-
-	is_processing = false
-	peek_front()
-
-
-func on_keep_pressed():
-	if is_processing or current_loop_data.is_empty():
-		return
-
-	is_processing = true
-
-	var top = current_loop_data.pop_back()   # was pop_front()
-	current_loop_data.push_front(top)        # put it at the bottom of the stack
-	rebuild_stack()
-
-	is_processing = false
-	peek_front()
-
-
-func peek_front():
-	if current_loop_data.is_empty():
+	if raw.is_empty():
+		switch_texture("searching")
 		clear_data_box()
-		pop_button.disabled = true
-		keep_button.disabled = true
 		return
 
-	var data: Dictionary = current_loop_data.back()  # was queue[0]
-	show_data_box(data)
+	if not raw.is_valid_int():
+		switch_texture("not_found")
+		clear_data_box()
+		return
 
-	pop_button.disabled = false
-	keep_button.disabled = false
+	var target_id := raw.to_int()
 
+	if not people_map.has(target_id):
+		switch_texture("not_found")
+		clear_data_box()
+		return
 
-func show_empty_state():
-	clear_data_box()
-	pop_button.visible = false
-	keep_button.visible = false
-	peek_button.visible = false
-	push_button.visible = true
-	kosong.visible = true
+	switch_texture("found")
+	show_data_box(people_map[target_id])
 
 
 func show_data_box(data: Dictionary):
@@ -264,7 +102,6 @@ func show_data_box(data: Dictionary):
 	height_label.text = "%s cm" % str(data.get("height_cm", "-"))
 	weight_label.text = "%s kg" % str(data.get("weight_kg", "-"))
 	blood_label.text = "%s" % str(data.get("blood_type", "-"))
-
 	load_suspect_image(str(data.get("sprite", "")))
 
 
@@ -272,31 +109,12 @@ func load_suspect_image(sprite_path: String):
 	if sprite_path == "":
 		suspect_image.texture = null
 		return
-
 	var fixed_path := sprite_path.replace("./", "res://assets/characters/")
 	var texture = load(fixed_path)
-
 	if texture == null:
 		push_error("Cannot load suspect image: " + fixed_path)
 		return
-
 	suspect_image.texture = texture
-
-func reset_ui_to_start():
-	is_processing = false
-
-	mask.visible = true
-	kosong.visible = false
-
-	peek_button.visible = true
-	pop_button.visible = false
-	keep_button.visible = false
-	push_button.visible = false
-
-	peek_button.disabled = false
-	pop_button.disabled = false
-	keep_button.disabled = false
-	push_button.disabled = false
 
 
 func clear_data_box():
@@ -315,13 +133,3 @@ func get_gender_text(is_male: bool) -> String:
 
 func on_back_pressed():
 	get_tree().change_scene_to_file("res://scripts/suspect_menu.tscn")
-	
-func on_push_pressed():
-	if people_data.is_empty() and current_loop_data.is_empty():
-		print("No more data on stack")
-		return
-		
-	current_loop_data = pick_and_pop()
-	current_loop_count = ONE_LOOP_COUNT
-	reset_ui_to_start()
-	rebuild_stack()

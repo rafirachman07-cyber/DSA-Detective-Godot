@@ -215,6 +215,8 @@ func _on_back_button_pressed():
 	GlobalData.reset()
 	get_tree().change_scene_to_file("res://scripts/main_menu.tscn")
 
-
 func _on_stack_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scripts/stack_menu.tscn")
+
+func _on_hash_map_pressed() -> void:
+	get_tree().change_scene_to_file("res://scripts/hashmap_menu.tscn")

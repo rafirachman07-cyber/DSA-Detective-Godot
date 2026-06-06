@@ -4,13 +4,20 @@
 [ext_resource type="Texture2D" uid="uid://daxwxc8wcxgci" path="res://Layout Background/suspect_background.png" id="2_d1ple"]
 [ext_resource type="Texture2D" uid="uid://ci4eelcn0f26r" path="res://assets/suspect_board/Board.png" id="3_jmdgt"]
 [ext_resource type="Texture2D" uid="uid://dnm6bcrkla54a" path="res://assets/suspect_board/Paper.png" id="4_3rxeu"]
-[ext_resource type="Texture2D" uid="uid://bidqg2pvx800x" path="res://assets/bg_stack.png" id="5_m7nb1"]
-[ext_resource type="Script" uid="uid://dmaujmd3y76kj" path="res://scripts/card_stack.gd" id="6_cclap"]
+[ext_resource type="Texture2D" uid="uid://drxbwglnhx5d1" path="res://assets/hashmap_searching.png" id="5_7cx7d"]
+[ext_resource type="Texture2D" uid="uid://b8nxno1wp82ix" path="res://assets/cari_ulang.png" id="6_bw3xy"]
+[ext_resource type="Texture2D" uid="uid://cl5bfyk5r645m" path="res://assets/cari_ulang_pressed.png" id="7_sqnva"]
 [ext_resource type="Texture2D" uid="uid://ca4sgmxme3hgj" path="res://assets/ODP.png" id="11_sj3o7"]
 [ext_resource type="Texture2D" uid="uid://bf48yqiltdw62" path="res://assets/Buttons/BackButton (1).png" id="12_4vjrr"]
+[ext_resource type="Texture2D" uid="uid://cb00mf5e5ipme" path="res://assets/Buttons/KeepButton (3).png" id="13_i76b4"]
+[ext_resource type="Texture2D" uid="uid://cwqa7pj0p77ox" path="res://assets/Buttons/KeepButton_active.png" id="14_314p8"]
 [ext_resource type="Texture2D" uid="uid://dt5ock103ipui" path="res://assets/Brokers Card.png" id="17_qw0q7"]
+[ext_resource type="Texture2D" uid="uid://heefwu4yh8fj" path="res://assets/searchbutton_hashmap.png" id="17_sqnva"]
+[ext_resource type="Texture2D" uid="uid://bfm8vlpppahc4" path="res://assets/searchbar_hashmap.png" id="18_esje1"]
 [ext_resource type="FontFile" uid="uid://cpk028llsjiuw" path="res://assets/fonts/Thabit-Bold.ttf" id="18_ljb3g"]
 [ext_resource type="FontFile" uid="uid://bofyuirrk5ino" path="res://assets/fonts/Thabit.ttf" id="19_1a0bs"]
+[ext_resource type="StyleBox" uid="uid://cfqp1seg82i4d" path="res://assets/things/style_box_flat.tres" id="19_esje1"]
+[ext_resource type="FontFile" uid="uid://c11u3x0tgqibv" path="res://assets/fonts/JetBrainsMono-Regular.ttf" id="19_w5e66"]
 [ext_resource type="Texture2D" uid="uid://ybf7amw2ye6u" path="res://assets/Clip.png" id="20_6khms"]
 [ext_resource type="Texture2D" uid="uid://7nkjhs26exgp" path="res://assets/Mask Broker.png" id="21_0iox8"]
 [ext_resource type="Texture2D" uid="uid://twanw7h554nx" path="res://assets/suspect_board/Clamp.png" id="22_rup4u"]
@@ -48,10 +55,6 @@ font_size = 25
 font = ExtResource("18_ljb3g")
 font_size = 25
 
-[sub_resource type="LabelSettings" id="LabelSettings_1rf6j"]
-font = ExtResource("19_1a0bs")
-font_size = 50
-
 [node name="Queue Menu" type="Node2D" unique_id=569492925]
 script = ExtResource("1_ud4ve")
 
@@ -77,29 +80,32 @@ texture = ExtResource("3_jmdgt")
 
 [node name="Paper" type="TextureRect" parent="Background/Board" unique_id=1230961597]
 layout_mode = 1
-offset_left = 97.0
-offset_top = 50.5
-offset_right = 1479.0
-offset_bottom = 769.5
+offset_left = 151.0
+offset_top = 32.5
+offset_right = 1533.0
+offset_bottom = 751.5
 texture = ExtResource("4_3rxeu")
 
-[node name="Bg" type="TextureRect" parent="Background/Board/Paper" unique_id=1133555249]
+[node name="bg" type="TextureRect" parent="Background/Board/Paper" unique_id=1133555249]
 layout_mode = 0
 offset_left = 113.0
 offset_top = 30.0
 offset_right = 662.0
 offset_bottom = 683.0
-texture = ExtResource("5_m7nb1")
+texture = ExtResource("5_7cx7d")
 expand_mode = 1
 
-[node name="CardStack" type="Control" parent="Background/Board/Paper/Bg" unique_id=79250697]
-clip_contents = true
-anchors_preset = 0
-offset_left = 36.0
-offset_top = 45.0
-offset_right = 496.0
-offset_bottom = 591.0
-script = ExtResource("6_cclap")
+[node name="PopButton" type="TextureButton" parent="Background/Board/Paper" unique_id=1908006326]
+layout_mode = 0
+offset_left = 685.0
+offset_top = 495.0
+offset_right = 1007.0
+offset_bottom = 683.0
+texture_normal = ExtResource("6_bw3xy")
+texture_pressed = ExtResource("7_sqnva")
+texture_hover = ExtResource("7_sqnva")
+ignore_texture_size = true
+stretch_mode = 4
 
 [node name="HoverButton" type="TextureButton" parent="Background/Board/Paper" unique_id=78479541]
 layout_mode = 0
@@ -119,6 +125,18 @@ offset_top = 30.0
 offset_right = 1588.0
 offset_bottom = 230.0
 texture_normal = ExtResource("12_4vjrr")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="KeepButton" type="TextureButton" parent="Background/Board/Paper" unique_id=1750972995]
+layout_mode = 0
+offset_left = 1027.0
+offset_top = 495.0
+offset_right = 1349.0
+offset_bottom = 683.0
+texture_normal = ExtResource("13_i76b4")
+texture_pressed = ExtResource("14_314p8")
+texture_hover = ExtResource("14_314p8")
 ignore_texture_size = true
 stretch_mode = 4
 
@@ -203,15 +221,6 @@ offset_bottom = 426.0
 expand_mode = 1
 stretch_mode = 4
 
-[node name="KosongLabel" type="Label" parent="Background/Board/Paper" unique_id=1981301384]
-layout_mode = 0
-offset_left = 293.0
-offset_top = 307.0
-offset_right = 469.0
-offset_bottom = 367.0
-text = "Kosong"
-label_settings = SubResource("LabelSettings_1rf6j")
-
 [node name="Clipping" type="TextureRect" parent="Background/Board/Paper" unique_id=941202968]
 layout_mode = 0
 offset_left = 120.0
@@ -228,6 +237,37 @@ offset_top = 30.0
 offset_right = 1345.0
 offset_bottom = 476.0
 texture = ExtResource("21_0iox8")
+
+[node name="SearchButton" type="TextureButton" parent="Background/Board/Paper" unique_id=1076229261]
+layout_mode = 0
+offset_left = 1215.0
+offset_top = 537.0
+offset_right = 1350.0
+offset_bottom = 680.0
+texture_normal = ExtResource("17_sqnva")
+
+[node name="TextureRect" type="TextureRect" parent="Background/Board/Paper" unique_id=208014886]
+layout_mode = 0
+offset_left = 685.0
+offset_top = 486.0
+offset_right = 1214.0
+offset_bottom = 680.0
+texture = ExtResource("18_esje1")
+
+[node name="LineEdit" type="LineEdit" parent="Background/Board/Paper/TextureRect" unique_id=1111079227]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 71.0
+offset_right = 483.0
+offset_bottom = 155.0
+theme_override_colors/font_color = Color(0.63529414, 0.5803922, 0.5647059, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_colors/font_placeholder_color = Color(0.63529414, 0.5803922, 0.5647059, 1)
+theme_override_fonts/font = ExtResource("19_w5e66")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = ExtResource("19_esje1")
+theme_override_styles/focus = ExtResource("19_esje1")
+placeholder_text = "..."
 
 [node name="Clamp" type="TextureRect" parent="Background/Board" unique_id=1550110439]
 layout_mode = 0
