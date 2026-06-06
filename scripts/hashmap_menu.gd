@@ -21,18 +21,13 @@ var icon_font = preload("res://assets/fonts/Thabit.ttf")
 @onready var weight_label = $Background/Board/Paper/DataBox/berat_suspect
 @onready var blood_label = $Background/Board/Paper/DataBox/goldar_suspect
 
-#Confirm Box
-@onready var confirmation_tab = $ConfirmationTab
-@onready var batalkanButton = $KeepConfirmPanel/BatalkanButton
-@onready var setujuButton = $KeepConfirmPanel/SetujuButton
-@onready var darkOverlay = $Background/darkOverlay
-
 # point this to your Control node
 @onready var card_stack_control = $Background/Board/Paper/Bg/CardStack
 
 const CARD_SIZE = Vector2(100, 150)  # replace with your actual PNG size
 const STACK_OFFSET = Vector2(-30, 0)
 const MAX_BEHIND = 6
+const ONE_LOOP_COUNT = 8
 
 var card_scene = preload("res://scripts/paper.tscn")
 var card_size := Vector2.ZERO
@@ -40,8 +35,6 @@ var card_size := Vector2.ZERO
 var is_processing := false
 var people_data: Array = []
 
-# Loop Handler
-const ONE_LOOP_COUNT = 8
 var current_loop_data: Array = []
 var current_loop_count = ONE_LOOP_COUNT
 var is_loop_empty = false
@@ -56,10 +49,6 @@ func _ready():
 	keep_button.pressed.connect(on_keep_pressed)
 	back_button.pressed.connect(on_back_pressed)
 	push_button.pressed.connect(on_push_pressed)
-	
-	# Untuk Confirmation tab
-	confirmation_tab.confirmed.connect(on_keep_confirmed)
-	confirmation_tab.cancelled.connect(on_keep_cancelled)
 
 	mask.visible = true
 	kosong.visible = false
@@ -77,10 +66,6 @@ func _ready():
 	await get_tree().process_frame
 	card_size = temp.size
 	temp.queue_free()
-
-	darkOverlay.color = Color(0, 0, 0, 0.55)
-	darkOverlay.visible = false
-	darkOverlay.z_index = 900
 
 	rebuild_stack()
 	clear_data_box()
@@ -237,13 +222,14 @@ func on_keep_pressed():
 	if is_processing or current_loop_data.is_empty():
 		return
 
-	var selected_person: Dictionary = current_loop_data.back()
-	var odp_person: Dictionary = GlobalData.selected_suspect
+	is_processing = true
 
-	pop_button.disabled = true
-	keep_button.disabled = true
-	darkOverlay.visible = true
-	confirmation_tab.open(odp_person, selected_person)
+	var top = current_loop_data.pop_back()   # was pop_front()
+	current_loop_data.push_front(top)        # put it at the bottom of the stack
+	rebuild_stack()
+
+	is_processing = false
+	peek_front()
 
 
 func peek_front():
@@ -339,17 +325,3 @@ func on_push_pressed():
 	current_loop_count = ONE_LOOP_COUNT
 	reset_ui_to_start()
 	rebuild_stack()
-	
-func on_keep_confirmed(data: Dictionary):
-	darkOverlay.visible = false
-
-	if not GlobalData.kept_suspects.has(data):
-		GlobalData.kept_suspects.append(data)
-
-	on_pop_pressed()
-	
-func on_keep_cancelled():
-	darkOverlay.visible = false
-
-	pop_button.disabled = false
-	keep_button.disabled = false
