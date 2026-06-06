@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://ybf7amw2ye6u" path="res://assets/Clip.png" id="19_1rf6j"]
 [ext_resource type="Texture2D" uid="uid://7nkjhs26exgp" path="res://assets/Mask Broker.png" id="20_dervd"]
 [ext_resource type="PackedScene" uid="uid://bvner3lrvk63r" path="res://scripts/confirmationTab.tscn" id="24_34i23"]
+[ext_resource type="PackedScene" uid="uid://bhu1w5qfnbqax" path="res://Dialog System/DialogBox.tscn" id="27_7vt4s"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qkmaw"]
 font = ExtResource("15_34i23")
@@ -345,6 +346,9 @@ autoplay = true
 parameters/looping = true
 
 [node name="ConfirmationTab" parent="." unique_id=1579016805 instance=ExtResource("24_34i23")]
+visible = false
+
+[node name="DialogBox" parent="." unique_id=517866619 instance=ExtResource("27_7vt4s")]
 visible = false
 
 [connection signal="pressed" from="Background/Board/Paper/BackButton" to="." method="_on_back_button_pressed"]

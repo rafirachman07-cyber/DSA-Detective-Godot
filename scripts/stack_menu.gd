@@ -46,8 +46,21 @@ var current_loop_data: Array = []
 var current_loop_count = ONE_LOOP_COUNT
 var is_loop_empty = false
 
+@onready var dialogue_box = $DialogBox
 
 func _ready():
+	#DIALOG
+	# 1. CEK APAKAH TUTORIAL BELUM PERNAH DIJALANKAN
+	if not GlobalData.tutorials_completed.get("stack_menu", false):
+		dialogue_box.dialogue_finished.connect(_on_tutorial_selesai)
+		dialogue_box.start_dialogue("stack_menu")
+		GlobalData.tutorials_completed["stack_menu"] = true
+	else:
+		#JIKA SUDAH DI HIDE
+		dialogue_box.hide()
+		print("Tutorial untuk Stack Menu sudah pernah dilewati.")
+	
+	
 	randomize()
 
 	gender_label.add_theme_font_override("font", icon_font)
@@ -85,6 +98,8 @@ func _ready():
 	rebuild_stack()
 	clear_data_box()
 
+func _on_tutorial_selesai():
+	print("Player selesai membaca tutorial, game bisa dilanjutkan!")
 
 func load_people_data():
 	var type = GlobalData.Broker.STACK

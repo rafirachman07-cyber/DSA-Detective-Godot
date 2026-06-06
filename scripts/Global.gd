@@ -5,8 +5,9 @@ var suspect_already_selected := false
 var current_odp: Dictionary = {}
 var kept_suspects: Array = []
 
+
+#nandain scene dialog yg belum sama yg udah user lewatin 
 var tutorials_completed: Dictionary = {
-	# nanti ditambahin semua dialog
 	"prolog": false,
 	"suspect_menu": false,
 	"stack_menu": false,

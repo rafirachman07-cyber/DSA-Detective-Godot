@@ -41,8 +41,19 @@ var is_processing := false
 var queue: Array = []
 var people_data: Array = []
 
+@onready var dialogue_box = $DialogBox
 
 func _ready():
+	# 1. CEK APAKAH TUTORIAL BELUM PERNAH DIJALANKAN
+	if not GlobalData.tutorials_completed.get("queue_orang_menu", false):
+		dialogue_box.dialogue_finished.connect(_on_tutorial_selesai)
+		dialogue_box.start_dialogue("queue_orang_menu")
+		GlobalData.tutorials_completed["queue_orang_menu"] = true
+	else:
+		# Jika sudah pernah dijalanin sebelumnya, sembunyikan DialogueBox (jika default-nya show)
+		dialogue_box.hide()
+		print("Tutorial untuk Queue Menu sudah pernah dilewati.")
+	
 	randomize()
 	
 	meja.z_as_relative = false
@@ -69,6 +80,9 @@ func _ready():
 	create_queue(4)
 	update_queue_positions()
 	clear_data_box()
+
+func _on_tutorial_selesai():
+	print("Player selesai membaca tutorial, game bisa dilanjutkan!")
 
 func on_keep_confirmed(data: Dictionary):
 	darkOverlay.visible = false
