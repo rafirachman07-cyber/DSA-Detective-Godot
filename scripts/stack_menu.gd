@@ -69,19 +69,9 @@ func _ready():
 
 
 func load_people_data():
-	var file := FileAccess.open("res://assets/characters/characters.json", FileAccess.READ)
+	var type = GlobalData.Broker.STACK
+	people_data = GlobalData.get_list(type)
 
-	if file == null:
-		push_error("Cannot open characters.json")
-		return
-
-	var parsed = JSON.parse_string(file.get_as_text())
-
-	if parsed == null:
-		push_error("Invalid JSON")
-		return
-
-	people_data = parsed
 	print("Loaded data: ", people_data.size())
 
 

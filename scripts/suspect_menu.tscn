@@ -381,4 +381,5 @@ parameters/looping = true
 visible = false
 
 [connection signal="pressed" from="Background/Board/QueueButton" to="." method="_on_queue_button_pressed"]
+[connection signal="pressed" from="Background/Board/StackButton" to="." method="_on_stack_button_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

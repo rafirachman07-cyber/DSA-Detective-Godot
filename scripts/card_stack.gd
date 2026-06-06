@@ -7,6 +7,8 @@ var card_scene = preload("res://scripts/paper.tscn")
 var card_size = Vector2.ZERO
 var data = []
 
+
+
 func _ready() -> void:
 	# read the actual card size from an instance
 	var temp = card_scene.instantiate()
