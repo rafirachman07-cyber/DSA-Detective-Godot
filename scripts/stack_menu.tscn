@@ -23,7 +23,11 @@
 [ext_resource type="Texture2D" uid="uid://7nkjhs26exgp" path="res://assets/Mask Broker.png" id="21_38c7a"]
 [ext_resource type="Texture2D" uid="uid://twanw7h554nx" path="res://assets/suspect_board/Clamp.png" id="22_ay2gj"]
 [ext_resource type="AudioStream" uid="uid://d1mddv2t3lx6k" path="res://assets/audio/bgm2.mp3" id="23_bjv6r"]
+<<<<<<< Updated upstream
 [ext_resource type="PackedScene" uid="uid://bvner3lrvk63r" path="res://scripts/confirmationTab.tscn" id="24_thggk"]
+=======
+[ext_resource type="PackedScene" uid="uid://bhu1w5qfnbqax" path="res://Dialog System/DialogBox.tscn" id="24_thggk"]
+>>>>>>> Stashed changes
 
 [sub_resource type="LabelSettings" id="LabelSettings_04c5c"]
 font = ExtResource("18_tsrxd")
@@ -306,7 +310,11 @@ stream = ExtResource("23_bjv6r")
 autoplay = true
 parameters/looping = true
 
+<<<<<<< Updated upstream
 [node name="ConfirmationTab" parent="." unique_id=1579016805 instance=ExtResource("24_thggk")]
+=======
+[node name="DialogBox" parent="." unique_id=517866619 instance=ExtResource("24_thggk")]
+>>>>>>> Stashed changes
 visible = false
 
 [connection signal="pressed" from="Background/Board/Paper/BackButton" to="." method="_on_back_button_pressed"]
