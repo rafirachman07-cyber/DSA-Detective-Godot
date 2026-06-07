@@ -68,6 +68,10 @@ var sfx = {
 
 func _ready():
 	randomize()
+	
+	if confirmation_tab == null:
+		push_error("ConfirmationTab tidak ditemukan. Cek nama/path node di scene tree.")
+		return
 
 	if not dialogue_box.dialogue_finished.is_connected(_on_tutorial_selesai):
 		dialogue_box.dialogue_finished.connect(_on_tutorial_selesai)

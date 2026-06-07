@@ -73,6 +73,8 @@ font_size = 35
 
 [node name="Stack Menu" type="Node2D" unique_id=569492925]
 script = ExtResource("1_epyy0")
+enqueue_text_pos_1 = null
+enqueue_text_pos_2 = null
 
 [node name="Background" type="TextureRect" parent="." unique_id=1280199727]
 offset_right = 1920.0
@@ -289,7 +291,6 @@ offset_bottom = 147.0
 texture = ExtResource("20_gp04u")
 
 [node name="Mask" type="TextureRect" parent="Background/Board/Paper" unique_id=292882691]
-visible = false
 layout_mode = 0
 offset_left = 686.0
 offset_top = 30.0
@@ -305,7 +306,6 @@ offset_bottom = 596.5
 texture = ExtResource("22_ay2gj")
 
 [node name="darkOverlay" type="ColorRect" parent="Background" unique_id=952186628]
-visible = false
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
@@ -390,17 +390,14 @@ scale = Vector2(3, 3)
 text = "X"
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="." unique_id=631106808]
-visible = false
 position = Vector2(913, 497)
 stream = ExtResource("23_bjv6r")
 autoplay = true
 parameters/looping = true
 
 [node name="ConfirmationTab" parent="." unique_id=1579016805 instance=ExtResource("24_thggk")]
-visible = false
 
 [node name="DialogBox" parent="." unique_id=517866619 instance=ExtResource("25_wmrdg")]
-visible = false
 
 [node name="ODPPreviewPanel" parent="." unique_id=190058532 instance=ExtResource("29_ibcu1")]
 offset_left = 968.0
