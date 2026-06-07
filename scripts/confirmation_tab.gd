@@ -29,14 +29,27 @@ signal cancelled
 @onready var goldarOdp = $KeepConfirmPanel/ODPCard/goldar_odp
 @onready var photoOdp = $KeepConfirmPanel/ODPCard/photo_odp
 @onready var stempel = $KeepConfirmPanel/ODPCard/Stempel
+@onready var sfx_player = $SFXPlayer
 
 var queue_person_data: Dictionary = {}
+
+var sfx = {
+	"popping": preload("res://assets/audio/pop.mp3"),
+	"keep": preload("res://assets/audio/keep.mp3"),
+}
 
 func _ready():
 	visible = false
 	setuju_button.pressed.connect(_on_setuju_pressed)
 	batal_button.pressed.connect(_on_batal_pressed)
 
+func play_sfx(key: String):
+	if not sfx.has(key):
+		return
+
+	sfx_player.stream = sfx[key]
+	sfx_player.play()
+	
 func open(odp_data: Dictionary, queue_data: Dictionary):
 	queue_person_data = queue_data
 
@@ -84,6 +97,7 @@ func close():
 	visible = false
 
 func _on_setuju_pressed():
+	play_sfx("keep")
 	confirmed.emit(queue_person_data)
 	close()
 

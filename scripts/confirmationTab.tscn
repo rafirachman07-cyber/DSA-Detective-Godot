@@ -45,7 +45,9 @@ data = PackedByteArray("AAEAAAAQAQAABAAAR0RFRmTuZOoAAAJYAAABckdQT1NNk7vRAAAejAAA
 font_name = "JetBrains Mono"
 style_name = "Regular"
 font_style = 4
+subpixel_positioning = 0
 msdf_pixel_range = 8
+msdf_size = 128
 cache/0/variation_coordinates = {}
 cache/0/face_index = 0
 cache/0/embolden = 0.0
@@ -256,9 +258,9 @@ label_settings = SubResource("LabelSettings_yhvhv")
 
 [node name="nama_odp" type="Label" parent="KeepConfirmPanel/ODPCard" unique_id=1497050227]
 layout_mode = 0
-offset_left = 484.0
+offset_left = 452.0
 offset_top = 71.0
-offset_right = 806.0
+offset_right = 774.0
 offset_bottom = 124.0
 text = "Udin Jajang"
 label_settings = SubResource("LabelSettings_nyuls")
@@ -344,9 +346,9 @@ label_settings = SubResource("LabelSettings_5t8ur")
 
 [node name="nama_suspect_Label_confirm" type="Label" parent="KeepConfirmPanel/DataBox" unique_id=88880745]
 layout_mode = 0
-offset_left = 484.0
+offset_left = 444.0
 offset_top = 71.0
-offset_right = 806.0
+offset_right = 766.0
 offset_bottom = 124.0
 text = "Udin Jajang"
 label_settings = SubResource("LabelSettings_nyuls")
@@ -430,3 +432,5 @@ texture_pressed = ExtResource("11_5jrgr")
 texture_hover = ExtResource("11_5jrgr")
 ignore_texture_size = true
 stretch_mode = 4
+
+[node name="SFXPlayer" type="AudioStreamPlayer2D" parent="." unique_id=159429472]

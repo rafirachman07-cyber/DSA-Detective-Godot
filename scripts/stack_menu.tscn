@@ -407,4 +407,8 @@ offset_right = 968.0
 offset_bottom = 461.0
 scale = Vector2(2, 2)
 
+[node name="ComicLayer" type="CanvasLayer" parent="." unique_id=66965091]
+
+[node name="SFXPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1319128100]
+
 [connection signal="pressed" from="Background/Board/Paper/BackButton" to="." method="_on_back_button_pressed"]

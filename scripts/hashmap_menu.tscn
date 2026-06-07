@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://c462jwk74xe0a" path="res://assets/Buttons/Guide.png" id="24_3rxeu"]
 [ext_resource type="Texture2D" uid="uid://d3nbaglpoenbl" path="res://assets/Buttons/GuideActive.png" id="25_m7nb1"]
 [ext_resource type="PackedScene" uid="uid://dmr7fqkf717xk" path="res://odp_preview_panel.tscn" id="27_m7nb1"]
+[ext_resource type="PackedScene" uid="uid://cfpd6vp44rjgv" path="res://scripts/action_text.tscn" id="28_cclap"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_04c5c"]
 font = ExtResource("18_ljb3g")
@@ -389,5 +390,15 @@ offset_top = 464.0
 offset_right = 1024.0
 offset_bottom = 464.0
 scale = Vector2(2, 2)
+
+[node name="ComicLayer" type="CanvasLayer" parent="." unique_id=1370091781]
+
+[node name="ActionText" parent="." unique_id=1565865719 instance=ExtResource("28_cclap")]
+offset_left = 438.0
+offset_top = 357.0
+offset_right = 476.0
+offset_bottom = 380.0
+
+[node name="SFXPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1247085214]
 
 [connection signal="pressed" from="Background/Board/Paper/BackButton" to="." method="_on_back_button_pressed"]

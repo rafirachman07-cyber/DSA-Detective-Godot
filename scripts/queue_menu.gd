@@ -1,6 +1,7 @@
 extends Node2D
 
 var icon_font = preload("res://assets/fonts/Thabit.ttf")
+var action_text_scene = preload("res://scripts/action_text.tscn")
 
 @onready var slot_1 = $Background/Board/Paper/Lorong/Slot1
 @onready var slot_2 = $Background/Board/Paper/Lorong/Slot2
@@ -44,6 +45,11 @@ var icon_font = preload("res://assets/fonts/Thabit.ttf")
 @onready var weight_label = $Background/Board/Paper/DataBox/berat_suspect
 @onready var blood_label = $Background/Board/Paper/DataBox/goldar_suspect
 @onready var dialogue_box = $DialogBox
+@onready var sfx_player = $SFXPlayer
+@onready var comic_layer = $ComicLayer
+
+@export var enqueue_text_pos_1 := Vector2(481, 381)
+@export var enqueue_text_pos_2 := Vector2(795, 574)
 
 var is_processing := false
 var queue: Array = []
@@ -104,7 +110,15 @@ func _ready():
 		dialogue_box.start_dialogue("queue_orang_menu", "on_first_enter")
 	else:
 		dialogue_box.hide()
+		
+#func _input(event):
+	#if event is InputEventMouseButton and event.pressed:
+		#print(get_global_mouse_position())
 
+func show_comic_text(text_value: String, screen_pos: Vector2):
+	var comic_text = action_text_scene.instantiate()
+	comic_layer.add_child(comic_text)
+	comic_text.play(text_value, screen_pos)
 
 func _on_tutorial_selesai():
 	if dialogue_step == "queue_intro":
@@ -135,6 +149,17 @@ func _on_tutorial_selesai():
 		dialogue_step = "none"
 		_run_pending_action()
 
+var sfx = {
+	"popping": preload("res://assets/audio/pop.mp3"),
+	"keep": preload("res://assets/audio/keep.mp3"),
+}
+
+func play_sfx(key: String):
+	if not sfx.has(key):
+		return
+
+	sfx_player.stream = sfx[key]
+	sfx_player.play()
 
 func _run_pending_action():
 	if pending_action.is_valid():
@@ -245,6 +270,10 @@ func create_queue_with_animation(amount: int, animated: bool):
 
 	for i in range(amount):
 		var data := take_random_person()
+
+		if data.is_empty():
+			break
+
 		var character := create_character_from_data(data, i)
 		character_holder.add_child(character)
 		queue.append(character)
@@ -258,11 +287,16 @@ func create_queue_with_animation(amount: int, animated: bool):
 			character.scale = target_scale * 0.65
 			character.modulate.a = 0.0
 
+			show_comic_text("ENQUEUE!", enqueue_text_pos_1)
+			show_comic_text("ENQUEUE!", enqueue_text_pos_2)
+			play_sfx("enqueue")
+
 			var tween := create_tween()
 			tween.set_parallel(true)
 			tween.tween_property(character, "global_position", target_pos, 0.45)
 			tween.tween_property(character, "scale", target_scale, 0.45)
 			tween.tween_property(character, "modulate:a", 1.0, 0.25)
+
 			await tween.finished
 		else:
 			character.global_position = target_pos
@@ -273,6 +307,7 @@ func create_queue_with_animation(amount: int, animated: bool):
 
 	is_processing = false
 	update_front_rear_labels()
+	
 
 
 func update_queue_positions():
@@ -322,8 +357,13 @@ func _do_peek():
 	mask.visible = false
 	pop_button.visible = true
 	keep_button.visible = true
-	peek_front_character()
 
+	if not queue.is_empty():
+		show_comic_text("PEEK!", enqueue_text_pos_1)
+		show_comic_text("PEEK!", enqueue_text_pos_2)
+		play_sfx("popping")
+
+	peek_front_character()
 
 func on_pop_pressed():
 	if is_processing or queue.is_empty():
@@ -339,6 +379,11 @@ func on_pop_pressed():
 
 
 func _do_dequeue():
+	if not queue.is_empty():
+		show_comic_text("DEQUEUE!", enqueue_text_pos_1)
+		show_comic_text("DEQUEUE!", enqueue_text_pos_2)
+		play_sfx("popping")
+	
 	process_and_remove_front()
 
 
@@ -354,11 +399,14 @@ func on_keep_pressed():
 
 	_do_keep()
 
-
 func _do_keep():
 	if is_processing or queue.is_empty():
 		return
 
+	show_comic_text("KEEP!", enqueue_text_pos_1)
+	show_comic_text("KEEP!", enqueue_text_pos_2)
+	play_sfx("keep")
+	
 	var front_character: Sprite2D = queue[0]
 
 	if not front_character.has_meta("person_data"):

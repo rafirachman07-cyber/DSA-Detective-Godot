@@ -1,6 +1,7 @@
 extends Node2D
 
 var icon_font = preload("res://assets/fonts/Thabit.ttf")
+var action_text_scene = preload("res://scripts/action_text.tscn")
 
 @onready var suspect_image = $Background/Board/Paper/DataBox/image_suspect
 @onready var mask = $Background/Board/Paper/Mask
@@ -25,6 +26,10 @@ var icon_font = preload("res://assets/fonts/Thabit.ttf")
 @onready var operation_3 = $Background/GuideButton/hintPage/operation_3
 @onready var operation_4 = $Background/GuideButton/hintPage/operation_4
 @onready var close_button = $Background/GuideButton/hintPage/close_button
+@onready var comic_layer = $ComicLayer
+
+@export var enqueue_text_pos_1 := Vector2(481, 381)
+@export var enqueue_text_pos_2 := Vector2(795, 574)
 
 #ODP Button
 @onready var odp_preview = $ODPPreviewPanel
@@ -33,6 +38,7 @@ var icon_font = preload("res://assets/fonts/Thabit.ttf")
 @onready var form = $Background/Board/Paper/formpar/LineEdit
 @onready var search_button = $Background/Board/Paper/SearchButton
 @onready var bg_card = $Background/Board/Paper/bg
+@onready var sfx_player = $SFXPlayer
 
 @onready var dialogue_box = $DialogBox
 
@@ -40,13 +46,12 @@ var icon_font = preload("res://assets/fonts/Thabit.ttf")
 @onready var confirmation_tab = $confirmationTab
 @onready var darkOverlay = $Background/darkOverlay
 
-
-
 var textures: Dictionary = {
 	"searching": preload("res://assets/hashmap_searching.png"),
 	"found": preload("res://assets/hashmap_found.png"),
 	"not_found": preload("res://assets/hashmap_notfound.png"),
 }
+
 
 var is_processing := false
 var people_map: Dictionary = {}
@@ -106,6 +111,12 @@ func _ready():
 	else:
 		dialogue_box.hide()
 
+#comic_text
+func show_comic_text(text_value: String, screen_pos: Vector2):
+	var comic_text = action_text_scene.instantiate()
+	comic_layer.add_child(comic_text)
+	comic_text.play(text_value, screen_pos)
+	
 #ODP
 func _show_odp():
 	odp_preview.open()
@@ -176,7 +187,18 @@ func on_search_pressed():
 	search_button.visible = false
 	search_button.disabled = false
 	formpar.visible = false
+	
+var sfx = {
+	"popping": preload("res://assets/audio/pop.mp3"),
+	"keep": preload("res://assets/audio/keep.mp3"),
+}
 
+func play_sfx(key: String):
+	if not sfx.has(key):
+		return
+
+	sfx_player.stream = sfx[key]
+	sfx_player.play()
 
 func _do_search():
 	is_processing = true
@@ -210,7 +232,11 @@ func _do_search():
 	
 	global_target_id = target_id
 	print("Found: ", people_map[target_id])  # add this
-
+	
+	show_comic_text("SEARCH!", enqueue_text_pos_1)
+	show_comic_text("SEARCH!", enqueue_text_pos_2)
+	play_sfx("keep")
+	
 	if not GlobalData.has_seen_tutorial("hashmap_result_rules"):
 		dialogue_step = "hashmap_result_rules"
 		GlobalData.mark_tutorial_seen("hashmap_result_rules")
@@ -307,6 +333,9 @@ func on_keep_confirmed(data: Dictionary):
 	darkOverlay.visible = false
 	if not GlobalData.kept_suspects.has(data):
 		GlobalData.kept_suspects.append(data)
+		show_comic_text("KEEP!", enqueue_text_pos_1)
+		show_comic_text("KEEP!", enqueue_text_pos_2)
+		play_sfx("keep")
 
 	on_pop_pressed()
 	
@@ -316,4 +345,7 @@ func on_keep_cancelled():
 	keep_button.disabled = false
 
 func on_pop_pressed():
+	show_comic_text("POP!", enqueue_text_pos_1)
+	show_comic_text("POP!", enqueue_text_pos_2)
+	play_sfx("popping")	
 	reset_ui_to_start()

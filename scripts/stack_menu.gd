@@ -1,6 +1,7 @@
 extends Node2D
 
 var icon_font = preload("res://assets/fonts/Thabit.ttf")
+var action_text_scene = preload("res://scripts/action_text.tscn")
 
 @onready var suspect_image = $Background/Board/Paper/DataBox/image_suspect
 @onready var mask = $Background/Board/Paper/Mask
@@ -33,6 +34,8 @@ var icon_font = preload("res://assets/fonts/Thabit.ttf")
 @onready var operation_3 = $Background/GuideButton/hintPage/operation_3
 @onready var operation_4 = $Background/GuideButton/hintPage/operation_4
 @onready var close_button = $Background/GuideButton/hintPage/close_button
+@onready var sfx_player = $SFXPlayer
+@onready var comic_layer = $ComicLayer
 
 @onready var confirmation_tab = $ConfirmationTab
 @onready var darkOverlay = $Background/darkOverlay
@@ -51,9 +54,17 @@ var people_data = []
 var current_loop_data = []
 var current_loop_count = ONE_LOOP_COUNT
 
+
 var pending_action: Callable = Callable()
 var dialogue_step := "none"
 
+@export var enqueue_text_pos_1 := Vector2(481, 350)
+@export var enqueue_text_pos_2 := Vector2(795, 650)
+
+var sfx = {
+	"popping": preload("res://assets/audio/pop.mp3"),
+	"keep": preload("res://assets/audio/keep.mp3"),
+}
 
 func _ready():
 	randomize()
@@ -114,6 +125,11 @@ func _ready():
 		dialogue_box.start_dialogue("stack_menu", "on_first_enter")
 	else:
 		dialogue_box.hide()
+		
+func show_comic_text(text_value: String, screen_pos: Vector2):
+	var comic_text = action_text_scene.instantiate()
+	comic_layer.add_child(comic_text)
+	comic_text.play(text_value, screen_pos)
 
 #ODP
 func _show_odp():
@@ -170,6 +186,13 @@ func pick_and_pop() -> Array:
 	GlobalData.lists[GlobalData.Broker.STACK] = people_data
 
 	return picked
+	
+func play_sfx(key: String):
+	if not sfx.has(key):
+		return
+
+	sfx_player.stream = sfx[key]
+	sfx_player.play()
 
 #Guide
 func on_guide_pressed():
@@ -243,7 +266,7 @@ func on_peek_pressed():
 		pending_action = Callable(self, "_do_peek")
 		dialogue_box.start_dialogue("stack_menu", "on_peek_first_pressed")
 		return
-
+	
 	_do_peek()
 
 
@@ -252,7 +275,11 @@ func _do_peek():
 	mask.visible = false
 	pop_button.visible = true
 	keep_button.visible = true
-
+	
+	show_comic_text("PEEK!", enqueue_text_pos_1)
+	show_comic_text("PEEK!", enqueue_text_pos_2)
+	play_sfx("popping")
+	
 	peek_front()
 
 
@@ -352,8 +379,10 @@ func _do_pop():
 		all_cards[i].z_index = i
 
 	await shift_tween.finished
-
 	is_processing = false
+	show_comic_text("POP!", enqueue_text_pos_1)
+	show_comic_text("POP!", enqueue_text_pos_2)
+	play_sfx("popping")
 	peek_front()
 
 
@@ -377,12 +406,8 @@ func _do_keep():
 	var selected_person: Dictionary = current_loop_data.back()
 	var odp_person: Dictionary = GlobalData.selected_suspect
 
-	pop_button.disabled = true
-	keep_button.disabled = true
-
 	darkOverlay.visible = true
 	confirmation_tab.open(odp_person, selected_person)
-
 
 func peek_front():
 	if current_loop_data.is_empty():
@@ -436,7 +461,11 @@ func _do_push():
 
 	current_loop_data = pick_and_pop()
 	current_loop_count = ONE_LOOP_COUNT
-
+	
+	show_comic_text("PUSH!", enqueue_text_pos_1)
+	show_comic_text("PUSH!", enqueue_text_pos_2)
+	play_sfx("popping")
+	
 	reset_ui_to_start()
 	rebuild_stack()
 	clear_data_box()
@@ -521,16 +550,20 @@ func on_keep_confirmed(data: Dictionary):
 		pop_button.disabled = false
 		keep_button.disabled = false
 		return
-
+	
 	GlobalData.check_reveal_from_kept(data)
-
+	
+	show_comic_text("KEEP!", enqueue_text_pos_1)
+	show_comic_text("KEEP!", enqueue_text_pos_2)
+	
 	if GlobalData.kept_suspects.size() == 5:
 		dialogue_box.start_dialogue(
 			"global_alerts",
 			"suspect_list_almost_full"
 		)
 
-	_do_pop()
+	
+	#_do_pop()
 
 
 func on_keep_cancelled():

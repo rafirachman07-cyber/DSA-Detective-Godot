@@ -31,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://bhu1w5qfnbqax" path="res://Dialog System/DialogBox.tscn" id="27_7vt4s"]
 [ext_resource type="FontFile" uid="uid://c11u3x0tgqibv" path="res://assets/fonts/JetBrainsMono-Regular.ttf" id="27_nm1nv"]
 [ext_resource type="PackedScene" uid="uid://dmr7fqkf717xk" path="res://odp_preview_panel.tscn" id="31_tewvw"]
+[ext_resource type="PackedScene" uid="uid://cfpd6vp44rjgv" path="res://scripts/action_text.tscn" id="32_nm1nv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qkmaw"]
 font = ExtResource("15_34i23")
@@ -351,6 +352,7 @@ offset_bottom = 1080.0
 color = Color(0.003921569, 0.003921569, 0.003921569, 0.5882353)
 
 [node name="GuideButton" type="TextureButton" parent="Background" unique_id=1764712527]
+visible = false
 z_index = 200
 layout_mode = 0
 offset_left = 24.0
@@ -448,5 +450,15 @@ offset_top = 445.0
 offset_right = 995.0
 offset_bottom = 445.0
 scale = Vector2(2, 2)
+
+[node name="SFXPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1839144721]
+
+[node name="ActionText" parent="." unique_id=2037877882 instance=ExtResource("32_nm1nv")]
+offset_left = 438.0
+offset_top = 357.0
+offset_right = 476.0
+offset_bottom = 380.0
+
+[node name="ComicLayer" type="CanvasLayer" parent="." unique_id=184706104]
 
 [connection signal="pressed" from="Background/Board/Paper/BackButton" to="." method="_on_back_button_pressed"]

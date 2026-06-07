@@ -13,7 +13,7 @@ font_color = Color(0.3372549, 0.28235295, 0.28235295, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_elm64"]
 font = ExtResource("2_8jv4b")
-font_size = 20
+font_size = 12
 font_color = Color(0.3372549, 0.28235295, 0.28235295, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_25h1b"]

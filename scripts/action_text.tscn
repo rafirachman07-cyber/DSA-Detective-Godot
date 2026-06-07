@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cfpd6vp44rjgv"]
+
+[ext_resource type="Script" uid="uid://blnsaebnymsnu" path="res://scripts/action_text.gd" id="1_2jmj1"]
+
+[node name="ActionText" type="Label" unique_id=1565865719]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("1_2jmj1")
