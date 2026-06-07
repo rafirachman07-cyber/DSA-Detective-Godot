@@ -52,29 +52,29 @@
 		},
 		{
 			"name": "Sofyan (kamu)",
-			"text": "Serahkan padaku, Inspektur! aku akan melengkapi data data ini seperti bermain puzzle! ",
+			"text": "Serahkan padaku, Inspektur! aku akan melengkapi data-data ini seperti bermain puzzle! ",
 			"portrait": "res://assets/npc/mc.png"
 		},
 		{
 			"name": "Senior Bram",
-			"text": "Tenang dulu, Sofyan. Biar kujelaskan sistem kerja kita. Di kota ini, ada yang namanya [b]Boker Data[/b]. Untuk mencari potongan informasi yang hilang, kita akan [b]mencocokan informasi[/b] yang kita punya ke para broker di kota ini.",
+			"text": "Tenang dulu, Sofyan. Biar kujelaskan sistem kerja kita. Di kota ini, ada yang namanya [b]Broker Data[/b]. Untuk mencari potongan informasi yang hilang, kita akan [b]mencocokan informasi[/b] yang kita punya ke para broker di kota ini.",
 			"portrait": "res://assets/npc/senior.png"
 		},
 		{
 			"name": "Inspektur Rama",
-			"text": "Benar.. Cari informasi dari para broker itu,  untuk melengkapi robekan kertas dokumen ini. Begitu datanya utuh, serahkan padaku untuk penangkapan.",
+			"text": "Benar... Cari informasi dari para broker itu, untuk melengkapi robekan kertas dokumen ini. Begitu datanya utuh, serahkan padaku untuk penangkapan.",
 			"portrait": "res://assets/npc/polisi.png"
 		}
 	],
 	"suspect_menu": [
 		{
 			"name": "Sofyan (kamu)",
-			"text": "Tunggu apalagi senior. ayo sekarang kita cari informasi untuk penjahat itu!",
+			"text": "Tunggu apalagi senior. Ayo sekarang kita cari informasi untuk penjahat itu!",
 			"portrait": "res://assets/npc/mc.png"
 		},
 		{
 			"name": "Senior Bram",
-			"text": "Tenang dulu, Sofyan. Sebelum kamu mulai, biar kujelaskan [b]tiga bagian[/b] penting di antarmuka mejamu ini agar kamu tidak bingung saat menganalisis kasus.",
+			"text": "Tenang dulu, Sofyan. Sebelum kamu mulai, biar kujelaskan [b]tiga bagian[/b] penting di antarmuka papanmu ini agar kamu tidak bingung saat menganalisis kasus.",
 			"portrait": "res://assets/npc/senior.png"
 		},
 		{
@@ -105,7 +105,7 @@
 		},
 		{
 		   "name": "Senior Bram",
-		   "text": "Bukan kode rahasia Sofyan. itu adalah tiga tipe Jaringan Broker Informasi yang kita miliki. Broker di kota kita menggunakan [b][wave]konsep struktur data[/wave][/b] dalam menyimpan informasi. Masing-masing broker punya cara kerja yang unik tersendiri. Kamu harus paham sifat mereka agar tidak salah strategi.",
+		   "text": "Bukan kode rahasia Sofyan. itu adalah tiga tipe Jaringan Broker Informasi yang kita miliki.",
 		   "portrait": "res://assets/npc/senior.png"
 	   },
 	{
@@ -125,7 +125,7 @@
 	   },
 	   {
 			"name": "Sofyan (kamu)",
-			"text": " Ah, aku tahu! [b]\"Konsep Last-In, First-Out (LIFO)!\"[/b] Sifatnya mirip seperti tumpukan baju di lemari. Baju yang paling terakhir dicuci dan ditaruh di atas, pasti itu yang diambil duluan kalau mau pergi, kan?",
+			"text": " Ah, aku tahu! [b]\"Konsep Last-In, First-Out (LIFO)!\"[/b] Sifatnya mirip seperti tumpukan baju di lemari. Baju yang [b]paling terakhir[/b] dicuci dan ditaruh [b]di atas[/b], pasti itu yang [b]diambil duluan[/b] kalau mau pergi, kan?",
 			"portrait": "res://assets/npc/mc.png"
 		},
 		{
@@ -165,12 +165,12 @@
 		},
 		{
 			"name": "Senior Bram",
-			"text": "Dokumen laporan yang dikirim [b]pertama kali[/b] oleh broker akan dicetak [b]paling awal[/b] oleh mesin fax kita. Dokumen lainnya harus mengantre di dalam memori mesin sampai kertas di depannya selesai dicetak.",
+			"text": "Dokumen laporan yang dikirim [b]pertama kali[/b] oleh broker akan dicetak [b]paling awal[/b] oleh mesin fax kita. Dokumen lainnya harus [b]mengantre[/b] di dalam memori mesin sampai kertas di depannya selesai dicetak.",
 			"portrait": "res://assets/npc/senior.png"
 		},
 		{
 		   "name": "Sofyan (kamu)",
-		   "text": "Ah! Jadi intinya sama-sama [b]konsep antrean![/b] Jadi kalau kita butuh data penting yang kebetulan ada di [b]urutan belakang[b], kita harus memproses data di [b]depannya duluan[/b], kan?",
+		   "text": "Ah! Jadi intinya sama-sama [b]konsep antrean![/b] Jadi kalau kita butuh data penting yang kebetulan ada di [b]urutan belakang[/b], kita harus memproses data di [b]depannya duluan[/b], kan?",
 		   "portrait": "res://assets/npc/mc.png"
 		},
 		{
@@ -205,12 +205,12 @@
 		},
 		{
 			"name": "Senior Bram",
-			"text": "Betul. Itu adalah [b]papan catatan sementaramu[/b]. Berbagai informasi atau nama-nama terduga yang kamu dapatkan setelah mendapat informasi dari Broker, tidak akan langsung ditetapkan mejadi tersangka. Semuanya akan ditampung di lembaran Suspect List ini terlebih dahulu.",
+			"text": "Betul. Itu adalah [b]papan catatan sementaramu[/b]. Berbagai informasi atau nama-nama terduga yang kamu dapatkan setelah mendapat informasi dari Broker, tidak akan langsung ditetapkan menjadi tersangka. Semuanya akan ditampung di lembaran Suspect List ini terlebih dahulu.",
 			"portrait": "res://assets/npc/senior.png"
 		},
 		{
 			"name": "Sofyan (kamu)",
-			"text": "Aha! Paham, paham! Jadi lembaran kanan ini buat kita pilah-pilih dulu, ya? mencocokkan Informasi bukti yang kita miliki dari polisi",
+			"text": "Aha! Paham-paham! Jadi lembaran kanan ini buat kita pilah-pilih dulu, ya? mencocokkan Informasi bukti yang kita miliki dari polisi",
 			"portrait": "res://assets/npc/mc.png"
 		},
 		{
@@ -229,7 +229,7 @@
 	"stack_menu": [
 		{
 			"name": "Senior Bram",
-			"text": "Sofyan, perkenalkan. Ini adalah Anton. Broker paling sibuk dan... yah, agak sedikit berantakan. Tapi datanya selalu akurat.",
+			"text": "Sofyan, perkenalkan. Ini adalah [b]Anton[/b]. Broker paling sibuk dan... yah, agak sedikit berantakan. Tapi datanya cukup akurat.",
 			"portrait": "res://assets/npc/senior.png"
 		},
 		{
@@ -249,7 +249,7 @@
 		},
 		{
 			"name": "Anton",
-			"text": "Rookie? fine. Ambil saja informasi yang kamu mau di tumpukan kertas itu. Semua datanya sudah ku taruh disitu. Pakai saja. Sudah ya, aku sibuk! Bye!",
+			"text": "Rookie? fine. Ambil saja informasi yang kamu mau di [b]tumpukan kertas[/b] itu. Semua datanya sudah ku taruh disitu. Pakai saja. Sudah ya, aku sibuk! Bye!",
 			"portrait": "res://assets/npc/anton.png"
 		},
 		{
@@ -270,7 +270,7 @@
 		},
 		{
 			"name": "Sofyan (kamu)",
-			"text": "Karena Anton menumpuk kertas ini dari [b]bawah ke atas[/b], berarti kertas laporan yang [b]paling terakhir[/b] dia dapatkan berada di posisi [b]paling atas![/b].",
+			"text": "Karena Anton menumpuk kertas ini dari [b]bawah ke atas[/b], berarti kertas laporan yang [b]paling terakhir[/b] yang dia dapatkan berada di posisi [b]paling atas![/b].",
 			"portrait": "res://assets/npc/mc.png"
 		},
 		{
@@ -290,7 +290,7 @@
 		},
 		{
 			"name": "Senior Bram",
-			"text": "Jadi, kita bisa membaca isinya terlebih dahulu tanpa mengubah struktur tumpukan kertas ini. Coba klik tombolnya.",
+			"text": "Jadi, kita bisa [b]membaca isinya[/b] terlebih dahulu tanpa mengubah struktur tumpukan kertas ini. Coba klik tombolnya.",
 			"portrait": "res://assets/npc/senior.png"
 		},
 		{
@@ -305,7 +305,7 @@
 		},
 		{
 			"name": "Senior Bram",
-			"text": "Perhatikan tombol biru bertuliskan [wave][pop()][/wave] di bawah kertas itu. ",
+			"text": "Akan muncuk tombol biru bertuliskan [wave][pop()][/wave] di bawah kertas itu. ",
 			"portrait": "res://assets/npc/senior.png"
 		},
 		{
@@ -335,12 +335,17 @@
 		},
 		{
 			"name": "Senior Bram",
-			"text": "Akan muncul \"Pop-up\" konfirmasi ini muncul untuk memastikan apakah kamu yakin ingin memasukkan nama tersebut ke dalam [b]Suspect List[/b] agensi.",
+			"text": "Akan muncul \"Pop-up konfirmasi\" ini muncul untuk memastikan apakah kamu yakin ingin memasukkan nama tersebut ke dalam [b]Suspect List[/b] agensi.",
 			"portrait": "res://assets/npc/senior.png"
 		},
 		{
 			"name": "Senior Bram",
-			"text": "Jika kamu klik [wave][SETUJUI][/wave], kertas itu akan berpindah ke papan [b]suspect list[/b] di sebelah kanan. Ingat, papan jepitan kita sebelumnya. Tapi [b]maksimal[/b] suspect list hanya muat [b]6 lembar[b] saja.",
+			"text": "Jika kamu klik [wave][SETUJUI][/wave], kertas itu akan berpindah ke papan [b]suspect list[/b] di sebelah kanan. Ingat, papan jepitan kita sebelumnya.",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Tapi [b]maksimal[/b] suspect list hanya muat [b]6 lembar[b] saja.",
 			"portrait": "res://assets/npc/senior.png"
 		},
 		{
@@ -350,7 +355,7 @@
 		},
 		{
 			"name": "Senior Bram",
-			"text": "Bagus. Nah, jika kamu terus melakukan pop() atau memindahkan kertas ke daftar tersangka, lama-lama tumpukan kertas di dalam map itu akan habis sampai tidak ada yang tersisa.",
+			"text": "Bagus. Nah, jika kamu terus melakukan pop() atau memindahkan kertas ke daftar tersangka, lama-lama tumpukan kertas di dalam map itu akan [b]habis[/b] sampai tidak ada yang tersisa.",
 			"portrait": "res://assets/npc/senior.png"
 		},
 		{
@@ -360,12 +365,12 @@
 		},
 		{
 			"name": "Senior Bram",
-			"text": "Jangan panik, Leo. Di sinilah fungsi operasi terakhir Stack bekerja.",
+			"text": "Jangan panik, Leo. Di sinilah fungsi [b]operasi terakhir[/b] Stack bekerja.",
 			"portrait": "res://assets/npc/senior.png"
 		},
 		{
 			"name": "Senior Bram",
-			"text": "Nanti tombol baru akan muncul, tulisannya [wave][push()][/wave].",
+			"text": "Nanti tombol baru akan muncul, tulisannya [wave][b][push()][/b][/wave].",
 			"portrait": "res://assets/npc/senior.png"
 		},
 		{
@@ -380,7 +385,7 @@
 		},
 		{
 			"name": "Senior Bram",
-			"text": "Tepat sekali! Tumpukannya akan terisi kembali dan kamu bisa memulai siklusnya dari awal lagi dengan peek().",
+			"text": "Tepat sekali! Tumpukannya akan terisi kembali dan kamu bisa melakukan peek() lagi.",
 			"portrait": "res://assets/npc/senior.png"
 		},
 		{
@@ -390,7 +395,12 @@
 		},
 		{
 			"name": "Senior Bram",
-			"text": " Untuk kasus ini, kamu hanya bisa melakukan push() [b]maksimal 2 kali[/b] saja. Setelah 2 kali meminta data baru, Anton akan benar-benar kehabisan data.",
+			"text": "Untuk kasus ini, kamu hanya bisa melakukan push() [b]maksimal 2 kali[/b] saja.",
+			"portrait": "res://assets/npc/senior.png"
+		},
+		{
+			"name": "Senior Bram",
+			"text": "Setelah 2 kali meminta data baru, Anton akan benar-benar kehabisan data.",
 			"portrait": "res://assets/npc/senior.png"
 		},
 		{
@@ -400,7 +410,7 @@
 		},
 		{
 			"name": "Senior Bram",
-			"text": "Benar. Nah, ini poin paling penting jika kamu menemui jalan buntu. Seandainya jatah 2 kali push() milikmu sudah habis, semua kertas sudah kamu pop(), dan folder akan bertuliskan  [b]Habis[/b]...",
+			"text": "Benar. Nah, ini poin paling penting jika kamu menemui jalan buntu. Seandainya jatah 2 kali push() milikmu sudah habis, semua kertas sudah kamu pop(), dan folder akan bertuliskan [b]Habis[/b]...",
 			"portrait": "res://assets/npc/senior.png"
 		},
 		{
