@@ -307,12 +307,18 @@ texture = ExtResource("11_dke3u")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="GridContainer" type="GridContainer" parent="Background/Board/SuspectList" unique_id=2063207944]
+[node name="ScrollContainer" type="ScrollContainer" parent="Background/Board/SuspectList" unique_id=1287811748]
 layout_mode = 0
-offset_left = 99.0
-offset_top = 146.0
-offset_right = 299.0
-offset_bottom = 594.0
+offset_left = 107.0
+offset_top = 133.0
+offset_right = 363.0
+offset_bottom = 645.0
+horizontal_scroll_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="Background/Board/SuspectList/ScrollContainer" unique_id=2063207944]
+layout_mode = 2
+theme_override_constants/h_separation = 25
+theme_override_constants/v_separation = 25
 columns = 2
 
 [node name="QueueButton" type="TextureButton" parent="Background/Board" unique_id=1421644573]

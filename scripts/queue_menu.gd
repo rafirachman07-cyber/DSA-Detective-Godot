@@ -12,15 +12,10 @@ var icon_font = preload("res://assets/fonts/Thabit.ttf")
 @onready var kosong = $Background/Board/Paper/KosongLabel
 @onready var front_label = $Background/Board/Paper/Lorong/Front
 @onready var rear_label = $Background/Board/Paper/Lorong/Rear
-
-#Confirm Box
 @onready var meja = $Background/Board/Paper/Lorong/Meja
 @onready var confirmation_tab = $ConfirmationTab
-@onready var batalkanButton = $KeepConfirmPanel/BatalkanButton
-@onready var setujuButton = $KeepConfirmPanel/SetujuButton
 @onready var darkOverlay = $Background/darkOverlay
 
-#main page
 @onready var peek_button = $Background/Board/Paper/PeekButton
 @onready var pop_button = $Background/Board/Paper/PopButton
 @onready var keep_button = $Background/Board/Paper/KeepButton
@@ -35,87 +30,107 @@ var icon_font = preload("res://assets/fonts/Thabit.ttf")
 @onready var height_label = $Background/Board/Paper/DataBox/tinggi_suspect
 @onready var weight_label = $Background/Board/Paper/DataBox/berat_suspect
 @onready var blood_label = $Background/Board/Paper/DataBox/goldar_suspect
-
+@onready var dialogue_box = $DialogBox
 
 var is_processing := false
 var queue: Array = []
 var people_data: Array = []
 
-@onready var dialogue_box = $DialogBox
+var pending_action: Callable = Callable()
+var dialogue_step := "none"
+
 
 func _ready():
-	# 1. CEK APAKAH TUTORIAL BELUM PERNAH DIJALANKAN
-	if not GlobalData.tutorials_completed.get("queue_orang_menu", false):
-		dialogue_box.dialogue_finished.connect(_on_tutorial_selesai)
-		dialogue_box.start_dialogue("queue_orang_menu")
-		GlobalData.tutorials_completed["queue_orang_menu"] = true
-	else:
-		# Jika sudah pernah dijalanin sebelumnya, sembunyikan DialogueBox (jika default-nya show)
-		dialogue_box.hide()
-		print("Tutorial untuk Queue Menu sudah pernah dilewati.")
-	
 	randomize()
-	
+
 	meja.z_as_relative = false
 	meja.z_index = 200
 	character_holder.z_as_relative = false
 	character_holder.z_index = 50
+
 	gender_label.add_theme_font_override("font", icon_font)
-	#batalkanButton.pressed.connect(on_cancel_keep_pressed)
-	#setujuButton.pressed.connect(on_confirm_keep_pressed)
+
+	if not dialogue_box.dialogue_finished.is_connected(_on_tutorial_selesai):
+		dialogue_box.dialogue_finished.connect(_on_tutorial_selesai)
+
 	peek_button.pressed.connect(on_peek_pressed)
 	pop_button.pressed.connect(on_pop_pressed)
 	keep_button.pressed.connect(on_keep_pressed)
 	enqueue_button.pressed.connect(on_enqueue_pressed)
 	back_button.pressed.connect(on_back_pressed)
+
 	confirmation_tab.confirmed.connect(on_keep_confirmed)
 	confirmation_tab.cancelled.connect(on_keep_cancelled)
-	
+
 	darkOverlay.color = Color(0, 0, 0, 0.55)
 	darkOverlay.visible = false
 	darkOverlay.z_index = 900
-	load_people_data()
 
+	load_people_data()
 	reset_ui_to_start()
-	create_queue(4)
-	update_queue_positions()
+	await create_queue_with_animation(4, false)
 	clear_data_box()
 
+	if not GlobalData.is_tutorial_completed("queue_orang_menu"):
+		dialogue_step = "queue_intro"
+		dialogue_box.start_dialogue("queue_orang_menu", "on_first_enter")
+	else:
+		dialogue_box.hide()
+
+
 func _on_tutorial_selesai():
-	print("Player selesai membaca tutorial, game bisa dilanjutkan!")
+	if dialogue_step == "queue_intro":
+		GlobalData.mark_tutorial_completed("queue_orang_menu")
+		dialogue_step = "none"
 
-func on_keep_confirmed(data: Dictionary):
-	darkOverlay.visible = false
+	elif dialogue_step == "queue_peek":
+		GlobalData.mark_tutorial_seen("queue_peek")
+		dialogue_step = "none"
+		_run_pending_action()
 
-	if not GlobalData.kept_suspects.has(data):
-		GlobalData.kept_suspects.append(data)
+	elif dialogue_step == "queue_dequeue":
+		GlobalData.mark_tutorial_seen("queue_dequeue")
+		dialogue_step = "none"
+		_run_pending_action()
 
-	process_and_remove_front()
+	elif dialogue_step == "queue_keep":
+		GlobalData.mark_tutorial_seen("queue_keep")
+		dialogue_step = "none"
+		_run_pending_action()
 
-func on_keep_cancelled():
-	darkOverlay.visible = false
+	elif dialogue_step == "queue_empty":
+		GlobalData.mark_tutorial_seen("queue_empty")
+		dialogue_step = "none"
 
-	pop_button.disabled = false
-	keep_button.disabled = false
+	elif dialogue_step == "queue_enqueue":
+		GlobalData.mark_tutorial_seen("queue_enqueue")
+		dialogue_step = "none"
+		_run_pending_action()
 
-func update_front_rear_labels():
-	if queue.is_empty():
-		front_label.visible = false
-		rear_label.visible = false
-		return
 
-	front_label.visible = true
-	rear_label.visible = true
+func _run_pending_action():
+	if pending_action.is_valid():
+		pending_action.call()
+	pending_action = Callable()
 
-	var front_character: Sprite2D = queue[0]
-	var rear_character: Sprite2D = queue[queue.size() - 1]
+func take_random_person() -> Dictionary:
+	if people_data.is_empty():
+		return {}
 
-	front_label.global_position = front_character.global_position + Vector2(-230, -50)
-	rear_label.global_position = rear_character.global_position + Vector2(100, -20)
-		
+	var index := randi_range(0, people_data.size() - 1)
+	var person: Dictionary = people_data[index]
+
+	people_data.remove_at(index)
+	GlobalData.lists[GlobalData.Broker.QUEUE] = people_data
+
+	return person
+
+func load_people_data():
+	people_data = GlobalData.get_list(GlobalData.Broker.QUEUE)
+	print("Loaded queue data: ", people_data.size())
+
 func reset_ui_to_start():
 	is_processing = false
-
 	mask.visible = true
 	kosong.visible = false
 
@@ -130,28 +145,29 @@ func reset_ui_to_start():
 	enqueue_button.disabled = false
 
 
-func load_people_data():
-	var type = GlobalData.Broker.QUEUE
-	people_data = GlobalData.get_list(type)
-
-	print("Loaded data: ", people_data.size())
+func get_slots() -> Array:
+	return [slot_1, slot_2, slot_3, slot_4]
 
 
-func create_queue(amount: int):
-	for i in range(amount):
-		var character := create_character(i)
-		character_holder.add_child(character)
-		queue.append(character)
-	update_front_rear_labels()
+func get_silhouette_path(index: int) -> String:
+	if index % 2 == 0:
+		return "res://assets/characters/siluet/personDark.png"
+	return "res://assets/characters/siluet/personLight.png"
 
-func create_character(index: int) -> Sprite2D:
+
+func get_person_data() -> Dictionary:
+	if people_data.is_empty():
+		return {}
+
+	return people_data.pick_random()
+
+
+func create_character_from_data(data: Dictionary, index: int) -> Sprite2D:
 	var sprite := Sprite2D.new()
-
-	var path := get_silhouette_path(index)
-	var texture = load(path)
+	var texture = load(get_silhouette_path(index))
 
 	if texture == null:
-		push_error("Cannot load character: " + path)
+		push_error("Cannot load silhouette")
 		return sprite
 
 	sprite.texture = texture
@@ -160,26 +176,50 @@ func create_character(index: int) -> Sprite2D:
 	sprite.z_as_relative = false
 	sprite.z_index = 10
 
-	if not people_data.is_empty():
-		sprite.set_meta("person_data", people_data.pick_random())
+	if not data.is_empty():
+		sprite.set_meta("person_data", data)
 
 	return sprite
 
 
-func get_silhouette_path(index: int) -> String:
-	if index % 2 == 0:
-		return "res://assets/characters/siluet/personDark.png"
-	else:
-		return "res://assets/characters/siluet/personLight.png"
+func create_queue_with_animation(amount: int, animated: bool):
+	is_processing = true
 
+	for child in character_holder.get_children():
+		child.queue_free()
 
-func get_slots() -> Array:
-	return [
-		slot_1.global_position,
-		slot_2.global_position,
-		slot_3.global_position,
-		slot_4.global_position
-	]
+	queue.clear()
+
+	for i in range(amount):
+		var data := take_random_person()
+		var character := create_character_from_data(data, i)
+		character_holder.add_child(character)
+		queue.append(character)
+
+		var target_slot = get_slots()[i]
+		var target_pos = target_slot.global_position
+		var target_scale = target_slot.scale
+
+		if animated:
+			character.global_position = slot_4.global_position + Vector2(0, -160)
+			character.scale = target_scale * 0.65
+			character.modulate.a = 0.0
+
+			var tween := create_tween()
+			tween.set_parallel(true)
+			tween.tween_property(character, "global_position", target_pos, 0.45)
+			tween.tween_property(character, "scale", target_scale, 0.45)
+			tween.tween_property(character, "modulate:a", 1.0, 0.25)
+			await tween.finished
+		else:
+			character.global_position = target_pos
+			character.scale = target_scale
+
+		update_queue_positions()
+		await get_tree().create_timer(0.08).timeout
+
+	is_processing = false
+	update_front_rear_labels()
 
 
 func update_queue_positions():
@@ -187,30 +227,82 @@ func update_queue_positions():
 
 	for i in range(queue.size()):
 		var character: Sprite2D = queue[i]
-		character.global_position = slots[i]
+		character.global_position = slots[i].global_position
+		character.scale = slots[i].scale
 		character.z_index = 100 - i
 		character.modulate.a = 1.0
+
 	update_front_rear_labels()
+
+
+func update_front_rear_labels():
+	if queue.is_empty():
+		front_label.visible = false
+		rear_label.visible = false
+		return
+
+	front_label.visible = true
+	rear_label.visible = true
+
+	var front_character: Sprite2D = queue[0]
+	var rear_character: Sprite2D = queue[queue.size() - 1]
+
+	front_label.global_position = front_character.global_position + Vector2(-160, -10)
+	rear_label.global_position = rear_character.global_position + Vector2(110, -20)
 
 
 func on_peek_pressed():
 	if is_processing or queue.is_empty():
 		return
 
+	if not GlobalData.has_seen_tutorial("queue_peek"):
+		dialogue_step = "queue_peek"
+		pending_action = Callable(self, "_do_peek")
+		dialogue_box.start_dialogue("queue_orang_menu", "on_peek_first_pressed")
+		return
+
+	_do_peek()
+
+
+func _do_peek():
 	peek_button.visible = false
 	mask.visible = false
 	pop_button.visible = true
 	keep_button.visible = true
-
 	peek_front_character()
 
 
 func on_pop_pressed():
+	if is_processing or queue.is_empty():
+		return
+
+	if not GlobalData.has_seen_tutorial("queue_dequeue"):
+		dialogue_step = "queue_dequeue"
+		pending_action = Callable(self, "_do_dequeue")
+		dialogue_box.start_dialogue("queue_orang_menu", "on_dequeue_first_pressed")
+		return
+
+	_do_dequeue()
+
+
+func _do_dequeue():
 	process_and_remove_front()
 
 
-
 func on_keep_pressed():
+	if is_processing or queue.is_empty():
+		return
+
+	if not GlobalData.has_seen_tutorial("queue_keep"):
+		dialogue_step = "queue_keep"
+		pending_action = Callable(self, "_do_keep")
+		dialogue_box.start_dialogue("queue_orang_menu", "on_keep_first_pressed")
+		return
+
+	_do_keep()
+
+
+func _do_keep():
 	if is_processing or queue.is_empty():
 		return
 
@@ -229,7 +321,6 @@ func on_keep_pressed():
 	confirmation_tab.open(odp_person, queue_person)
 
 
-	
 func process_and_remove_front():
 	if is_processing or queue.is_empty():
 		return
@@ -240,21 +331,8 @@ func process_and_remove_front():
 
 	var tween := create_tween()
 	tween.set_parallel(true)
-
-	# Geser sedikit saja, lalu hilang.
-	tween.tween_property(
-		front_character,
-		"global_position",
-		front_character.global_position + Vector2(120, 0),
-		0.3
-	)
-
-	tween.tween_property(
-		front_character,
-		"modulate:a",
-		0.0,
-		0.3
-	)
+	tween.tween_property(front_character, "global_position", front_character.global_position + Vector2(120, 0), 0.3)
+	tween.tween_property(front_character, "modulate:a", 0.0, 0.3)
 
 	await tween.finished
 	front_character.queue_free()
@@ -268,7 +346,7 @@ func process_and_remove_front():
 
 	is_processing = false
 	peek_front_character()
-	update_front_rear_labels()
+
 
 func move_queue_forward():
 	var slots = get_slots()
@@ -279,19 +357,15 @@ func move_queue_forward():
 		character.z_index = 100 - i
 		character.modulate.a = 1.0
 
-		tween.parallel().tween_property(
-			character,
-			"global_position",
-			slots[i],
-			0.5
-		)
+		tween.parallel().tween_property(character, "global_position", slots[i].global_position, 0.5)
+		tween.parallel().tween_property(character, "scale", slots[i].scale, 0.5)
 
 	await tween.finished
 	update_front_rear_labels()
 
+
 func show_empty_queue_popup():
 	clear_data_box()
-	suspect_image.texture = null
 
 	mask.visible = false
 	kosong.text = "ANTRIAN HABIS"
@@ -310,29 +384,46 @@ func show_empty_queue_popup():
 	enqueue_button.disabled = false
 	enqueue_button.z_index = 999
 
+	update_front_rear_labels()
+
+	if not GlobalData.has_seen_tutorial("queue_empty"):
+		dialogue_step = "queue_empty"
+		GlobalData.mark_tutorial_seen("queue_empty")
+		dialogue_box.start_dialogue("queue_orang_menu", "on_queue_empty")
+
 
 func on_enqueue_pressed():
 	if is_processing:
 		return
 
+	if not GlobalData.has_seen_tutorial("queue_enqueue"):
+		dialogue_step = "queue_enqueue"
+		pending_action = Callable(self, "_do_enqueue")
+		dialogue_box.start_dialogue("queue_orang_menu", "on_enqueue_button_appears")
+		return
+
+	_do_enqueue()
+
+
+func _do_enqueue():
 	enqueue()
 
 
 func enqueue():
 	if not queue.is_empty():
-		print("Queue still has: ", queue.size())
 		return
 
-	for child in character_holder.get_children():
-		child.queue_free()
+	if people_data.is_empty():
+		show_empty_queue_popup()
+		return
 
-	queue.clear()
-
-	create_queue(4)
-	update_queue_positions()
 	reset_ui_to_start()
 	clear_data_box()
-	update_front_rear_labels()
+
+	await create_queue_with_animation(4, true)
+
+	if queue.is_empty():
+		show_empty_queue_popup()
 
 func peek_front_character():
 	if queue.is_empty():
@@ -351,16 +442,15 @@ func peek_front_character():
 	pop_button.disabled = false
 	keep_button.disabled = false
 
-
 func show_data_box(data: Dictionary):
-	id_label.text = "%s" % str(data.get("id", "-"))
+	id_label.text = str(data.get("id", "-"))
 	name_suspect_Label.text = str(data.get("name", "-"))
 	name_label.text = str(data.get("name", "-"))
-	age_label.text = "%s" % str(data.get("age", "-"))
-	gender_label.text = "%s" % get_gender_text(data.get("is_male", true))
+	age_label.text = str(data.get("age", "-"))
+	gender_label.text = get_gender_text(data.get("is_male", true))
 	height_label.text = "%s cm" % str(data.get("height_cm", "-"))
 	weight_label.text = "%s kg" % str(data.get("weight_kg", "-"))
-	blood_label.text = "%s" % str(data.get("blood_type", "-"))
+	blood_label.text = str(data.get("blood_type", "-"))
 
 	load_suspect_image(str(data.get("sprite", "")))
 
@@ -393,10 +483,43 @@ func clear_data_box():
 
 
 func get_gender_text(is_male: bool) -> String:
-	if is_male:
-		return "♂"
-	else:
-		return "♀"
+	return "♂" if is_male else "♀"
+
+
+func on_keep_confirmed(data: Dictionary):
+	darkOverlay.visible = false
+
+	var success: bool = GlobalData.add_kept_suspect(data)
+
+	# Kalau gagal tambah karena penuh / duplikat
+	if not success:
+		if GlobalData.is_suspect_list_full():
+			dialogue_box.start_dialogue(
+				"global_alerts",
+				"suspect_list_full"
+			)
+
+		pop_button.disabled = false
+		keep_button.disabled = false
+		return
+
+	# Kalau berhasil keep
+	GlobalData.check_reveal_from_kept(data)
+
+	# Kalau sudah 5/6
+	if GlobalData.kept_suspects.size() == 5:
+		dialogue_box.start_dialogue(
+			"global_alerts",
+			"suspect_list_almost_full"
+		)
+
+	process_and_remove_front()
+
+
+func on_keep_cancelled():
+	darkOverlay.visible = false
+	pop_button.disabled = false
+	keep_button.disabled = false
 
 
 func on_back_pressed():
