@@ -42,7 +42,7 @@ var people_data: Array = []
 
 # Loop Handler
 const ONE_LOOP_COUNT = 8
-var current_loop_data: Array = []
+var current_loop_data = []
 var current_loop_count = ONE_LOOP_COUNT
 var is_loop_empty = false
 
@@ -59,7 +59,6 @@ func _ready():
 		#JIKA SUDAH DI HIDE
 		dialogue_box.hide()
 		print("Tutorial untuk Stack Menu sudah pernah dilewati.")
-	
 	
 	randomize()
 
@@ -82,7 +81,11 @@ func _ready():
 	peek_button.visible = true
 
 	load_people_data()
-	current_loop_data = pick_and_pop()
+
+	if GlobalData.curr_stack_data.is_empty():
+		GlobalData.curr_stack_data = pick_and_pop()
+
+	current_loop_data = GlobalData.curr_stack_data  # pull after potential pic
 
 	# measure actual card size after one frame
 	var temp = card_scene.instantiate()

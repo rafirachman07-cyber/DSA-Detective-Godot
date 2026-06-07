@@ -6,6 +6,7 @@ var current_odp: Dictionary = {}
 var kept_suspects: Array = []
 
 
+
 #nandain scene dialog yg belum sama yg udah user lewatin 
 var tutorials_completed: Dictionary = {
 	"prolog": false,
@@ -16,6 +17,12 @@ var tutorials_completed: Dictionary = {
 	"hashmap_menu": false,
 	"choose_suspect_menu": false,
 }
+# ---------------------------------------------------------------------------------------------------
+# Data Manager
+# ---------------------------------------------------------------------------------------------------
+
+var curr_stack_data: Array = []
+
 
 # ---------------------------------------------------------------------------------------------------
 # Character Loader
@@ -40,6 +47,10 @@ func load_and_split(guaranteed: Dictionary = {}) -> void:
 	if suspects.is_empty():
 		push_error("SuspectLoader: failed to load or empty JSON")
 		return
+		
+	# Normalize id to int for every suspect
+	for s in suspects:
+		s["id"] = int(s["id"])
 
 	# Shuffle and trim to total_to_use
 	suspects.shuffle()
@@ -48,6 +59,7 @@ func load_and_split(guaranteed: Dictionary = {}) -> void:
 		
 	# Ensure guaranteed suspect is in the pool
 	if not guaranteed.is_empty():
+		guaranteed["id"] = int(guaranteed["id"])
 		var already_in := suspects.any(func(s): return s["id"] == guaranteed["id"])
 		if not already_in:
 			# Replace a random entry to keep total_to_use intact
@@ -83,6 +95,8 @@ func load_and_split(guaranteed: Dictionary = {}) -> void:
 			for j in lists[i].size():
 				if lists[i][j]["id"] == guaranteed["id"]:
 					print("Guaranteed suspect '%s' is in list %d at index %d" % [guaranteed["name"], i, j])
+					for key in lists[i][j]:
+						print("  %s: %s" % [key, lists[i][j][key]])
 	else:
 		print("Something wrong on guaranteed suspect")
 			
