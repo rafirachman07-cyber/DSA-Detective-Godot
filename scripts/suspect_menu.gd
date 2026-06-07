@@ -57,6 +57,7 @@ var suspect_menu_dialogues := [
 ]
 
 var suspect_dialogue_index := 0
+var sensor_num;
 
 
 func _ready():
@@ -70,6 +71,10 @@ func _ready():
 	operation_1.visible = false
 	operation_2.visible = false
 	close_button.visible = false
+	
+	# Sensor
+	sensor_num = GlobalData.sensor_choice
+	get_node("Background/Board/Sensor_%d" % sensor_num).visible = true
 	
 	gender_suspect.add_theme_font_override("font", icon_font)
 	preview_gender.add_theme_font_override("font", icon_font)

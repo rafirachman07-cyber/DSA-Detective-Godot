@@ -25,6 +25,9 @@ var warning_flags: Dictionary = {
 # ---------------------------------------------------------------------------------------------------
 var curr_stack_data: Array = []
 
+# Untuk sensor
+var sensor_choice := randi_range(1, 5)
+
 # ---------------------------------------------------------------------------------------------------
 # Tutorial / Dialogue State
 # ---------------------------------------------------------------------------------------------------
@@ -340,6 +343,8 @@ func check_reveal_from_kept(kept_data: Dictionary) -> void:
 func reset() -> void:
 	selected_suspect = {}
 	suspect_already_selected = false
+
+	sensor_choice = randi_range(1, 5)
 
 	current_odp = {}
 	kept_suspects.clear()
