@@ -28,7 +28,7 @@ var action_text_scene = preload("res://scripts/action_text.tscn")
 @onready var close_button = $Background/GuideButton/hintPage/close_button
 @onready var comic_layer = $ComicLayer
 
-@export var enqueue_text_pos_1 := Vector2(481, 381)
+@export var enqueue_text_pos_1 := Vector2(481, 574)
 @export var enqueue_text_pos_2 := Vector2(795, 574)
 
 #ODP Button
@@ -97,9 +97,12 @@ func _ready():
 
 	mask.visible = true
 	pop_button.visible = false
-	pop_button.disabled = false
 	keep_button.visible = false
-	keep_button.disabled = false
+
+	pop_button.disabled = false
+	keep_button.disabled = true
+	
+	disable_action_buttons()
 
 	load_people_data()
 	clear_data_box()
@@ -179,15 +182,6 @@ func on_search_pressed():
 
 	_do_search()
 	
-	pop_button.visible = true
-	pop_button.disabled = false
-	keep_button.visible = true
-	keep_button.disabled = false
-	
-	search_button.visible = false
-	search_button.disabled = false
-	formpar.visible = false
-	
 var sfx = {
 	"popping": preload("res://assets/audio/pop.mp3"),
 	"keep": preload("res://assets/audio/keep.mp3"),
@@ -204,18 +198,31 @@ func _do_search():
 	is_processing = true
 
 	var raw: String = form.text.strip_edges()
-
 	print(raw)
 
 	if raw.is_empty():
 		switch_texture("searching")
 		clear_data_box()
+
+		pop_button.disabled = true
+		keep_button.disabled = true
+
 		is_processing = false
 		return
 
 	if not raw.is_valid_int():
 		switch_texture("not_found")
 		clear_data_box()
+
+		formpar.visible = false
+		search_button.visible = false
+
+		pop_button.visible = true
+		pop_button.disabled = false
+
+		keep_button.visible = true
+		keep_button.disabled = true
+
 		is_processing = false
 		return
 
@@ -224,19 +231,49 @@ func _do_search():
 	if not people_map.has(target_id):
 		switch_texture("not_found")
 		clear_data_box()
+
+		formpar.visible = false
+		search_button.visible = false
+
+		pop_button.visible = true
+		pop_button.disabled = false
+
+		keep_button.visible = true
+		keep_button.disabled = true
+
 		is_processing = false
 		return
 
 	switch_texture("found")
 	show_data_box(people_map[target_id])
-	
+
 	global_target_id = target_id
-	print("Found: ", people_map[target_id])  # add this
-	
+
+	formpar.visible = false
+	search_button.visible = false
+
+	pop_button.visible = true
+	pop_button.disabled = false
+
+	keep_button.visible = true
+	keep_button.disabled = false
+	show_data_box(people_map[target_id])
+
+	global_target_id = target_id
+	print("Found: ", people_map[target_id])
+
+	pop_button.visible = true
+	keep_button.visible = true
+	pop_button.disabled = false
+	keep_button.disabled = false
+
+	search_button.visible = false
+	formpar.visible = false
+
 	show_comic_text("SEARCH!", enqueue_text_pos_1)
 	show_comic_text("SEARCH!", enqueue_text_pos_2)
 	play_sfx("keep")
-	
+
 	if not GlobalData.has_seen_tutorial("hashmap_result_rules"):
 		dialogue_step = "hashmap_result_rules"
 		GlobalData.mark_tutorial_seen("hashmap_result_rules")
@@ -306,12 +343,17 @@ func clear_data_box():
 func reset_ui_to_start():
 	formpar.visible = true
 	search_button.visible = true
+
 	pop_button.visible = false
 	keep_button.visible = false
+
+	pop_button.disabled = false
+	keep_button.disabled = true
+
 	mask.visible = true
-	
 	form.clear()
-	
+
+	clear_data_box()
 	switch_texture("searching")
 
 func get_gender_text(is_male: bool) -> String:
@@ -345,7 +387,15 @@ func on_keep_cancelled():
 	keep_button.disabled = false
 
 func on_pop_pressed():
-	show_comic_text("POP!", enqueue_text_pos_1)
-	show_comic_text("POP!", enqueue_text_pos_2)
+	show_comic_text("Search!", enqueue_text_pos_1)
+	show_comic_text("Search!", enqueue_text_pos_2)
 	play_sfx("popping")	
 	reset_ui_to_start()
+	
+func disable_action_buttons():
+	pop_button.disabled = true
+	keep_button.disabled = true
+
+func enable_action_buttons():
+	pop_button.disabled = false
+	keep_button.disabled = false
