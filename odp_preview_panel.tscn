@@ -1,0 +1,144 @@
+[gd_scene format=3 uid="uid://dmr7fqkf717xk"]
+
+[ext_resource type="Script" uid="uid://ctqrqx1cjkf2m" path="res://odp_preview_panel.gd" id="1_8jv4b"]
+[ext_resource type="Texture2D" uid="uid://dkkp8s2tgu7lw" path="res://assets/Buttons/DataBox.png" id="1_idhxa"]
+[ext_resource type="FontFile" uid="uid://cpk028llsjiuw" path="res://assets/fonts/Thabit-Bold.ttf" id="2_8jv4b"]
+[ext_resource type="FontFile" uid="uid://bofyuirrk5ino" path="res://assets/fonts/Thabit.ttf" id="3_tw81a"]
+[ext_resource type="Texture2D" uid="uid://br6n2sldhri7j" path="res://assets/characters/output3/5.png" id="4_uahrj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rmjw1"]
+font = ExtResource("2_8jv4b")
+font_size = 12
+font_color = Color(0.3372549, 0.28235295, 0.28235295, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_elm64"]
+font = ExtResource("2_8jv4b")
+font_size = 20
+font_color = Color(0.3372549, 0.28235295, 0.28235295, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_25h1b"]
+font = ExtResource("3_tw81a")
+font_size = 25
+font_color = Color(0.3372549, 0.28235295, 0.28235295, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_oqcek"]
+font = ExtResource("2_8jv4b")
+font_color = Color(0.3372549, 0.28235295, 0.28235295, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ynpnw"]
+font = ExtResource("2_8jv4b")
+font_size = 12
+font_color = Color(0.3372549, 0.28235295, 0.28235295, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gkgfm"]
+font = ExtResource("2_8jv4b")
+font_size = 12
+font_color = Color(0.3372549, 0.28235295, 0.28235295, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qj1n6"]
+font = ExtResource("2_8jv4b")
+font_size = 12
+font_color = Color(0.3372549, 0.28235295, 0.28235295, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1qybe"]
+font = ExtResource("2_8jv4b")
+font_size = 12
+font_color = Color(0.3372549, 0.28235295, 0.28235295, 1)
+
+[node name="ODPPreviewPanel" type="Control" unique_id=190058532]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8jv4b")
+
+[node name="HoverPreviewPanel" type="TextureRect" parent="." unique_id=1607961750]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 208.0
+texture = ExtResource("1_idhxa")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="id_odp" type="Label" parent="HoverPreviewPanel" unique_id=1896391127]
+layout_mode = 0
+offset_left = 201.0
+offset_top = 48.0
+offset_right = 216.0
+offset_bottom = 63.0
+text = "10"
+label_settings = SubResource("LabelSettings_rmjw1")
+
+[node name="nama_odp" type="Label" parent="HoverPreviewPanel" unique_id=137252078]
+layout_mode = 0
+offset_left = 182.0
+offset_top = 26.0
+offset_right = 290.0
+offset_bottom = 42.0
+label_settings = SubResource("LabelSettings_elm64")
+
+[node name="gender_odp" type="Label" parent="HoverPreviewPanel" unique_id=1273019851]
+layout_mode = 0
+offset_left = 146.0
+offset_top = 22.0
+offset_right = 171.0
+offset_bottom = 52.0
+label_settings = SubResource("LabelSettings_25h1b")
+
+[node name="nama_odp_label" type="Label" parent="HoverPreviewPanel" unique_id=1390985296]
+visible = false
+layout_mode = 0
+offset_left = 192.0
+offset_top = 22.0
+offset_right = 232.0
+offset_bottom = 46.0
+text = "Udin"
+label_settings = SubResource("LabelSettings_oqcek")
+
+[node name="umur_odp" type="Label" parent="HoverPreviewPanel" unique_id=383611124]
+layout_mode = 0
+offset_left = 201.0
+offset_top = 63.0
+offset_right = 216.0
+offset_bottom = 78.0
+text = "18"
+label_settings = SubResource("LabelSettings_ynpnw")
+
+[node name="berat_odp" type="Label" parent="HoverPreviewPanel" unique_id=1956556018]
+layout_mode = 0
+offset_left = 201.0
+offset_top = 78.0
+offset_right = 217.0
+offset_bottom = 94.0
+text = "45"
+label_settings = SubResource("LabelSettings_gkgfm")
+
+[node name="tinggi_odp" type="Label" parent="HoverPreviewPanel" unique_id=1529208377]
+layout_mode = 0
+offset_left = 201.0
+offset_top = 95.0
+offset_right = 224.0
+offset_bottom = 111.0
+text = "120"
+label_settings = SubResource("LabelSettings_qj1n6")
+
+[node name="goldar_odp" type="Label" parent="HoverPreviewPanel" unique_id=937597142]
+layout_mode = 0
+offset_left = 201.0
+offset_top = 111.0
+offset_right = 224.0
+offset_bottom = 126.0
+text = "AB+"
+label_settings = SubResource("LabelSettings_1qybe")
+
+[node name="image_odp" type="TextureRect" parent="HoverPreviewPanel" unique_id=155112563]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 14.0
+offset_right = 123.0
+offset_bottom = 158.0
+texture = ExtResource("4_uahrj")
+expand_mode = 1
+stretch_mode = 4

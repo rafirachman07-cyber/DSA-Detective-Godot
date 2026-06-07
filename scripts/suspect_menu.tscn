@@ -229,7 +229,7 @@ layout_mode = 0
 offset_left = -269.0
 offset_top = 154.0
 offset_right = 51.0
-offset_bottom = 403.0
+offset_bottom = 362.0
 texture = ExtResource("12_r5gxk")
 expand_mode = 1
 stretch_mode = 4
@@ -388,6 +388,7 @@ texture_pressed = ExtResource("22_6dn2a")
 texture_hover = ExtResource("22_6dn2a")
 
 [node name="hintPage" type="ColorRect" parent="Background/GuideButton" unique_id=2047182599]
+visible = false
 z_index = 200
 layout_mode = 0
 offset_left = 152.0

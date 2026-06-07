@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://bhu1w5qfnbqax" path="res://Dialog System/DialogBox.tscn" id="23_ud4ve"]
 [ext_resource type="Texture2D" uid="uid://c462jwk74xe0a" path="res://assets/Buttons/Guide.png" id="24_3rxeu"]
 [ext_resource type="Texture2D" uid="uid://d3nbaglpoenbl" path="res://assets/Buttons/GuideActive.png" id="25_m7nb1"]
+[ext_resource type="PackedScene" uid="uid://dmr7fqkf717xk" path="res://odp_preview_panel.tscn" id="27_m7nb1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_04c5c"]
 font = ExtResource("18_ljb3g")
@@ -63,7 +64,7 @@ font_size = 25
 font = ExtResource("19_w5e66")
 font_size = 35
 
-[node name="Queue Menu" type="Node2D" unique_id=569492925]
+[node name="HashMap Menu" type="Node2D" unique_id=569492925]
 script = ExtResource("1_ud4ve")
 
 [node name="Background" type="TextureRect" parent="." unique_id=1280199727]
@@ -115,7 +116,7 @@ texture_hover = ExtResource("7_sqnva")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="HoverButton" type="TextureButton" parent="Background/Board/Paper" unique_id=78479541]
+[node name="ODPButton" type="TextureButton" parent="Background/Board/Paper" unique_id=78479541]
 layout_mode = 0
 offset_left = 1394.0
 offset_top = 260.0
@@ -302,6 +303,7 @@ texture_pressed = ExtResource("25_m7nb1")
 texture_hover = ExtResource("25_m7nb1")
 
 [node name="hintPage" type="ColorRect" parent="Background/GuideButton" unique_id=15898366]
+visible = false
 z_index = 200
 layout_mode = 0
 offset_left = 152.0
@@ -379,5 +381,13 @@ parameters/looping = true
 visible = false
 
 [node name="DialogBox" parent="." unique_id=517866619 instance=ExtResource("23_ud4ve")]
+visible = false
+
+[node name="ODPPreviewPanel" parent="." unique_id=190058532 instance=ExtResource("27_m7nb1")]
+offset_left = 1024.0
+offset_top = 464.0
+offset_right = 1024.0
+offset_bottom = 464.0
+scale = Vector2(2, 2)
 
 [connection signal="pressed" from="Background/Board/Paper/BackButton" to="." method="_on_back_button_pressed"]

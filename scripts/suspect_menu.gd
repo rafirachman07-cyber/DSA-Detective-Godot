@@ -21,6 +21,10 @@ var kept_item_scene = preload("res://scripts/kept_suspect_item.tscn")
 @onready var operation_2 = $Background/GuideButton/hintPage/operation_2
 @onready var close_button = $Background/GuideButton/hintPage/close_button
 
+#ODP Button
+@onready var odp_preview = $ODPPreviewPanel
+@onready var odp_button = $Background/ODPButton
+
 # Suspect List / Hover Preview
 @onready var suspect_scroll = $Background/Board/SuspectList/ScrollContainer
 @onready var suspect_list_grid = $Background/Board/SuspectList/ScrollContainer/GridContainer
@@ -57,6 +61,7 @@ var suspect_dialogue_index := 0
 
 func _ready():
 	randomize()
+	
 	#Guide
 	guide_button.pressed.connect(on_guide_pressed)
 	close_button.pressed.connect(on_close_pressed)

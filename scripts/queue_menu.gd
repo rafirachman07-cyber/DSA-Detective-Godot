@@ -31,6 +31,10 @@ var icon_font = preload("res://assets/fonts/Thabit.ttf")
 @onready var enqueue_button = $Background/Board/Paper/EnqueueButton
 @onready var back_button = $Background/Board/Paper/BackButton
 
+#ODP Button
+@onready var odp_preview = $ODPPreviewPanel
+@onready var odp_button = $Background/Board/Paper/ODPButton
+
 @onready var id_label = $Background/Board/Paper/DataBox/id_suspect
 @onready var name_suspect_Label = $Background/Board/Paper/DataBox/nama_suspect_Label
 @onready var name_label = $Background/Board/Paper/DataBox/nama_suspect
@@ -61,6 +65,10 @@ func _ready():
 
 	if not dialogue_box.dialogue_finished.is_connected(_on_tutorial_selesai):
 		dialogue_box.dialogue_finished.connect(_on_tutorial_selesai)
+	
+	#ODP
+	odp_button.mouse_entered.connect(_show_odp)
+	odp_button.mouse_exited.connect(_hide_odp)
 	
 	# Guide
 	guide_button.pressed.connect(on_guide_pressed)
@@ -181,7 +189,13 @@ func get_person_data() -> Dictionary:
 
 	return people_data.pick_random()
 
+#ODP
+func _show_odp():
+	odp_preview.open()
 
+func _hide_odp():
+	odp_preview.close()
+	
 #Guide
 func on_guide_pressed():
 	guide_button.visible = true

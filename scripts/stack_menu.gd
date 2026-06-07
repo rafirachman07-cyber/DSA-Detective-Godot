@@ -21,6 +21,10 @@ var icon_font = preload("res://assets/fonts/Thabit.ttf")
 @onready var weight_label = $Background/Board/Paper/DataBox/berat_suspect
 @onready var blood_label = $Background/Board/Paper/DataBox/goldar_suspect
 
+#ODP Button
+@onready var odp_preview = $ODPPreviewPanel
+@onready var odp_button = $Background/Board/Paper/ODPButton
+
 #Guide
 @onready var guide_button = $Background/GuideButton
 @onready var hint_page = $Background/GuideButton/hintPage
@@ -64,6 +68,10 @@ func _ready():
 	keep_button.pressed.connect(on_keep_pressed)
 	back_button.pressed.connect(on_back_pressed)
 	push_button.pressed.connect(on_push_pressed)
+	
+	#ODP
+	odp_button.mouse_entered.connect(_show_odp)
+	odp_button.mouse_exited.connect(_hide_odp)
 
 	# Guide
 	guide_button.pressed.connect(on_guide_pressed)
@@ -107,6 +115,12 @@ func _ready():
 	else:
 		dialogue_box.hide()
 
+#ODP
+func _show_odp():
+	odp_preview.open()
+
+func _hide_odp():
+	odp_preview.close()
 
 func _on_tutorial_selesai():
 	if dialogue_step == "stack_menu_intro":

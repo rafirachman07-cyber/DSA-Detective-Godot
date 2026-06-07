@@ -30,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://d3nbaglpoenbl" path="res://assets/Buttons/GuideActive.png" id="26_tewvw"]
 [ext_resource type="PackedScene" uid="uid://bhu1w5qfnbqax" path="res://Dialog System/DialogBox.tscn" id="27_7vt4s"]
 [ext_resource type="FontFile" uid="uid://c11u3x0tgqibv" path="res://assets/fonts/JetBrainsMono-Regular.ttf" id="27_nm1nv"]
+[ext_resource type="PackedScene" uid="uid://dmr7fqkf717xk" path="res://odp_preview_panel.tscn" id="31_tewvw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qkmaw"]
 font = ExtResource("15_34i23")
@@ -184,7 +185,7 @@ texture_hover = ExtResource("10_6qo2p")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="HoverButton" type="TextureButton" parent="Background/Board/Paper" unique_id=78479541]
+[node name="ODPButton" type="TextureButton" parent="Background/Board/Paper" unique_id=78479541]
 layout_mode = 0
 offset_left = 1394.0
 offset_top = 260.0
@@ -363,8 +364,8 @@ texture_hover = ExtResource("26_tewvw")
 [node name="hintPage" type="ColorRect" parent="Background/GuideButton" unique_id=1385193740]
 z_index = 200
 layout_mode = 0
-offset_left = 152.0
-offset_top = 88.0
+offset_left = 145.0
+offset_top = 80.0
 offset_right = 1728.0
 offset_bottom = 1006.0
 color = Color(0, 0, 0, 0.78431374)
@@ -440,5 +441,12 @@ visible = false
 
 [node name="DialogBox" parent="." unique_id=517866619 instance=ExtResource("27_7vt4s")]
 visible = false
+
+[node name="ODPPreviewPanel" parent="." unique_id=190058532 instance=ExtResource("31_tewvw")]
+offset_left = 995.0
+offset_top = 445.0
+offset_right = 995.0
+offset_bottom = 445.0
+scale = Vector2(2, 2)
 
 [connection signal="pressed" from="Background/Board/Paper/BackButton" to="." method="_on_back_button_pressed"]

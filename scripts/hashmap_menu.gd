@@ -26,6 +26,10 @@ var icon_font = preload("res://assets/fonts/Thabit.ttf")
 @onready var operation_4 = $Background/GuideButton/hintPage/operation_4
 @onready var close_button = $Background/GuideButton/hintPage/close_button
 
+#ODP Button
+@onready var odp_preview = $ODPPreviewPanel
+@onready var odp_button = $Background/Board/Paper/ODPButton
+
 @onready var form = $Background/Board/Paper/formpar/LineEdit
 @onready var search_button = $Background/Board/Paper/SearchButton
 @onready var bg_card = $Background/Board/Paper/bg
@@ -66,6 +70,10 @@ func _ready():
 	keep_button.pressed.connect(on_keep_pressed)
 	pop_button.pressed.connect(on_pop_pressed)
 	
+	#ODP
+	odp_button.mouse_entered.connect(_show_odp)
+	odp_button.mouse_exited.connect(_hide_odp)
+	
 	# Guide
 	guide_button.pressed.connect(on_guide_pressed)
 	close_button.pressed.connect(on_close_pressed)
@@ -97,6 +105,13 @@ func _ready():
 		dialogue_box.start_dialogue("hashmap_menu", "on_first_enter")
 	else:
 		dialogue_box.hide()
+
+#ODP
+func _show_odp():
+	odp_preview.open()
+
+func _hide_odp():
+	odp_preview.close()
 
 
 func _on_tutorial_selesai():
