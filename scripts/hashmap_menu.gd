@@ -142,6 +142,20 @@ func _on_tutorial_selesai():
 		GlobalData.mark_tutorial_seen("hashmap_result_rules")
 		dialogue_step = "none"
 
+	elif dialogue_step == "hashmap_limit_reached":
+		dialogue_step = "none"
+
+		if not GlobalData.has_seen_tutorial("hashmap_final_instruction"):
+			GlobalData.mark_tutorial_seen("hashmap_final_instruction")
+
+			dialogue_box.start_dialogue(
+				"hashmap_menu",
+				"final_instruction"
+			)
+
+	elif dialogue_step == "hashmap_final_instruction":
+		dialogue_step = "none"
+
 
 func _run_pending_action():
 	if pending_action.is_valid():

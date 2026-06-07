@@ -10,6 +10,7 @@ var suspect_already_selected := false
 var current_odp: Dictionary = {}
 var kept_suspects: Array = []
 var selected_kept_suspect: Dictionary = {}
+var queue_broker_finished := false
 
 var revealed_fields: Array[String] = []
 

@@ -124,11 +124,20 @@ func _on_tutorial_selesai():
 	if dialogue_step == "queue_intro":
 		GlobalData.mark_tutorial_completed("queue_orang_menu")
 		dialogue_step = "none"
-
+		
 	elif dialogue_step == "queue_peek":
 		GlobalData.mark_tutorial_seen("queue_peek")
 		dialogue_step = "none"
+
 		_run_pending_action()
+
+		if not GlobalData.has_seen_tutorial("queue_after_peek"):
+			GlobalData.mark_tutorial_seen("queue_after_peek")
+
+			dialogue_box.start_dialogue(
+				"queue_orang_menu",
+				"after_first_peek_result"
+			)
 
 	elif dialogue_step == "queue_dequeue":
 		GlobalData.mark_tutorial_seen("queue_dequeue")
@@ -148,6 +157,20 @@ func _on_tutorial_selesai():
 		GlobalData.mark_tutorial_seen("queue_enqueue")
 		dialogue_step = "none"
 		_run_pending_action()
+
+	elif dialogue_step == "queue_enqueue_limit":
+		dialogue_step = "none"
+
+		if not GlobalData.has_seen_tutorial("queue_final_instruction"):
+			GlobalData.mark_tutorial_seen("queue_final_instruction")
+
+			dialogue_box.start_dialogue(
+				"queue_orang_menu",
+				"final_instruction"
+			)
+
+	elif dialogue_step == "queue_final_instruction":
+		dialogue_step = "none"
 
 var sfx = {
 	"popping": preload("res://assets/audio/pop.mp3"),
@@ -346,7 +369,10 @@ func on_peek_pressed():
 	if not GlobalData.has_seen_tutorial("queue_peek"):
 		dialogue_step = "queue_peek"
 		pending_action = Callable(self, "_do_peek")
-		dialogue_box.start_dialogue("queue_orang_menu", "on_peek_first_pressed")
+		dialogue_box.start_dialogue(
+			"queue_orang_menu",
+			"on_peek_first_pressed"
+		)
 		return
 
 	_do_peek()
@@ -511,11 +537,30 @@ func _do_enqueue():
 
 
 func enqueue():
+
+	if GlobalData.queue_broker_finished:
+		return
+
 	if not queue.is_empty():
 		return
 
 	if people_data.is_empty():
+
+		GlobalData.queue_broker_finished = true
+
 		show_empty_queue_popup()
+
+		if not GlobalData.has_seen_tutorial("on_enqueue_limit_reached"):
+			GlobalData.mark_tutorial_seen("on_enqueue_limit_reached")
+			dialogue_step = "queue_enqueue_limit"
+
+			dialogue_box.start_dialogue(
+				"queue_orang_menu",
+				"on_enqueue_limit_reached"
+			)
+
+			return
+
 		return
 
 	reset_ui_to_start()

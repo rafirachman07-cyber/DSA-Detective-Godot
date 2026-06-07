@@ -137,6 +137,14 @@ func show_comic_text(text_value: String, screen_pos: Vector2):
 
 #ODP
 func _show_odp():
+	if not GlobalData.has_seen_tutorial("suspect_list_button"):
+		GlobalData.mark_tutorial_seen("suspect_list_button")
+
+		dialogue_box.start_dialogue(
+			"suspect_menu",
+			"on_suspect_list_button_first_pressed"
+		)
+
 	odp_preview.open()
 
 func _hide_odp():
@@ -285,6 +293,13 @@ func _do_peek():
 	play_sfx("popping")
 	
 	peek_front()
+	
+	if not GlobalData.has_seen_tutorial("after_first_peek_result"):
+		GlobalData.mark_tutorial_seen("after_first_peek_result")
+		dialogue_box.start_dialogue(
+			"stack_menu",
+			"after_first_peek_result"
+		)
 
 
 func on_pop_pressed():
@@ -426,7 +441,6 @@ func peek_front():
 	pop_button.disabled = false
 	keep_button.disabled = false
 
-
 func show_empty_state():
 	clear_data_box()
 
@@ -439,14 +453,17 @@ func show_empty_state():
 	kosong.visible = true
 
 	if not GlobalData.has_seen_tutorial("stack_empty"):
-		dialogue_step = "stack_empty"
 		GlobalData.mark_tutorial_seen("stack_empty")
-		dialogue_box.start_dialogue("stack_menu", "on_stack_empty")
 
-
+		dialogue_box.start_dialogue(
+			"stack_menu",
+			"on_stack_empty"
+		)
+		
 func on_push_pressed():
 	if people_data.is_empty() and current_loop_data.is_empty():
 		print("No more data on stack")
+		dialogue_box.start_dialogue("stack_menu", "on_push_limit_reached")
 		return
 
 	if not GlobalData.has_seen_tutorial("stack_push"):
@@ -459,17 +476,26 @@ func on_push_pressed():
 
 
 func _do_push():
-	if people_data.is_empty() and current_loop_data.is_empty():
-		print("No more data on stack")
+
+	if people_data.is_empty():
+
+		if not GlobalData.has_seen_tutorial("on_push_limit_reached"):
+			GlobalData.mark_tutorial_seen("on_push_limit_reached")
+
+			dialogue_box.start_dialogue(
+				"stack_menu",
+				"on_push_limit_reached"
+			)
+
 		return
 
 	current_loop_data = pick_and_pop()
 	current_loop_count = ONE_LOOP_COUNT
-	
+
 	show_comic_text("PUSH!", enqueue_text_pos_1)
 	show_comic_text("PUSH!", enqueue_text_pos_2)
 	play_sfx("popping")
-	
+
 	reset_ui_to_start()
 	rebuild_stack()
 	clear_data_box()
