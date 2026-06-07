@@ -4,102 +4,64 @@ extends CanvasLayer
 @onready var name_label = $DialogPanel/Label_name
 @onready var text_label = $DialogPanel/PanelContainer/dialog
 
+# Alamat file JSON Master yang kita buat di Langkah 2
 const MASTER_JSON_PATH = "res://Dialog System/dialog_master.json"
 
-var dialogue_database: Dictionary = {}
-var current_dialogue: Array = []
+var dialogue_data: Array = []
 var current_index: int = 0
 
 signal dialogue_finished
 
-
 func _ready():
 	hide()
-	load_dialogue_json()
 
-
-func load_dialogue_json():
-	var file := FileAccess.open(MASTER_JSON_PATH, FileAccess.READ)
-
-	if file == null:
-		push_error("Cannot open dialogue JSON: " + MASTER_JSON_PATH)
+func start_dialogue(dialogue_key: String):
+	if not FileAccess.file_exists(MASTER_JSON_PATH):
+		print("Error: File JSON tidak ditemukan!")
 		return
-
-	var parsed = JSON.parse_string(file.get_as_text())
-
-	if typeof(parsed) != TYPE_DICTIONARY:
-		push_error("Dialogue JSON root must be Dictionary/Object")
-		return
-
-	dialogue_database = parsed
-	print("Dialogue loaded. Keys: ", dialogue_database.keys())
-
-
-func start_dialogue(scene_key: String, trigger_key: String):
-	if dialogue_database.is_empty():
-		load_dialogue_json()
-
-	if not dialogue_database.has("scenes"):
-		push_error("Key 'scenes' tidak ditemukan")
-		return
-
-	var scenes: Dictionary = dialogue_database["scenes"]
-
-	if not scenes.has(scene_key):
-		push_error("Scene tidak ditemukan: " + scene_key)
-		return
-
-	var scene_data: Dictionary = scenes[scene_key]
-
-	if not scene_data.has(trigger_key):
-		push_error("Trigger tidak ditemukan: " + scene_key + "/" + trigger_key)
-		return
-
-	current_dialogue = scene_data[trigger_key]
-	current_index = 0
-
-	show()
-	show_current_line()
-
+	
+	var file = FileAccess.open(MASTER_JSON_PATH, FileAccess.READ)
+	var json_string = file.get_as_text()
+	file.close()
+	
+	var parsed_data = JSON.parse_string(json_string)
+	
+	if parsed_data is Dictionary and parsed_data.has(dialogue_key):
+		dialogue_data = parsed_data[dialogue_key]
+		current_index = 0
+		show()
+		show_current_line()
+	else:
+		print("Error: Key '" + dialogue_key + "' tidak ditemukan di JSON.")
 
 func show_current_line():
-	if current_index >= current_dialogue.size():
+	if current_index >= dialogue_data.size():
 		finish_dialogue()
 		return
-
-	var current_line: Dictionary = current_dialogue[current_index]
-
-	name_label.text = str(current_line.get("name", ""))
-	text_label.text = str(current_line.get("text", ""))
-
-	var path_gambar := str(current_line.get("portrait", ""))
-
+	
+	var current_line = dialogue_data[current_index]
+	name_label.text = current_line["name"]
+	text_label.text = current_line["text"]
+	
+	var path_gambar = current_line["portrait"]
 	if ResourceLoader.exists(path_gambar):
 		portrait_rect.texture = load(path_gambar)
 	else:
 		portrait_rect.texture = null
 
-
 func _input(event):
 	if not visible:
 		return
-
+		
+	# 1. ACTION LANJUTKAN DIALOG (Space/Enter/Klik Kiri)
 	if event.is_action_pressed("ui_accept"):
-		get_viewport().set_input_as_handled()
-
 		current_index += 1
 		show_current_line()
-
+		
+	# 2. ACTION SKIP DIALOG LEWAT KEYBOARD (Tombol Escape / ui_cancel)
 	elif event.is_action_pressed("ui_cancel"):
-		get_viewport().set_input_as_handled()
 		finish_dialogue()
-
 
 func finish_dialogue():
 	hide()
-	current_dialogue = []
-	current_index = 0
-
-	await get_tree().process_frame
-
 	dialogue_finished.emit()

@@ -302,7 +302,6 @@ offset_bottom = 1080.0
 color = Color(0.003921569, 0.003921569, 0.003921569, 0.5882353)
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="." unique_id=631106808]
-visible = false
 position = Vector2(913, 497)
 stream = ExtResource("23_bjv6r")
 autoplay = true

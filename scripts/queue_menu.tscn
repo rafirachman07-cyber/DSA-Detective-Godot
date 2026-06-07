@@ -115,15 +115,12 @@ texture = ExtResource("6_xqao8")
 
 [node name="Slot4" type="Marker2D" parent="Background/Board/Paper/Lorong" unique_id=1277117859]
 position = Vector2(262, 152)
-scale = Vector2(0.55, 0.55)
 
 [node name="Slot3" type="Marker2D" parent="Background/Board/Paper/Lorong" unique_id=1475836761]
 position = Vector2(262, 243)
-scale = Vector2(0.7, 0.7)
 
 [node name="Slot2" type="Marker2D" parent="Background/Board/Paper/Lorong" unique_id=497204758]
 position = Vector2(262, 343)
-scale = Vector2(0.85, 0.85)
 
 [node name="Slot1" type="Marker2D" parent="Background/Board/Paper/Lorong" unique_id=1342228453]
 position = Vector2(261, 446)
