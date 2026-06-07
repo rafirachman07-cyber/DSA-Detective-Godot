@@ -109,7 +109,7 @@
 			"broker_buttons_intro": [
 				{
 					"name": "Sofyan (kamu)",
-					"text": "Lalu, \"[color=cyan][b]tombol-tombol di bagian atas[/b][/color]\" ini apa, Senior? Tulisannya kok beda-beda? Ada yang [color=lime][b]Stack[/b][/color], [color=lime][b]Queue[/b][/color], sama [color=lime][b]HashMap[/b][/color]. Ini kode rahasia agensi, ya?",
+					"text": "Lalu, [color=cyan][b]tombol-tombol di bagian atas[/b][/color] ini apa, Senior? Tulisannya kok beda-beda? Ada yang [color=lime][b]Stack[/b][/color], [color=lime][b]Queue[/b][/color], sama [color=lime][b]HashMap[/b][/color]. Ini kode rahasia agensi, ya?",
 					"portrait": "res://assets/npc/mc.png"
 				},
 				{
@@ -136,7 +136,7 @@
 				},
 				{
 					"name": "Sofyan (kamu)",
-					"text": " Ah, aku tahu! [color=lime][b]\"Konsep Last-In, First-Out (LIFO)!\"[/b][/color] Sifatnya mirip seperti tumpukan baju di lemari. Baju yang paling terakhir dicuci dan ditaruh di atas, pasti itu yang diambil duluan kalau mau pergi, kan?",
+					"text": "Ah, aku tahu! [color=lime][b]\"Konsep Last-In, First-Out (LIFO)!\"[/b][/color] Sifatnya mirip seperti tumpukan baju di lemari. Baju yang paling terakhir dicuci dan ditaruh di atas, pasti itu yang diambil duluan kalau mau pergi, kan?",
 					"portrait": "res://assets/npc/mc.png"
 				},
 				{
@@ -158,7 +158,7 @@
 				},
 				{
 					"name": "Sofyan (kamu)",
-					"text": "Queue? Memangnya apa bedanya dengan stack, Senior Bram?",
+					"text": "Queue? FIFO? Memangnya apa bedanya dengan stack, Senior Bram?",
 					"portrait": "res://assets/npc/mc.png"
 				},
 				{
@@ -168,12 +168,12 @@
 				},
 				{
 					"name": "Sofyan (kamu)",
-					"text": "Oh, paham! Jadi mirip seperti antrean loket bioskop, ya. Harus tertib nunggu giliran orang di depannya selesai bicara. Lalu broker queue yang kedua bagaimana?",
+					"text": "Oh, paham! Jadi mirip seperti antrean loket bioskop, ya. Harus tertib nunggu giliran orang di depannya selesai bicara.",
 					"portrait": "res://assets/npc/mc.png"
 				},
 				{
 					"name": "Sofyan (kamu)",
-					"text": "Ah! Jadi intinya [color=lime][b]konsep antrean![/b][/color] Jadi kalau kita butuh data penting yang kebetulan ada di [color=lime][b]urutan belakang[/b][/color], kita harus memproses data di [color=lime][b]depannya duluan[/b][/color], kan?",
+					"text": "Jadi intinya [color=lime][b]konsep antrean![/b][/color]. Kalau kita butuh data penting yang kebetulan ada di [color=lime][b]urutan belakang[/b][/color], kita harus memproses data di [color=lime][b]depannya duluan[/b][/color], kan?",
 					"portrait": "res://assets/npc/mc.png"
 				},
 				{
@@ -222,7 +222,7 @@
 				},
 				{
 					"name": "Senior Bram",
-					"text": "Hebat Sofyan. Kamu sudah mengerti dasar-dasar untuk menjadi detektif yang hebat. Tapi ingat, untuk menjadi detektif nomor satu kamu harus \"teliti\" dengan informasi yang diberikan oleh para broker",
+					"text": "Hebat Sofyan. Kamu sudah mengerti dasar-dasar untuk menjadi detektif yang hebat. Tapi ingat, untuk menjadi detektif nomor satu kamu harus [color=yellow][b]\"teliti\"[/b][/color] dengan informasi yang diberikan oleh para broker",
 					"portrait": "res://assets/npc/senior.png"
 				}
 			],
@@ -238,7 +238,7 @@
 			"on_first_enter": [
 				{
 					"name": "Senior Bram",
-					"text": "Sofyan, perkenalkan. Ini adalah Anton. Broker paling sibuk dan... yah, agak sedikit berantakan. Tapi datanya selalu akurat.",
+					"text": "Sofyan, perkenalkan. Ini adalah [color=yellow][b]Anton[/b][color]. Broker paling sibuk dan... yah, agak sedikit berantakan. Tapi datanya cukup akurat.",
 					"portrait": "res://assets/npc/senior.png"
 				},
 				{
@@ -258,7 +258,7 @@
 				},
 				{
 					"name": "Anton",
-					"text": "Rookie? fine. Ambil saja informasi yang kamu mau di tumpukan kertas itu. Semua datanya sudah ku taruh disitu. Pakai saja. Sudah ya, aku sibuk! Bye!",
+					"text": "Rookie? fine. Ambil saja informasi yang kamu mau di [color=yellow][b]tumpukan kertas[/b][color] itu. Semua datanya sudah ku taruh disitu. Pakai saja. Sudah ya, aku sibuk! Bye!",
 					"portrait": "res://assets/npc/anton.png"
 				},
 				{
@@ -278,7 +278,7 @@
 				},
 				{
 					"name": "Sofyan (kamu)",
-					"text": "Karena Anton menumpuk kertas ini dari bawah ke atas, berarti kertas laporan yang paling terakhir dia dapatkan berada di posisi paling atas!.",
+					"text": "Karena Anton menumpuk kertas ini [color=lime][b]dari bawah ke atas[/b][color], berarti kertas laporan yang [color=lime][b]paling terakhir[/b][color] dia dapatkan berada di posisi [color=lime][b]paling atas![/b][color]",
 					"portrait": "res://assets/npc/mc.png"
 				},
 				{
@@ -295,16 +295,16 @@
 				},
 				{
 					"name": "Senior Bram",
-					"text": "Dalam \"konsep Stack\", operasi [color=lime][b]peek()[/b][/color] digunakan untuk \"melihat\" atau \"memeriksa\" elemen yang berada di posisi paling atas tumpukan tanpa menghapusnya.",
+					"text": "Dalam [color=lime][b]\"konsep Stack\"[/b][color], operasi [color=lime][b]peek()[/b][/color] digunakan untuk [color=lime][b]\"melihat\"[/b][color] atau [color=lime][b]\"memeriksa\"[/b][color] elemen yang berada di posisi [color=lime][b]paling atas[/b][color] tumpukan tanpa menghapusnya.",
 					"portrait": "res://assets/npc/senior.png"
 				},
 				{
 					"name": "Senior Bram",
-					"text": "Jadi, kita bisa membaca isinya terlebih dahulu tanpa mengubah struktur tumpukan kertas ini. Coba klik tombolnya.",
+					"text": "Jadi, kita bisa membaca isinya terlebih dahulu tanpa mengubah struktur tumpukan kertas ini.",
 					"portrait": "res://assets/npc/senior.png"
 				}
 			],
-			"after_first_peek_result": [
+			"after_first_peek_result": [?
 				{
 					"name": "Sofyan (kamu)",
 					"text": "Hmm, lembaran teratas ini berisi profil seseorang. Tapi Senior, datanya sama sekali tidak cocok dengan petunjuk awal dari Inspektur Rama!.",
@@ -324,7 +324,7 @@
 				},
 				{
 					"name": "Senior Bram",
-					"text": "Di dalam \"struktur data Stack\", operasi [color=lime][b]pop()[/b][/color] berfungsi untuk \"menghapus\" atau \"mengeluarkan\" elemen yang berada di posisi teratas tumpukan.",
+					"text": "Di dalam [color=lime][b]\"struktur data Stack\"[/b][color], operasi [color=lime][b]pop()[/b][/color] berfungsi untuk [color=lime][b]\"menghapus\"[/b][color] atau [color=lime][b]\"mengeluarkan\"[/b][color] elemen yang berada di posisi [color=lime][b]teratas tumpukan[/b][color].",
 					"portrait": "res://assets/npc/senior.png"
 				},
 				{
@@ -341,7 +341,7 @@
 			"on_keep_first_pressed": [
 				{
 					"name": "Senior Bram",
-					"text": "Tapi, Kalau datanya ternyata \"cocok\", kamu [pulse color=red][b]jangan[/b][/pulse] pakai pop(), melainkan tekan [wave][color=cyan]tombol Keep[/color][/wave] untuk menjadikannya tersangka.",
+					"text": "Tapi, Kalau datanya ternyata [color=yellow][b]\"cocok\"[/b][color], kamu [pulse color=red][b]jangan[/b][/pulse] pakai pop(), melainkan tekan [wave][color=cyan]tombol Keep[/color][/wave] untuk menjadikannya tersangka.",
 					"portrait": "res://assets/npc/senior.png"
 				},
 				{
@@ -356,7 +356,7 @@
 				},
 				{
 					"name": "Senior Bram",
-					"text": "Jika kamu klik [wave][color=cyan]SETUJUI[/color][/wave], kertas itu akan berpindah ke papan suspect list di sebelah kanan. Ingat, papan jepitan kita sebelumnya. Tapi [pulse color=red][b]maksimal[/b][/pulse] suspect list hanya muat 6 lembar saja.",
+					"text": "Jika kamu klik [wave][color=cyan]SETUJUI[/color][/wave], kertas itu akan berpindah ke papan suspect list di sebelah kanan. Ingat, papan jepitan kita sebelumnya. Tapi [pulse color=red][b]maksimal[/b][/pulse] suspect list hanya muat [color=red][b]6 lembar saja[/b][color].",
 					"portrait": "res://assets/npc/senior.png"
 				},
 				{
@@ -368,39 +368,40 @@
 			"on_stack_empty": [
 				{
 					"name": "Senior Bram",
-					"text": "Bagus. Nah, jika kamu terus melakukan pop() atau memindahkan kertas ke daftar tersangka, lama-lama tumpukan kertas di dalam map itu akan habis sampai tidak ada yang tersisa.",
+					"text": "Nah, setelah kamu terus melakukan pop() atau memindahkan kertas ke daftar tersangka, lama-lama tumpukan kertas di dalam map itu akan habis sampai tidak ada yang tersisa.",
 					"portrait": "res://assets/npc/senior.png"
 				},
 				{
 					"name": "Sofyan (kamu)",
-					"text": "Tapi jika aku belum menemukan nama pelaku sindikat yang asli bagaimana senior?",
+					"text": "Tapi jika aku belum menemukan nama pelaku utamanya bagaimana senior?",
 					"portrait": "res://assets/npc/mc.png"
 				},
 				{
 					"name": "Senior Bram",
-					"text": "Jangan panik, Sofyaan. Di sinilah fungsi operasi terakhir Stack bekerja.",
+					"text": "Jangan panik, Sofyan. Di sinilah fungsi operasi terakhir Stack bekerja.",
 					"portrait": "res://assets/npc/senior.png"
-				}
+				},
+				{
+					"name": "Senior Bram",
+					"text": "Kamu lihat tombol baru yang muncul, tulisannya [wave][color=cyan]push()[/color][/wave]. Coba kamu klik",
+					"portrait": "res://assets/npc/senior.png"
+				},
 			],
 			"on_push_button_appears": [
+				
 				{
 					"name": "Senior Bram",
-					"text": "Nanti [wave][color=cyan]tombol baru akan muncul, tulisannya push()[/color][/wave].",
-					"portrait": "res://assets/npc/senior.png"
-				},
-				{
-					"name": "Senior Bram",
-					"text": "Di dalam teori \"struktur data\", operasi [color=lime][b]push()[/b][/color] digunakan untuk \"memasukkan\" atau \"menambahkan\" elemen baru ke dalam tumpukan, dan data baru tersebut akan selalu diletakkan di posisi paling atas.",
+					"text": "Di dalam teori [color=lime][b]\"struktur data\"[/b][color], operasi [color=lime][b]push()[/b][/color] digunakan untuk [color=lime][b]\"memasukkan\"[/b][color] atau [color=lime][b]\"menambahkan\"[/b][color] elemen baru ke dalam tumpukan, dan data baru tersebut akan selalu diletakkan di posisi [color=lime][b]paling atas[/b][color].",
 					"portrait": "res://assets/npc/senior.png"
 				},
 				{
 					"name": "Sofyan (kamu)",
-					"text": "Aha! Jadi kalau aku klik [wave][color=cyan]push()[/color][/wave], kita memerintahkan Anton untuk \"menambahkan\" data-data baru, lalu data itu akan dimasukkan dan ditumpuk kembali di sini!",
+					"text": "Aha! Jadi kalau aku klik [wave][color=cyan]push()[/color][/wave], kita memerintahkan Anton untuk [color=yellow][b]\"menambahkan\"[/b][color] data-data baru, lalu data itu akan dimasukkan dan ditumpuk kembali di sini!",
 					"portrait": "res://assets/npc/mc.png"
 				},
 				{
 					"name": "Senior Bram",
-					"text": "Tepat sekali! Tumpukannya akan terisi kembali dan kamu bisa memulai siklusnya dari awal lagi dengan peek().",
+					"text": "Tepat sekali! Tumpukannya akan terisi kembali dan kamu bisa melakukan peek() kembali.",
 					"portrait": "res://assets/npc/senior.png"
 				},
 				{
@@ -419,7 +420,7 @@
 					"portrait": "res://assets/npc/mc.png"
 				}
 			],
-			"on_push_limit_reached": [
+			"on_push_limit_reached": [?
 				{
 					"name": "Senior Bram",
 					"text": "Benar. Nah, ini poin paling penting jika kamu menemui jalan buntu. Seandainya jatah 2 kali push() milikmu sudah habis, semua kertas sudah kamu pop(), dan folder akan bertuliskan  [color=cyan][b]Habis[/b][/color]...",
@@ -451,14 +452,14 @@
 					"portrait": "res://assets/npc/senior.png"
 				}
 			],
-			"on_suspect_list_button_first_pressed": [
+			"on_suspect_list_button_first_pressed": [?
 				{
 					"name": "Senior Bram",
 					"text": "Oh iya. jika kamu sedang sibuk memilah kertas dan ingin meninjau kembali siapa saja yang sudah kamu jepit di papan tersangka agensi, kamu cukup menekan [color=cyan][b]Tombol[/b][/color] dengan [color=cyan][b]Ikon Target (Bidikan)[/b][/color] di sebelah kanan layar untuk membuka daftar mereka.",
 					"portrait": "res://assets/npc/senior.png"
 				}
 			],
-						"suspect_list_almost_full":[
+			"suspect_list_almost_full":[
 				{
 					"name": "Senior Bram",
 					"text": "Sofyan, papan Suspect List kita hampir penuh. Tersisa satu slot lagi, jadi pilih kandidat berikutnya dengan lebih hati-hati.",
@@ -472,7 +473,7 @@
 				  "portrait": "res://assets/npc/senior.png"
 				}
 			],
-			"final_instruction": [
+			"final_instruction": [?
 				{
 					"name": "Sofyan (kamu)",
 					"text": "Luar biasa! Teori Stack ini ternyata sangat berguna di dunia detektif! Cukup duduk di meja, mengintip dengan [color=lime][b]peek()[/b][/color], membuang dengan [color=lime][b]pop()[/b][/color], dan menambah data dengan [color=lime][b]push()[/b][/color]! Kasus ini akan selesai dalam hitungan menit!",
