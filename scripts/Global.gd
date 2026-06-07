@@ -36,7 +36,7 @@ var tutorials_completed: Dictionary = {
 	"suspect_menu": false,
 	"stack_menu": false,
 	"queue_orang_menu": false,
-	"queue_fax_menu": false,
+	"queue_fax_menu": true,
 	"hashmap_menu": false,
 	"choose_suspect_menu": false,
 }
@@ -72,8 +72,8 @@ enum Broker {
 var json_path := "res://assets/characters/characters.json"
 
 var total_to_use := 50
-var min_per_list := [5, 5, 5, 5]
-var max_per_list := [40, 40, 40, 10]
+var min_per_list := [5, 5, 5]
+var max_per_list := [35, 35, 10]
 
 var lists: Array = [[], [], [], []]
 
@@ -106,14 +106,14 @@ func load_and_split(guaranteed: Dictionary = {}) -> void:
 
 	var cursor := 0
 
-	for i in range(4):
+	for i in range(3):
 		lists[i] = suspects.slice(cursor, cursor + split[i])
 		cursor += split[i]
 
 	if not guaranteed.is_empty():
 		_ensure_suspect_in_lists(guaranteed)
 
-	for i in range(4):
+	for i in range(3):
 		print("List %d: %d suspects" % [i, lists[i].size()])
 
 
@@ -213,7 +213,7 @@ func _random_split(total: int, mins: Array, maxs: Array) -> Array:
 	var min_sum := 0
 	var max_sum := 0
 
-	for i in range(4):
+	for i in range(3):
 		min_sum += int(mins[i])
 		max_sum += int(maxs[i])
 
@@ -228,13 +228,13 @@ func _random_split(total: int, mins: Array, maxs: Array) -> Array:
 	var remaining := total - min_sum
 	var headroom := []
 
-	for i in range(4):
+	for i in range(3):
 		headroom.append(int(maxs[i]) - int(mins[i]))
 
 	while remaining > 0:
 		var candidates := []
 
-		for i in range(4):
+		for i in range(3):
 			if headroom[i] > 0:
 				candidates.append(i)
 

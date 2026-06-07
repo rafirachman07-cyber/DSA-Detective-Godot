@@ -323,9 +323,9 @@ columns = 2
 
 [node name="QueueButton" type="TextureButton" parent="Background/Board" unique_id=1421644573]
 layout_mode = 0
-offset_left = 398.0
+offset_left = 530.0
 offset_top = 71.5
-offset_right = 614.0
+offset_right = 746.0
 offset_bottom = 183.5
 texture_normal = SubResource("CompressedTexture2D_lquo6")
 texture_pressed = ExtResource("10_04cts")
@@ -334,6 +334,7 @@ ignore_texture_size = true
 stretch_mode = 0
 
 [node name="Fax" type="TextureButton" parent="Background/Board" unique_id=2093192024]
+visible = false
 layout_mode = 0
 offset_left = 618.0
 offset_top = 71.5
@@ -347,9 +348,9 @@ stretch_mode = 0
 
 [node name="StackButton" type="TextureButton" parent="Background/Board" unique_id=2111539320]
 layout_mode = 0
-offset_left = 207.0
+offset_left = 281.0
 offset_top = 81.5
-offset_right = 423.0
+offset_right = 497.0
 offset_bottom = 187.5
 texture_normal = SubResource("CompressedTexture2D_4dj1p")
 texture_pressed = ExtResource("12_i6ehh")
@@ -359,9 +360,9 @@ stretch_mode = 4
 
 [node name="HashMap" type="TextureButton" parent="Background/Board" unique_id=1641228046]
 layout_mode = 0
-offset_left = 833.0
+offset_left = 788.0
 offset_top = 70.5
-offset_right = 1062.0
+offset_right = 1017.0
 offset_bottom = 200.5
 texture_normal = ExtResource("17_r1aac")
 texture_pressed = ExtResource("16_6dn2a")
