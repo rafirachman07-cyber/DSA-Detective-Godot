@@ -20,6 +20,9 @@
 [ext_resource type="Texture2D" uid="uid://dhlg085tqlcwl" path="res://assets/Buttons hashmap (1).png" id="16_6dn2a"]
 [ext_resource type="Texture2D" uid="uid://di4nbsgy2njg7" path="res://assets/Buttons hashmap.png" id="17_r1aac"]
 [ext_resource type="PackedScene" uid="uid://bhu1w5qfnbqax" path="res://Dialog System/DialogBox.tscn" id="20_fn13d"]
+[ext_resource type="Texture2D" uid="uid://c462jwk74xe0a" path="res://assets/Buttons/Guide.png" id="21_jspmt"]
+[ext_resource type="Texture2D" uid="uid://d3nbaglpoenbl" path="res://assets/Buttons/GuideActive.png" id="22_6dn2a"]
+[ext_resource type="FontFile" uid="uid://c11u3x0tgqibv" path="res://assets/fonts/JetBrainsMono-Regular.ttf" id="24_7vwor"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_68wai"]
 line_spacing = 1.0
@@ -81,6 +84,10 @@ load_path = "res://.godot/imported/Buttons queue fax active.png-129f651e62b9596e
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4dj1p"]
 load_path = "res://.godot/imported/Buttons stack.png-0df88233e3e7d6cbf486bbcdfa9790c6.ctex"
+
+[sub_resource type="LabelSettings" id="LabelSettings_jxklt"]
+font = ExtResource("24_7vwor")
+font_size = 35
 
 [node name="SuspectMenu" type="Node2D" unique_id=2041330612]
 script = ExtResource("1_68wai")
@@ -369,6 +376,64 @@ texture_pressed = ExtResource("16_6dn2a")
 texture_hover = ExtResource("16_6dn2a")
 ignore_texture_size = true
 stretch_mode = 4
+
+[node name="GuideButton" type="TextureButton" parent="Background" unique_id=1261835973]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 150.0
+offset_bottom = 155.0
+texture_normal = ExtResource("21_jspmt")
+texture_pressed = ExtResource("22_6dn2a")
+texture_hover = ExtResource("22_6dn2a")
+
+[node name="hintPage" type="ColorRect" parent="Background/GuideButton" unique_id=2047182599]
+z_index = 200
+layout_mode = 0
+offset_left = 152.0
+offset_top = 88.0
+offset_right = 1728.0
+offset_bottom = 1006.0
+color = Color(0, 0, 0, 0.78431374)
+
+[node name="definition" type="Label" parent="Background/GuideButton/hintPage" unique_id=1262734012]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 304.0
+offset_right = 1384.0
+offset_bottom = 448.0
+text = "HashMap adalah struktur data yang digunakan untuk menyimpan
+data dalam bentuk pasangan Key-Value (Kunci dan Nilai)."
+label_settings = SubResource("LabelSettings_jxklt")
+
+[node name="operation_1" type="Label" parent="Background/GuideButton/hintPage" unique_id=1442282230]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 128.0
+offset_right = 1547.0
+offset_bottom = 272.0
+text = "Stack (Tumpukan) adalah dua struktur data linear yang digunakan untuk 
+menyimpan dan mengatur elemen. Memakai prinsip LIFO"
+label_settings = SubResource("LabelSettings_jxklt")
+
+[node name="operation_2" type="Label" parent="Background/GuideButton/hintPage" unique_id=1889069749]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 488.0
+offset_right = 1694.0
+offset_bottom = 632.0
+text = "Queue (Antrean) adalah dua struktur data linear yang digunakan untuk 
+menyimpan dan mengatur elemen. Queue memakai prinsip FIFO"
+label_settings = SubResource("LabelSettings_jxklt")
+
+[node name="close_button" type="Button" parent="Background/GuideButton/hintPage" unique_id=777397372]
+layout_mode = 0
+offset_left = 1416.0
+offset_top = 16.0
+offset_right = 1464.0
+offset_bottom = 59.0
+scale = Vector2(3, 3)
+text = "X"
 
 [node name="BackButton" type="TextureButton" parent="." unique_id=1955775180]
 offset_left = 1787.0

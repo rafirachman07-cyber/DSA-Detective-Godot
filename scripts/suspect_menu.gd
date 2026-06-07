@@ -14,6 +14,13 @@ var kept_item_scene = preload("res://scripts/kept_suspect_item.tscn")
 @onready var golongandarah_suspect = $Background/Board/SuspectCard/golongandarah_suspect
 @onready var suspect_image = $Background/Board/SuspectCard/image_suspect
 
+#Guide
+@onready var guide_button = $Background/GuideButton
+@onready var hint_page = $Background/GuideButton/hintPage
+@onready var operation_1 = $Background/GuideButton/hintPage/operation_1
+@onready var operation_2 = $Background/GuideButton/hintPage/operation_2
+@onready var close_button = $Background/GuideButton/hintPage/close_button
+
 # Suspect List / Hover Preview
 @onready var suspect_scroll = $Background/Board/SuspectList/ScrollContainer
 @onready var suspect_list_grid = $Background/Board/SuspectList/ScrollContainer/GridContainer
@@ -50,7 +57,15 @@ var suspect_dialogue_index := 0
 
 func _ready():
 	randomize()
-
+	#Guide
+	guide_button.pressed.connect(on_guide_pressed)
+	close_button.pressed.connect(on_close_pressed)
+	guide_button.visible = true
+	hint_page.visible = false
+	operation_1.visible = false
+	operation_2.visible = false
+	close_button.visible = false
+	
 	gender_suspect.add_theme_font_override("font", icon_font)
 	preview_gender.add_theme_font_override("font", icon_font)
 
@@ -59,6 +74,21 @@ func _ready():
 
 	handle_start_dialogue()
 	start_game_logic()
+
+#Guide
+func on_guide_pressed():
+	guide_button.visible = true
+	hint_page.visible = true
+	operation_1.visible = true
+	operation_2.visible = true
+	close_button.visible = true
+	
+func on_close_pressed():
+	guide_button.visible = false
+	hint_page.visible = false
+	operation_1.visible = false
+	operation_2.visible = false
+	close_button.visible = false
 
 
 # =====================================================================

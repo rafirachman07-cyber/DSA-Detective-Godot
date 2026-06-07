@@ -16,6 +16,15 @@ var icon_font = preload("res://assets/fonts/Thabit.ttf")
 @onready var confirmation_tab = $ConfirmationTab
 @onready var darkOverlay = $Background/darkOverlay
 
+#Guide
+@onready var guide_button = $Background/GuideButton
+@onready var hint_page = $Background/GuideButton/hintPage
+@onready var operation_1 = $Background/GuideButton/hintPage/operation_1
+@onready var operation_2 = $Background/GuideButton/hintPage/operation_2
+@onready var operation_3 = $Background/GuideButton/hintPage/operation_3
+@onready var operation_4 = $Background/GuideButton/hintPage/operation_4
+@onready var close_button = $Background/GuideButton/hintPage/close_button
+
 @onready var peek_button = $Background/Board/Paper/PeekButton
 @onready var pop_button = $Background/Board/Paper/PopButton
 @onready var keep_button = $Background/Board/Paper/KeepButton
@@ -52,7 +61,18 @@ func _ready():
 
 	if not dialogue_box.dialogue_finished.is_connected(_on_tutorial_selesai):
 		dialogue_box.dialogue_finished.connect(_on_tutorial_selesai)
-
+	
+	# Guide
+	guide_button.pressed.connect(on_guide_pressed)
+	close_button.pressed.connect(on_close_pressed)
+	guide_button.visible = true
+	hint_page.visible = false
+	operation_1.visible = false
+	operation_2.visible = false
+	operation_3.visible = false
+	operation_4.visible = false
+	close_button.visible = false
+	
 	peek_button.pressed.connect(on_peek_pressed)
 	pop_button.pressed.connect(on_pop_pressed)
 	keep_button.pressed.connect(on_keep_pressed)
@@ -162,6 +182,25 @@ func get_person_data() -> Dictionary:
 	return people_data.pick_random()
 
 
+#Guide
+func on_guide_pressed():
+	guide_button.visible = true
+	hint_page.visible = true
+	operation_1.visible = true
+	operation_2.visible = true
+	operation_3.visible = true
+	operation_4.visible = true
+	close_button.visible = true
+	
+func on_close_pressed():
+	guide_button.visible = false
+	hint_page.visible = false
+	operation_1.visible = false
+	operation_2.visible = false
+	operation_3.visible = false
+	operation_4.visible = false
+	close_button.visible = false
+	
 func create_character_from_data(data: Dictionary, index: int) -> Sprite2D:
 	var sprite := Sprite2D.new()
 	var texture = load(get_silhouette_path(index))

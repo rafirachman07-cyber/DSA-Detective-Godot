@@ -24,6 +24,8 @@
 [ext_resource type="PackedScene" uid="uid://bvner3lrvk63r" path="res://scripts/confirmationTab.tscn" id="23_d1ple"]
 [ext_resource type="AudioStream" uid="uid://d1mddv2t3lx6k" path="res://assets/audio/bgm2.mp3" id="23_dipiw"]
 [ext_resource type="PackedScene" uid="uid://bhu1w5qfnbqax" path="res://Dialog System/DialogBox.tscn" id="23_ud4ve"]
+[ext_resource type="Texture2D" uid="uid://c462jwk74xe0a" path="res://assets/Buttons/Guide.png" id="24_3rxeu"]
+[ext_resource type="Texture2D" uid="uid://d3nbaglpoenbl" path="res://assets/Buttons/GuideActive.png" id="25_m7nb1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_04c5c"]
 font = ExtResource("18_ljb3g")
@@ -56,6 +58,10 @@ font_size = 25
 [sub_resource type="LabelSettings" id="LabelSettings_34i23"]
 font = ExtResource("18_ljb3g")
 font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_3rxeu"]
+font = ExtResource("19_w5e66")
+font_size = 35
 
 [node name="Queue Menu" type="Node2D" unique_id=569492925]
 script = ExtResource("1_ud4ve")
@@ -285,6 +291,84 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 color = Color(0.003921569, 0.003921569, 0.003921569, 0.5882353)
 
+[node name="GuideButton" type="TextureButton" parent="Background" unique_id=1043019371]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 150.0
+offset_bottom = 155.0
+texture_normal = ExtResource("24_3rxeu")
+texture_pressed = ExtResource("25_m7nb1")
+texture_hover = ExtResource("25_m7nb1")
+
+[node name="hintPage" type="ColorRect" parent="Background/GuideButton" unique_id=15898366]
+z_index = 200
+layout_mode = 0
+offset_left = 152.0
+offset_top = 88.0
+offset_right = 1728.0
+offset_bottom = 1006.0
+color = Color(0, 0, 0, 0.78431374)
+
+[node name="definition" type="Label" parent="Background/GuideButton/hintPage" unique_id=513824605]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 48.0
+offset_right = 1384.0
+offset_bottom = 192.0
+text = "HashMap adalah struktur data yang digunakan untuk menyimpan
+data dalam bentuk pasangan Key-Value (Kunci dan Nilai)."
+label_settings = SubResource("LabelSettings_3rxeu")
+
+[node name="operation_1" type="Label" parent="Background/GuideButton/hintPage" unique_id=944660792]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 184.0
+offset_right = 1547.0
+offset_bottom = 328.0
+text = "put(key, value) / insert(): Memasukkan pasangan kunci dan nilai baru 
+ke dalam HashMap. Jika kunci sudah ada, nilainya akan diperbarui."
+label_settings = SubResource("LabelSettings_3rxeu")
+
+[node name="operation_2" type="Label" parent="Background/GuideButton/hintPage" unique_id=611564210]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 315.0
+offset_right = 1694.0
+offset_bottom = 459.0
+text = "get(key): Mengambil nilai (value) yang terkait dengan kunci (key) 
+yang dicari."
+label_settings = SubResource("LabelSettings_3rxeu")
+
+[node name="operation_3" type="Label" parent="Background/GuideButton/hintPage" unique_id=1011850610]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 456.0
+offset_right = 1686.0
+offset_bottom = 600.0
+text = "remove(key): Menghapus pasangan kunci dan nilai tertentu dari HashMap 
+berdasarkan kuncinya."
+label_settings = SubResource("LabelSettings_3rxeu")
+
+[node name="operation_4" type="Label" parent="Background/GuideButton/hintPage" unique_id=2023194170]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 606.0
+offset_right = 1686.0
+offset_bottom = 750.0
+text = "containsKey(key): Memeriksa apakah suatu kunci tertentu sudah terdaftar 
+atau belum di dalam HashMap (menghasilkan nilai true atau false)."
+label_settings = SubResource("LabelSettings_3rxeu")
+
+[node name="close_button" type="Button" parent="Background/GuideButton/hintPage" unique_id=1117530508]
+layout_mode = 0
+offset_left = 1416.0
+offset_top = 16.0
+offset_right = 1464.0
+offset_bottom = 59.0
+scale = Vector2(3, 3)
+text = "X"
+
 [node name="BGM" type="AudioStreamPlayer2D" parent="." unique_id=631106808]
 position = Vector2(913, 497)
 stream = ExtResource("23_dipiw")
@@ -292,6 +376,7 @@ autoplay = true
 parameters/looping = true
 
 [node name="confirmationTab" parent="." unique_id=1579016805 instance=ExtResource("23_d1ple")]
+visible = false
 
 [node name="DialogBox" parent="." unique_id=517866619 instance=ExtResource("23_ud4ve")]
 

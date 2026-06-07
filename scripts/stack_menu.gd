@@ -21,6 +21,15 @@ var icon_font = preload("res://assets/fonts/Thabit.ttf")
 @onready var weight_label = $Background/Board/Paper/DataBox/berat_suspect
 @onready var blood_label = $Background/Board/Paper/DataBox/goldar_suspect
 
+#Guide
+@onready var guide_button = $Background/GuideButton
+@onready var hint_page = $Background/GuideButton/hintPage
+@onready var operation_1 = $Background/GuideButton/hintPage/operation_1
+@onready var operation_2 = $Background/GuideButton/hintPage/operation_2
+@onready var operation_3 = $Background/GuideButton/hintPage/operation_3
+@onready var operation_4 = $Background/GuideButton/hintPage/operation_4
+@onready var close_button = $Background/GuideButton/hintPage/close_button
+
 @onready var confirmation_tab = $ConfirmationTab
 @onready var darkOverlay = $Background/darkOverlay
 @onready var card_stack_control = $Background/Board/Paper/Bg/CardStack
@@ -55,6 +64,17 @@ func _ready():
 	keep_button.pressed.connect(on_keep_pressed)
 	back_button.pressed.connect(on_back_pressed)
 	push_button.pressed.connect(on_push_pressed)
+
+	# Guide
+	guide_button.pressed.connect(on_guide_pressed)
+	close_button.pressed.connect(on_close_pressed)
+	guide_button.visible = true
+	hint_page.visible = false
+	operation_1.visible = false
+	operation_2.visible = false
+	operation_3.visible = false
+	operation_4.visible = false
+	close_button.visible = false
 
 	confirmation_tab.confirmed.connect(on_keep_confirmed)
 	confirmation_tab.cancelled.connect(on_keep_cancelled)
@@ -136,6 +156,25 @@ func pick_and_pop() -> Array:
 	GlobalData.lists[GlobalData.Broker.STACK] = people_data
 
 	return picked
+
+#Guide
+func on_guide_pressed():
+	guide_button.visible = true
+	hint_page.visible = true
+	operation_1.visible = true
+	operation_2.visible = true
+	operation_3.visible = true
+	operation_4.visible = true
+	close_button.visible = true
+	
+func on_close_pressed():
+	guide_button.visible = false
+	hint_page.visible = false
+	operation_1.visible = false
+	operation_2.visible = false
+	operation_3.visible = false
+	operation_4.visible = false
+	close_button.visible = false
 
 
 func rebuild_stack():

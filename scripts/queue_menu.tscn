@@ -26,7 +26,10 @@
 [ext_resource type="Texture2D" uid="uid://ybf7amw2ye6u" path="res://assets/Clip.png" id="19_1rf6j"]
 [ext_resource type="Texture2D" uid="uid://7nkjhs26exgp" path="res://assets/Mask Broker.png" id="20_dervd"]
 [ext_resource type="PackedScene" uid="uid://bvner3lrvk63r" path="res://scripts/confirmationTab.tscn" id="24_34i23"]
+[ext_resource type="Texture2D" uid="uid://c462jwk74xe0a" path="res://assets/Buttons/Guide.png" id="25_j4bix"]
+[ext_resource type="Texture2D" uid="uid://d3nbaglpoenbl" path="res://assets/Buttons/GuideActive.png" id="26_tewvw"]
 [ext_resource type="PackedScene" uid="uid://bhu1w5qfnbqax" path="res://Dialog System/DialogBox.tscn" id="27_7vt4s"]
+[ext_resource type="FontFile" uid="uid://c11u3x0tgqibv" path="res://assets/fonts/JetBrainsMono-Regular.ttf" id="27_nm1nv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qkmaw"]
 font = ExtResource("15_34i23")
@@ -63,6 +66,10 @@ font_size = 25
 [sub_resource type="LabelSettings" id="LabelSettings_1rf6j"]
 font = ExtResource("7_u546c")
 font_size = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_cnmak"]
+font = ExtResource("27_nm1nv")
+font_size = 35
 
 [node name="Queue Menu" type="Node2D" unique_id=569492925]
 script = ExtResource("1_row7b")
@@ -341,6 +348,86 @@ layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 color = Color(0.003921569, 0.003921569, 0.003921569, 0.5882353)
+
+[node name="GuideButton" type="TextureButton" parent="Background" unique_id=1764712527]
+z_index = 200
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 150.0
+offset_bottom = 155.0
+texture_normal = ExtResource("25_j4bix")
+texture_pressed = ExtResource("26_tewvw")
+texture_hover = ExtResource("26_tewvw")
+
+[node name="hintPage" type="ColorRect" parent="Background/GuideButton" unique_id=1385193740]
+z_index = 200
+layout_mode = 0
+offset_left = 152.0
+offset_top = 88.0
+offset_right = 1728.0
+offset_bottom = 1006.0
+color = Color(0, 0, 0, 0.78431374)
+
+[node name="definition" type="Label" parent="Background/GuideButton/hintPage" unique_id=157506764]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 48.0
+offset_right = 1384.0
+offset_bottom = 192.0
+text = "Queue adalah struktur data linear yang digunakan untuk menyimpan 
+dan mengatur elemen. Queue memakai konsep FIFO (First In, 
+First Out)"
+label_settings = SubResource("LabelSettings_cnmak")
+
+[node name="operation_1" type="Label" parent="Background/GuideButton/hintPage" unique_id=850120413]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 518.0
+offset_right = 1568.0
+offset_bottom = 662.0
+text = "enqueue(): Menambahkan atau memasukkan elemen baru ke dalam antrean. 
+Elemen baru ini selalu diletakkan di posisi paling belakang (rear/tail)."
+label_settings = SubResource("LabelSettings_cnmak")
+
+[node name="operation_2" type="Label" parent="Background/GuideButton/hintPage" unique_id=1584862894]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 346.0
+offset_right = 1484.0
+offset_bottom = 493.0
+text = "dequeue(): Mengambil atau menghapus elemen dari antrean. 
+Elemen yang diambil selalu yang berada di posisi paling depan 
+(front/head), yaitu elemen yang paling lama berada di dalam antrean."
+label_settings = SubResource("LabelSettings_cnmak")
+
+[node name="operation_3" type="Label" parent="Background/GuideButton/hintPage" unique_id=1053052950]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 226.0
+offset_right = 1694.0
+offset_bottom = 370.0
+text = "peek(): Melihat atau memeriksa elemen yang berada di posisi paling 
+depan (front) tanpa menghapus atau mengeluarkannya dari antrean."
+label_settings = SubResource("LabelSettings_cnmak")
+
+[node name="operation_4" type="Label" parent="Background/GuideButton/hintPage" unique_id=1225075749]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 673.0
+offset_right = 1702.0
+offset_bottom = 817.0
+text = "Keep digunakan untuk menyimpan data ke suspect list"
+label_settings = SubResource("LabelSettings_cnmak")
+
+[node name="close_button" type="Button" parent="Background/GuideButton/hintPage" unique_id=1783395104]
+layout_mode = 0
+offset_left = 1416.0
+offset_top = 16.0
+offset_right = 1464.0
+offset_bottom = 59.0
+scale = Vector2(3, 3)
+text = "X"
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="." unique_id=631106808]
 visible = false

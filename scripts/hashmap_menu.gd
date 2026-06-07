@@ -18,6 +18,14 @@ var icon_font = preload("res://assets/fonts/Thabit.ttf")
 @onready var weight_label = $Background/Board/Paper/DataBox/berat_suspect
 @onready var blood_label = $Background/Board/Paper/DataBox/goldar_suspect
 
+@onready var guide_button = $Background/GuideButton
+@onready var hint_page = $Background/GuideButton/hintPage
+@onready var operation_1 = $Background/GuideButton/hintPage/operation_1
+@onready var operation_2 = $Background/GuideButton/hintPage/operation_2
+@onready var operation_3 = $Background/GuideButton/hintPage/operation_3
+@onready var operation_4 = $Background/GuideButton/hintPage/operation_4
+@onready var close_button = $Background/GuideButton/hintPage/close_button
+
 @onready var form = $Background/Board/Paper/formpar/LineEdit
 @onready var search_button = $Background/Board/Paper/SearchButton
 @onready var bg_card = $Background/Board/Paper/bg
@@ -46,9 +54,9 @@ var pending_action: Callable = Callable()
 
 func _ready():
 	randomize()
-
+	
 	gender_label.add_theme_font_override("font", icon_font)
-
+	
 	if not dialogue_box.dialogue_finished.is_connected(_on_tutorial_selesai):
 		dialogue_box.dialogue_finished.connect(_on_tutorial_selesai)
 
@@ -57,6 +65,17 @@ func _ready():
 	form.text_submitted.connect(func(_t): on_search_pressed())
 	keep_button.pressed.connect(on_keep_pressed)
 	pop_button.pressed.connect(on_pop_pressed)
+	
+	# Guide
+	guide_button.pressed.connect(on_guide_pressed)
+	close_button.pressed.connect(on_close_pressed)
+	guide_button.visible = true
+	hint_page.visible = false
+	operation_1.visible = false
+	operation_2.visible = false
+	operation_3.visible = false
+	operation_4.visible = false
+	close_button.visible = false
 	
 	# Untuk Confirmation tab
 	confirmation_tab.confirmed.connect(on_keep_confirmed)
@@ -212,6 +231,24 @@ func load_suspect_image(sprite_path: String):
 		return
 
 	suspect_image.texture = texture
+
+func on_guide_pressed():
+	guide_button.visible = true
+	hint_page.visible = true
+	operation_1.visible = true
+	operation_2.visible = true
+	operation_3.visible = true
+	operation_4.visible = true
+	close_button.visible = true
+	
+func on_close_pressed():
+	guide_button.visible = false
+	hint_page.visible = false
+	operation_1.visible = false
+	operation_2.visible = false
+	operation_3.visible = false
+	operation_4.visible = false
+	close_button.visible = false
 
 
 func clear_data_box():
