@@ -329,7 +329,7 @@
 				},
 				{
 					"name": "Sofyan (kamu)",
-					"text": "Oh! Jadi kalau aku klik [wave][color=cyan]pop()[/color][/wave], kertas profil ini akan [color=red][b]dikeluarkan dan dibuang secara permanen[/b][/color]?.",
+					"text": "Oh! Jadi kalau aku klik [wave][color=cyan]color=cyan]pop()[/color[/color][/wave], kertas profil ini akan [color=red][color=red][b]dikeluarkan dan dibuang secara permanen[/b][/color][/color]?.",
 					"portrait": "res://assets/npc/mc.png"
 				},
 				{
@@ -380,17 +380,11 @@
 					"name": "Senior Bram",
 					"text": "Jangan panik, Sofyaan. Di sinilah fungsi operasi terakhir Stack bekerja.",
 					"portrait": "res://assets/npc/senior.png"
-				}
-			],
-			"on_push_button_appears": [
-				{
-					"name": "Senior Bram",
-					"text": "Nanti tombol baru akan muncul, tulisannya [wave][push()][/wave].",
-					"portrait": "res://assets/npc/senior.png"
 				},
+				
 				{
 					"name": "Senior Bram",
-					"text": "Di dalam teori \"struktur data\", operasi [b]push()[/b] digunakan untuk \"memasukkan\" atau \"menambahkan\" elemen baru ke dalam tumpukan, dan data baru tersebut akan selalu diletakkan di [b]posisi paling atas[/b].",
+					"text": "Di dalam teori [color=lime][b]\"struktur data\"[/b][/color], operasi [color=lime][b]push()[/b][/color] digunakan untuk [color=lime][b]\"memasukkan\"[/b][/color] atau [color=lime][b]\"menambahkan\"[/b][/color] elemen baru ke dalam tumpukan, dan data baru tersebut akan selalu diletakkan di posisi [color=lime][b]paling atas[/b][/color].",
 					"portrait": "res://assets/npc/senior.png"
 				},
 				{
