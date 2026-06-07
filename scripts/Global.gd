@@ -4,10 +4,28 @@ var selected_suspect: Dictionary = {}
 var suspect_already_selected := false
 var current_odp: Dictionary = {}
 var kept_suspects: Array = []
+var selected_kept_suspect: Dictionary = {}
 
+var revealed_fields: Array[String] = []
 
+const MAX_KEPT_SUSPECTS := 6
 
-#nandain scene dialog yg belum sama yg udah user lewatin 
+var warning_flags: Dictionary = {
+	"suspect_list_almost_full": false,
+	"suspect_list_full": false
+}
+
+# ---------------------------------------------------------------------------------------------------
+# Data Manager
+# ---------------------------------------------------------------------------------------------------
+var curr_stack_data: Array = []
+
+# ---------------------------------------------------------------------------------------------------
+# Tutorial / Dialogue State
+# ---------------------------------------------------------------------------------------------------
+
+var tutorial_seen: Dictionary = {}
+
 var tutorials_completed: Dictionary = {
 	"prolog": false,
 	"suspect_menu": false,

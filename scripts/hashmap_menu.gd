@@ -30,6 +30,14 @@ var icon_font = preload("res://assets/fonts/Thabit.ttf")
 # ==================================
 @onready var bg_card = $Background/Board/Paper/bg
 
+@onready var dialogue_box = $DialogBox
+
+@onready var formpar = $Background/Board/Paper/formpar
+@onready var confirmation_tab = $confirmationTab
+@onready var darkOverlay = $Background/darkOverlay
+
+
+
 var textures: Dictionary = {
 	"searching" : preload("res://assets/hashmap_searching.png"),
 	"found" : preload("res://assets/hashmap_found.png"),
@@ -82,6 +90,7 @@ func _ready():
 	
 	keep_button.visible = false
 	keep_button.disabled = false
+	keep_button.disabled = false
 
 	load_people_data()
 	clear_data_box()
@@ -99,7 +108,32 @@ func load_people_data():
 
 
 func on_search_pressed():
-	var raw: String= form.text.strip_edges()
+	if is_processing:
+		return
+
+	if not GlobalData.has_seen_tutorial("hashmap_search"):
+		dialogue_step = "hashmap_search"
+		pending_action = Callable(self, "_do_search")
+		dialogue_box.start_dialogue("hashmap_menu", "on_search_first_pressed")
+		return
+
+	_do_search()
+	
+	pop_button.visible = true
+	pop_button.disabled = false
+	keep_button.visible = true
+	keep_button.disabled = true
+	
+	search_button.visible = false
+	search_button.disabled = false
+	formpar.visible = false
+
+
+func _do_search():
+	is_processing = true
+
+	var raw: String = form.text.strip_edges()
+
 	print(raw)
 	
 	if raw.is_empty():
@@ -184,9 +218,32 @@ func reset_ui_to_start():
 func get_gender_text(is_male: bool) -> String:
 	return "♂" if is_male else "♀"
 
-
 func on_back_pressed():
 	get_tree().change_scene_to_file("res://scripts/suspect_menu.tscn")
+	
+func on_keep_pressed():
+	var selected_person: Dictionary = people_map[global_target_id]
+	var odp_person: Dictionary = GlobalData.selected_suspect
+
+	pop_button.disabled = true
+	keep_button.disabled = true
+	darkOverlay.visible = true
+	confirmation_tab.open(odp_person, selected_person)
+	
+func on_keep_confirmed(data: Dictionary):
+	darkOverlay.visible = false
+	if not GlobalData.kept_suspects.has(data):
+		GlobalData.kept_suspects.append(data)
+
+	on_pop_pressed()
+	
+func on_keep_cancelled():
+	darkOverlay.visible = false
+	pop_button.disabled = false
+	keep_button.disabled = false
+
+func on_pop_pressed():
+	reset_ui_to_start()
 	
 func on_keep_pressed():
 	var selected_person: Dictionary = people_map[global_target_id]

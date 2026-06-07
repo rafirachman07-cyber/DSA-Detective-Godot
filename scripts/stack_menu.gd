@@ -38,6 +38,13 @@ var card_scene = preload("res://scripts/paper.tscn")
 var card_size := Vector2.ZERO
 
 var is_processing := false
+var people_data = []
+var current_loop_data = []
+var current_loop_count = ONE_LOOP_COUNT
+
+var pending_action: Callable = Callable()
+var dialogue_step := "none"
+
 var people_data: Array = []
 
 # Loop Handler
@@ -81,9 +88,11 @@ func _ready():
 	peek_button.visible = true
 
 	load_people_data()
-
+	
 	if GlobalData.curr_stack_data.is_empty():
 		GlobalData.curr_stack_data = pick_and_pop()
+	
+	current_loop_data = GlobalData.curr_stack_data
 
 	current_loop_data = GlobalData.curr_stack_data  # pull after potential pic
 
