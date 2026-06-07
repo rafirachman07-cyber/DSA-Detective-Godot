@@ -1,22 +1,17 @@
-[gd_scene format=3 uid="uid://bvner3lrvk63r"]
+[gd_scene format=4 uid="uid://cmv1ftvg1wpat"]
 
-[ext_resource type="Script" uid="uid://c3gkchp4e8kv7" path="res://scripts/confirmation_tab.gd" id="1_r434e"]
-[ext_resource type="PackedScene" uid="uid://b4dyc6uwnghl1" path="res://scripts/odp_card.tscn" id="2_b7ocf"]
-[ext_resource type="FontFile" uid="uid://6jscacqhigsv" path="res://assets/fonts/JetBrainsMono-Bold.ttf" id="7_ndnpt"]
-[ext_resource type="PackedScene" uid="uid://cmv1ftvg1wpat" path="res://scripts/data_box.tscn" id="7_r434e"]
-[ext_resource type="Texture2D" uid="uid://d26ld5mja35o6" path="res://assets/Buttons/BatalkanButton.png" id="8_fnx0n"]
-[ext_resource type="Texture2D" uid="uid://c320i8bplns0w" path="res://assets/Buttons/BatalkanButtonActive (2).png" id="9_ll32x"]
-[ext_resource type="Texture2D" uid="uid://dv8l6rs50sncg" path="res://assets/Buttons/SetujuButton.png" id="10_o0sto"]
-[ext_resource type="Texture2D" uid="uid://nb41tsk8q0cb" path="res://assets/Buttons/SetujuButtonActive (1).png" id="11_5jrgr"]
+[ext_resource type="Texture2D" uid="uid://dkkp8s2tgu7lw" path="res://assets/Buttons/DataBox.png" id="1_ukdwd"]
+[ext_resource type="FontFile" uid="uid://c11u3x0tgqibv" path="res://assets/fonts/JetBrainsMono-Regular.ttf" id="2_1yuku"]
+[ext_resource type="FontFile" uid="uid://cpk028llsjiuw" path="res://assets/fonts/Thabit-Bold.ttf" id="3_wbk7g"]
+[ext_resource type="Texture2D" uid="uid://br6n2sldhri7j" path="res://assets/characters/output3/5.png" id="4_br7i8"]
 
-<<<<<<< Updated upstream
 [sub_resource type="LabelSettings" id="LabelSettings_kehvy"]
-font = ExtResource("4_d1cmo")
+font = ExtResource("2_1yuku")
 font_size = 20
 font_color = Color(0.3372549, 0.28235295, 0.28235295, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_yhvhv"]
-font = ExtResource("2_r434e")
+[sub_resource type="LabelSettings" id="LabelSettings_5t8ur"]
+font = ExtResource("3_wbk7g")
 font_size = 50
 font_color = Color(0.3372549, 0.28235295, 0.28235295, 1)
 
@@ -175,153 +170,36 @@ font = SubResource("FontFile_r434e")
 font_size = 35
 font_color = Color(0.3372549, 0.28235295, 0.28235295, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_r434e"]
-font = ExtResource("4_d1cmo")
-font_size = 20
-font_color = Color(0.3372549, 0.28235295, 0.28235295, 1)
-
 [sub_resource type="LabelSettings" id="LabelSettings_3hagv"]
-font = ExtResource("4_d1cmo")
+font = ExtResource("2_1yuku")
 font_size = 20
 font_color = Color(0.3372549, 0.28235295, 0.28235295, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_8qfy6"]
-font = ExtResource("4_d1cmo")
+font = ExtResource("2_1yuku")
 font_size = 20
-font_color = Color(0.3372549, 0.28235295, 0.28235295, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_aa8dx"]
-font = ExtResource("2_r434e")
-font_size = 20
-font_color = Color(0.3372549, 0.28235295, 0.28235295, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_5t8ur"]
-font = ExtResource("2_r434e")
-font_size = 50
 font_color = Color(0.3372549, 0.28235295, 0.28235295, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_a3s7x"]
-font = ExtResource("4_d1cmo")
+font = ExtResource("2_1yuku")
 font_size = 20
 font_color = Color(0.3372549, 0.28235295, 0.28235295, 1)
 
-=======
->>>>>>> Stashed changes
-[sub_resource type="LabelSettings" id="LabelSettings_aodv1"]
-font = ExtResource("7_ndnpt")
-font_size = 48
+[sub_resource type="LabelSettings" id="LabelSettings_r434e"]
+font = ExtResource("2_1yuku")
+font_size = 20
+font_color = Color(0.3372549, 0.28235295, 0.28235295, 1)
 
-[node name="confirmationTab" type="Control" unique_id=1579016805]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_r434e")
-
-[node name="KeepConfirmPanel" type="ColorRect" parent="." unique_id=1255304116]
-z_index = 60
-layout_mode = 0
-offset_left = 266.0
-offset_top = 154.0
-offset_right = 1854.0
-offset_bottom = 1062.0
-color = Color(1, 1, 1, 0)
-
-[node name="ODPCard" parent="KeepConfirmPanel" unique_id=198234021 instance=ExtResource("2_b7ocf")]
-layout_mode = 1
-
-<<<<<<< Updated upstream
-[node name="id_odp" type="Label" parent="KeepConfirmPanel/ODPCard" unique_id=303580356]
-layout_mode = 0
-offset_left = 542.0
-offset_top = 140.0
-offset_right = 572.0
-offset_bottom = 174.0
-text = "12"
-label_settings = SubResource("LabelSettings_kehvy")
-
-[node name="gender_odp" type="Label" parent="KeepConfirmPanel/ODPCard" unique_id=245094016]
-layout_mode = 0
-offset_left = 386.0
-offset_top = 71.0
-offset_right = 452.0
-offset_bottom = 124.0
-label_settings = SubResource("LabelSettings_yhvhv")
-
-[node name="nama_odp" type="Label" parent="KeepConfirmPanel/ODPCard" unique_id=1497050227]
-layout_mode = 0
-offset_left = 452.0
-offset_top = 71.0
-offset_right = 774.0
-offset_bottom = 124.0
-text = "Udin Jajang"
-label_settings = SubResource("LabelSettings_nyuls")
-
-[node name="umur_odp" type="Label" parent="KeepConfirmPanel/ODPCard" unique_id=1324870511]
-layout_mode = 0
-offset_left = 541.0
-offset_top = 175.0
-offset_right = 754.0
-offset_bottom = 206.0
-label_settings = SubResource("LabelSettings_r434e")
-
-[node name="berat_odp" type="Label" parent="KeepConfirmPanel/ODPCard" unique_id=1682680050]
-layout_mode = 0
-offset_left = 542.0
-offset_top = 222.0
-offset_right = 755.0
-offset_bottom = 253.0
-text = "175"
-label_settings = SubResource("LabelSettings_3hagv")
-
-[node name="tinggi_odp" type="Label" parent="KeepConfirmPanel/ODPCard" unique_id=265029697]
-layout_mode = 0
-offset_left = 542.0
-offset_top = 267.0
-offset_right = 755.0
-offset_bottom = 298.0
-text = "160"
-label_settings = SubResource("LabelSettings_8qfy6")
-
-[node name="goldar_odp" type="Label" parent="KeepConfirmPanel/ODPCard" unique_id=303368029]
-layout_mode = 0
-offset_left = 542.0
-offset_top = 308.0
-offset_right = 755.0
-offset_bottom = 339.0
-label_settings = SubResource("LabelSettings_aa8dx")
-
-[node name="photo_odp" type="TextureRect" parent="KeepConfirmPanel/ODPCard" unique_id=1957064066]
-layout_mode = 0
-offset_left = 44.0
-offset_top = 61.0
-offset_right = 316.0
-offset_bottom = 484.0
-texture = ExtResource("5_ocnky")
-expand_mode = 1
-stretch_mode = 4
-
-[node name="Stempel" type="TextureRect" parent="KeepConfirmPanel/ODPCard" unique_id=1778203308]
-layout_mode = 0
-offset_left = 621.0
-offset_top = 252.0
-offset_right = 818.0
-offset_bottom = 452.0
-texture = ExtResource("6_3c3q8")
-
-[node name="DataBox" type="TextureRect" parent="KeepConfirmPanel" unique_id=356460196]
-layout_mode = 0
+[node name="DataBox" type="TextureRect" unique_id=73167570]
 offset_left = 729.0
 offset_top = 424.0
 offset_right = 1588.0
 offset_bottom = 926.0
-texture = ExtResource("1_8aypn")
+texture = ExtResource("1_ukdwd")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="id_suspect_confirm" type="Label" parent="KeepConfirmPanel/DataBox" unique_id=788056054]
+[node name="id_suspect_confirm" type="Label" parent="." unique_id=1336666023]
 layout_mode = 0
 offset_left = 542.0
 offset_top = 140.0
@@ -330,7 +208,7 @@ offset_bottom = 174.0
 text = "12"
 label_settings = SubResource("LabelSettings_kehvy")
 
-[node name="gender_suspect_confirm" type="Label" parent="KeepConfirmPanel/DataBox" unique_id=1657805377]
+[node name="gender_suspect_confirm" type="Label" parent="." unique_id=1036980977]
 layout_mode = 0
 offset_left = 390.0
 offset_top = 71.0
@@ -338,16 +216,16 @@ offset_right = 444.0
 offset_bottom = 122.0
 label_settings = SubResource("LabelSettings_5t8ur")
 
-[node name="nama_suspect_Label_confirm" type="Label" parent="KeepConfirmPanel/DataBox" unique_id=88880745]
+[node name="nama_suspect_Label_confirm" type="Label" parent="." unique_id=2019836929]
 layout_mode = 0
-offset_left = 444.0
+offset_left = 484.0
 offset_top = 71.0
-offset_right = 766.0
+offset_right = 806.0
 offset_bottom = 124.0
 text = "Udin Jajang"
 label_settings = SubResource("LabelSettings_nyuls")
 
-[node name="berat_suspect_confirm" type="Label" parent="KeepConfirmPanel/DataBox" unique_id=1469962552]
+[node name="berat_suspect_confirm" type="Label" parent="." unique_id=1809511662]
 layout_mode = 0
 offset_left = 543.0
 offset_top = 225.0
@@ -356,7 +234,7 @@ offset_bottom = 256.0
 text = "175"
 label_settings = SubResource("LabelSettings_3hagv")
 
-[node name="tinggi_suspect_confirm" type="Label" parent="KeepConfirmPanel/DataBox" unique_id=1100472168]
+[node name="tinggi_suspect_confirm" type="Label" parent="." unique_id=1440394216]
 layout_mode = 0
 offset_left = 542.0
 offset_top = 267.0
@@ -365,7 +243,7 @@ offset_bottom = 298.0
 text = "AB+"
 label_settings = SubResource("LabelSettings_8qfy6")
 
-[node name="goldar_suspect_confirm" type="Label" parent="KeepConfirmPanel/DataBox" unique_id=1788163332]
+[node name="goldar_suspect_confirm" type="Label" parent="." unique_id=195532465]
 layout_mode = 0
 offset_left = 540.0
 offset_top = 306.0
@@ -373,7 +251,7 @@ offset_right = 753.0
 offset_bottom = 340.0
 label_settings = SubResource("LabelSettings_a3s7x")
 
-[node name="umur_suspect_confirm" type="Label" parent="KeepConfirmPanel/DataBox" unique_id=1730749625]
+[node name="umur_suspect_confirm" type="Label" parent="." unique_id=615524219]
 layout_mode = 0
 offset_left = 542.0
 offset_top = 176.0
@@ -381,63 +259,12 @@ offset_right = 755.0
 offset_bottom = 207.0
 label_settings = SubResource("LabelSettings_r434e")
 
-[node name="image_suspect_confirm" type="TextureRect" parent="KeepConfirmPanel/DataBox" unique_id=499011010]
+[node name="image_suspect_confirm" type="TextureRect" parent="." unique_id=614288190]
 layout_mode = 0
 offset_left = 36.0
 offset_top = 50.0
 offset_right = 315.0
 offset_bottom = 430.0
-texture = ExtResource("5_ocnky")
+texture = ExtResource("4_br7i8")
 expand_mode = 1
 stretch_mode = 4
-=======
-[node name="DataBox" parent="KeepConfirmPanel" unique_id=73167570 instance=ExtResource("7_r434e")]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.45900002
-anchor_top = 0.467
-anchor_right = 0.45900002
-anchor_bottom = 0.467
-offset_left = 0.10797119
-offset_top = -0.036010742
-offset_right = 859.108
-offset_bottom = 501.964
->>>>>>> Stashed changes
-
-[node name="LabelConfirmation" type="Label" parent="KeepConfirmPanel" unique_id=1337806404]
-z_index = 90
-layout_mode = 0
-offset_left = 263.0
-offset_top = -90.0
-offset_right = 1235.0
-offset_bottom = 73.0
-text = "Yakin Ingin Keep 
-\"Person X\"  ke suspect list"
-label_settings = SubResource("LabelSettings_aodv1")
-horizontal_alignment = 1
-
-[node name="BatalkanButton" type="TextureButton" parent="KeepConfirmPanel" unique_id=565332458]
-layout_mode = 0
-offset_left = 772.0
-offset_top = 125.0
-offset_right = 1231.0
-offset_bottom = 336.0
-texture_normal = ExtResource("8_fnx0n")
-texture_pressed = ExtResource("9_ll32x")
-texture_hover = ExtResource("9_ll32x")
-ignore_texture_size = true
-stretch_mode = 4
-
-[node name="SetujuButton" type="TextureButton" parent="KeepConfirmPanel" unique_id=1915352231]
-layout_mode = 0
-offset_left = 120.0
-offset_top = 126.0
-offset_right = 606.0
-offset_bottom = 337.0
-texture_normal = ExtResource("10_o0sto")
-texture_pressed = ExtResource("11_5jrgr")
-texture_hover = ExtResource("11_5jrgr")
-ignore_texture_size = true
-stretch_mode = 4
-
-[node name="SFXPlayer" type="AudioStreamPlayer2D" parent="." unique_id=159429472]

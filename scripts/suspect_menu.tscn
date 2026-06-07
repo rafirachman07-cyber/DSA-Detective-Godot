@@ -19,9 +19,14 @@
 [ext_resource type="Texture2D" uid="uid://cnirmfurfs6gf" path="res://assets/Buttons stack (2).png" id="13_qxujp"]
 [ext_resource type="Texture2D" uid="uid://dhlg085tqlcwl" path="res://assets/Buttons hashmap (1).png" id="16_6dn2a"]
 [ext_resource type="Texture2D" uid="uid://di4nbsgy2njg7" path="res://assets/Buttons hashmap.png" id="17_r1aac"]
+[ext_resource type="Texture2D" uid="uid://bu2yk1k2rovdf" path="res://assets/sensor/1_board.png" id="18_jspmt"]
+[ext_resource type="Texture2D" uid="uid://d3mx3kt12mis" path="res://assets/sensor/2_board.png" id="19_r1aac"]
+[ext_resource type="Texture2D" uid="uid://kyjs32eimy3n" path="res://assets/sensor/3_board.png" id="20_7vwor"]
 [ext_resource type="PackedScene" uid="uid://bhu1w5qfnbqax" path="res://Dialog System/DialogBox.tscn" id="20_fn13d"]
+[ext_resource type="Texture2D" uid="uid://g06eu8artd14" path="res://assets/sensor/4_board.png" id="21_7vwor"]
 [ext_resource type="Texture2D" uid="uid://c462jwk74xe0a" path="res://assets/Buttons/Guide.png" id="21_jspmt"]
 [ext_resource type="Texture2D" uid="uid://d3nbaglpoenbl" path="res://assets/Buttons/GuideActive.png" id="22_6dn2a"]
+[ext_resource type="Texture2D" uid="uid://cdh6ypglr3b5a" path="res://assets/sensor/5_board.png" id="22_c2aeu"]
 [ext_resource type="FontFile" uid="uid://c11u3x0tgqibv" path="res://assets/fonts/JetBrainsMono-Regular.ttf" id="24_7vwor"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_68wai"]
@@ -225,6 +230,7 @@ offset_bottom = 699.5
 texture = ExtResource("6_4gr25")
 
 [node name="HoverPreviewPanel" type="TextureRect" parent="Background/Board/SuspectList" unique_id=385104230]
+visible = false
 layout_mode = 0
 offset_left = -269.0
 offset_top = 154.0
@@ -376,6 +382,51 @@ texture_pressed = ExtResource("16_6dn2a")
 texture_hover = ExtResource("16_6dn2a")
 ignore_texture_size = true
 stretch_mode = 4
+
+[node name="Sensor_1" type="TextureRect" parent="Background/Board" unique_id=157903862]
+visible = false
+layout_mode = 0
+offset_left = 612.0
+offset_top = 425.5
+offset_right = 1030.0
+offset_bottom = 641.5
+texture = ExtResource("18_jspmt")
+
+[node name="Sensor_2" type="TextureRect" parent="Background/Board" unique_id=406702687]
+visible = false
+layout_mode = 0
+offset_left = 638.0
+offset_top = 239.5
+offset_right = 1056.0
+offset_bottom = 719.5
+texture = ExtResource("19_r1aac")
+
+[node name="Sensor_3" type="TextureRect" parent="Background/Board" unique_id=680339958]
+visible = false
+layout_mode = 0
+offset_left = 413.0
+offset_top = 227.5
+offset_right = 1074.0
+offset_bottom = 707.5
+texture = ExtResource("20_7vwor")
+
+[node name="Sensor_4" type="TextureRect" parent="Background/Board" unique_id=1302646252]
+visible = false
+layout_mode = 0
+offset_left = 200.0
+offset_top = 207.5
+offset_right = 1033.0
+offset_bottom = 687.5
+texture = ExtResource("21_7vwor")
+
+[node name="Sensor_5" type="TextureRect" parent="Background/Board" unique_id=1992342117]
+visible = false
+layout_mode = 0
+offset_left = 211.0
+offset_top = 251.5
+offset_right = 1044.0
+offset_bottom = 731.5
+texture = ExtResource("22_c2aeu")
 
 [node name="GuideButton" type="TextureButton" parent="Background" unique_id=1261835973]
 layout_mode = 0
