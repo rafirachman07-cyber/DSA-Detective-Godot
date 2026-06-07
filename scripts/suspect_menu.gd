@@ -40,6 +40,19 @@ var kept_item_scene = preload("res://scripts/kept_suspect_item.tscn")
 @onready var preview_weight = $Background/Board/SuspectList/HoverPreviewPanel/berat_suspect_preview
 @onready var preview_blood = $Background/Board/SuspectList/HoverPreviewPanel/goldar_suspect_preview
 
+# Game Ending Tab
+@onready var gameTab = $GameConfirmationTab
+@onready var darkOverlay = $darkOverlay
+@onready var selected_image = $GameConfirmationTab/KeepConfirmPanel/DataBox/image_suspect_confirm
+@onready var selected_name = $GameConfirmationTab/KeepConfirmPanel/DataBox/nama_suspect_Label_confirm
+@onready var selected_name_label = $GameConfirmationTab/KeepConfirmPanel/DataBoxnama_suspect_Label_confirm
+@onready var selected_id = $GameConfirmationTab/KeepConfirmPanel/DataBox/id_suspect_confirm
+@onready var selected_age = $GameConfirmationTab/KeepConfirmPanel/DataBox/umur_suspect_confirm
+@onready var selected_gender = $GameConfirmationTab/KeepConfirmPanel/DataBox/gender_suspect_confirm
+@onready var selected_height = $GameConfirmationTab/KeepConfirmPanel/DataBox/tinggi_suspect_confirm
+@onready var selected_weight = $GameConfirmationTab/KeepConfirmPanel/DataBox/berat_suspect_confirm
+@onready var selected_blood = $GameConfirmationTab/KeepConfirmPanel/DataBox/goldar_suspect_confirm
+
 # Dialog
 @onready var dialogue_box = $DialogBox
 var dialogue_step: String = "none"
@@ -71,6 +84,10 @@ func _ready():
 	operation_1.visible = false
 	operation_2.visible = false
 	close_button.visible = false
+	
+	# GameTab
+	gameTab.cancelled.connect(on_gameTab_cancelled)
+	gameTab.confirmed.connect(on_gameTab_confirmed)
 	
 	# Sensor
 	sensor_num = GlobalData.sensor_choice
@@ -253,11 +270,13 @@ func refresh_suspect_list():
 		item.mouse_exited.connect(func():
 			hide_hover_preview()
 		)
-
+		
 		item.gui_input.connect(func(event):
 			if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 				GlobalData.selected_kept_suspect = suspect
-				show_hover_preview(suspect)
+				on_suspect_selected()
+				gameTab.visible = true
+				darkOverlay.visible = true
 		)
 
 
@@ -280,6 +299,30 @@ func show_hover_preview(suspect: Dictionary):
 func hide_hover_preview():
 	hover_preview.visible = false
 
+# =====================================================================
+# Game Ending Menu
+# =====================================================================
+
+func on_suspect_selected():
+	var selected_suspect = GlobalData.selected_kept_suspect 
+	
+	selected_name.text = str(selected_suspect.get("first_name", selected_suspect.get("name", "-")))
+	selected_id.text = str(selected_suspect.get("id", "-"))
+	selected_age.text = str(selected_suspect.get("age", "-"))
+	selected_gender.text = get_gender_icon(bool(selected_suspect.get("is_male", true)))
+	selected_height.text = "%s cm" % str(selected_suspect.get("height_cm", "-"))
+	selected_weight.text = "%s kg" % str(selected_suspect.get("weight_kg", "-"))
+	selected_blood.text = str(selected_suspect.get("blood_type", "-"))
+
+	selected_image.texture = load_suspect_texture(str(selected_suspect.get("sprite", "")))
+	
+func on_gameTab_cancelled():
+	darkOverlay.visible = false
+	GlobalData.selected_kept_suspect = {}
+	
+func on_gameTab_confirmed():
+	darkOverlay.visible = false
+	get_tree().change_scene_to_file("res://scripts/game_over.tscn")
 
 # =====================================================================
 # Main Suspect / ODP Card

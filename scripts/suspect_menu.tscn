@@ -10,13 +10,11 @@
 [ext_resource type="FontFile" uid="uid://bofyuirrk5ino" path="res://assets/fonts/Thabit.ttf" id="6_ns53n"]
 [ext_resource type="FontFile" uid="uid://cpk028llsjiuw" path="res://assets/fonts/Thabit-Bold.ttf" id="7_lquo6"]
 [ext_resource type="Texture2D" uid="uid://tmlhu84xe4yb" path="res://assets/Buttons queue (2).png" id="10_04cts"]
-[ext_resource type="Texture2D" uid="uid://cfixkgixiilt5" path="res://assets/Buttons/BackButton.png" id="10_ek1me"]
 [ext_resource type="Texture2D" uid="uid://chms03yq36otu" path="res://assets/Buttons queue fax active.png" id="11_4dj1p"]
 [ext_resource type="Texture2D" uid="uid://br6n2sldhri7j" path="res://assets/characters/output3/5.png" id="11_dke3u"]
 [ext_resource type="AudioStream" uid="uid://d1mddv2t3lx6k" path="res://assets/audio/bgm2.mp3" id="11_lquo6"]
 [ext_resource type="Texture2D" uid="uid://ckuwnck5tq0h3" path="res://assets/Buttons stack active.png" id="12_i6ehh"]
 [ext_resource type="Texture2D" uid="uid://dt5ock103ipui" path="res://assets/Brokers Card.png" id="12_r5gxk"]
-[ext_resource type="Texture2D" uid="uid://cnirmfurfs6gf" path="res://assets/Buttons stack (2).png" id="13_qxujp"]
 [ext_resource type="Texture2D" uid="uid://dhlg085tqlcwl" path="res://assets/Buttons hashmap (1).png" id="16_6dn2a"]
 [ext_resource type="Texture2D" uid="uid://di4nbsgy2njg7" path="res://assets/Buttons hashmap.png" id="17_r1aac"]
 [ext_resource type="Texture2D" uid="uid://bu2yk1k2rovdf" path="res://assets/sensor/1_board.png" id="18_jspmt"]
@@ -28,6 +26,9 @@
 [ext_resource type="Texture2D" uid="uid://d3nbaglpoenbl" path="res://assets/Buttons/GuideActive.png" id="22_6dn2a"]
 [ext_resource type="Texture2D" uid="uid://cdh6ypglr3b5a" path="res://assets/sensor/5_board.png" id="22_c2aeu"]
 [ext_resource type="FontFile" uid="uid://c11u3x0tgqibv" path="res://assets/fonts/JetBrainsMono-Regular.ttf" id="24_7vwor"]
+[ext_resource type="Texture2D" uid="uid://bf48yqiltdw62" path="res://assets/Buttons/BackButton (1).png" id="26_o7i1w"]
+[ext_resource type="PackedScene" uid="uid://rl48r5w78bbq" path="res://scripts/gameConfirmationTab.tscn" id="27_jervk"]
+[ext_resource type="Texture2D" uid="uid://de2xejlqd64j" path="res://assets/balik_dark.png" id="27_jxklt"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_68wai"]
 line_spacing = 1.0
@@ -367,7 +368,7 @@ offset_right = 497.0
 offset_bottom = 187.5
 texture_normal = SubResource("CompressedTexture2D_4dj1p")
 texture_pressed = ExtResource("12_i6ehh")
-texture_hover = ExtResource("13_qxujp")
+texture_hover = ExtResource("12_i6ehh")
 ignore_texture_size = true
 stretch_mode = 4
 
@@ -492,9 +493,24 @@ offset_left = 1787.0
 offset_top = 20.0
 offset_right = 1881.0
 offset_bottom = 109.0
-texture_normal = ExtResource("10_ek1me")
+texture_normal = ExtResource("26_o7i1w")
+texture_pressed = ExtResource("27_jxklt")
+texture_hover = ExtResource("27_jxklt")
 ignore_texture_size = true
 stretch_mode = 4
+
+[node name="darkOverlay" type="ColorRect" parent="." unique_id=726420475]
+visible = false
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.003921569, 0.003921569, 0.003921569, 0.5882353)
+
+[node name="GameConfirmationTab" parent="." unique_id=1579016805 instance=ExtResource("27_jervk")]
+visible = false
+offset_left = -3.0
+offset_top = -38.0
+offset_right = -3.0
+offset_bottom = -38.0
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="." unique_id=71279308]
 stream = ExtResource("11_lquo6")

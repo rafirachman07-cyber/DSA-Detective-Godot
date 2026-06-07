@@ -3,8 +3,14 @@
 [ext_resource type="Script" uid="uid://ctqrqx1cjkf2m" path="res://odp_preview_panel.gd" id="1_8jv4b"]
 [ext_resource type="Texture2D" uid="uid://dkkp8s2tgu7lw" path="res://assets/Buttons/DataBox.png" id="1_idhxa"]
 [ext_resource type="FontFile" uid="uid://cpk028llsjiuw" path="res://assets/fonts/Thabit-Bold.ttf" id="2_8jv4b"]
+[ext_resource type="Texture2D" uid="uid://cpck01e4picgo" path="res://assets/SHADOWBALL.png" id="2_oqcek"]
 [ext_resource type="FontFile" uid="uid://bofyuirrk5ino" path="res://assets/fonts/Thabit.ttf" id="3_tw81a"]
 [ext_resource type="Texture2D" uid="uid://br6n2sldhri7j" path="res://assets/characters/output3/5.png" id="4_uahrj"]
+[ext_resource type="Texture2D" uid="uid://71vq8kpa3few" path="res://assets/sensor/5_card.png" id="6_25h1b"]
+[ext_resource type="Texture2D" uid="uid://b5e4eb2lwojto" path="res://assets/sensor/4_card.png" id="7_oqcek"]
+[ext_resource type="Texture2D" uid="uid://bdsi1270v3gi8" path="res://assets/sensor/3_card.png" id="8_ynpnw"]
+[ext_resource type="Texture2D" uid="uid://42ewvupehp40" path="res://assets/sensor/2_card.png" id="9_gkgfm"]
+[ext_resource type="Texture2D" uid="uid://cflatp3vunpc0" path="res://assets/sensor/1_card.png" id="10_qj1n6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_rmjw1"]
 font = ExtResource("2_8jv4b")
@@ -53,6 +59,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8jv4b")
+
+[node name="Shadowball" type="Sprite2D" parent="." unique_id=1180218995]
+position = Vector2(156.00002, 68)
+scale = Vector2(0.2842163, 0.2384106)
+texture = ExtResource("2_oqcek")
 
 [node name="HoverPreviewPanel" type="TextureRect" parent="." unique_id=1607961750]
 layout_mode = 0
@@ -142,3 +153,53 @@ offset_bottom = 158.0
 texture = ExtResource("4_uahrj")
 expand_mode = 1
 stretch_mode = 4
+
+[node name="Sensor_5" type="TextureRect" parent="." unique_id=1018686910]
+visible = false
+layout_mode = 0
+offset_left = 12.0
+offset_top = 2.0
+offset_right = 247.0
+offset_bottom = 170.324
+texture = ExtResource("6_25h1b")
+expand_mode = 1
+
+[node name="Sensor_4" type="TextureRect" parent="." unique_id=77076945]
+visible = false
+layout_mode = 0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 309.8545
+offset_bottom = 163.324
+texture = ExtResource("7_oqcek")
+expand_mode = 1
+
+[node name="Sensor_3" type="TextureRect" parent="." unique_id=1811004961]
+visible = false
+layout_mode = 0
+offset_left = 70.0
+offset_top = 8.0
+offset_right = 305.35162
+offset_bottom = 173.0
+texture = ExtResource("8_ynpnw")
+expand_mode = 1
+
+[node name="Sensor_2" type="TextureRect" parent="." unique_id=432203949]
+visible = false
+layout_mode = 0
+offset_left = 155.0
+offset_top = -1.0
+offset_right = 308.0
+offset_bottom = 168.9599
+texture = ExtResource("9_gkgfm")
+expand_mode = 1
+
+[node name="Sensor_1" type="TextureRect" parent="." unique_id=297113644]
+visible = false
+layout_mode = 0
+offset_left = 144.0
+offset_top = 61.0
+offset_right = 297.0
+offset_bottom = 145.0
+texture = ExtResource("10_qj1n6")
+expand_mode = 1

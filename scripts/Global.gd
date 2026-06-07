@@ -28,6 +28,8 @@ var curr_stack_data: Array = []
 
 # Untuk sensor
 var sensor_choice := randi_range(1, 5)
+var is_censored := true
+
 
 # ---------------------------------------------------------------------------------------------------
 # Tutorial / Dialogue State
