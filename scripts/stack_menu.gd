@@ -21,18 +21,14 @@ var icon_font = preload("res://assets/fonts/Thabit.ttf")
 @onready var weight_label = $Background/Board/Paper/DataBox/berat_suspect
 @onready var blood_label = $Background/Board/Paper/DataBox/goldar_suspect
 
-#Confirm Box
 @onready var confirmation_tab = $ConfirmationTab
-@onready var batalkanButton = $KeepConfirmPanel/BatalkanButton
-@onready var setujuButton = $KeepConfirmPanel/SetujuButton
 @onready var darkOverlay = $Background/darkOverlay
-
-# point this to your Control node
 @onready var card_stack_control = $Background/Board/Paper/Bg/CardStack
+@onready var dialogue_box = $DialogBox
 
-const CARD_SIZE = Vector2(100, 150)  # replace with your actual PNG size
 const STACK_OFFSET = Vector2(-30, 0)
 const MAX_BEHIND = 6
+const ONE_LOOP_COUNT = 8
 
 var card_scene = preload("res://scripts/paper.tscn")
 var card_size := Vector2.ZERO
@@ -46,7 +42,6 @@ var current_loop_data = []
 var current_loop_count = ONE_LOOP_COUNT
 var is_loop_empty = false
 
-@onready var dialogue_box = $DialogBox
 
 func _ready():
 	#DIALOG
@@ -62,23 +57,25 @@ func _ready():
 	
 	randomize()
 
+	if not dialogue_box.dialogue_finished.is_connected(_on_tutorial_selesai):
+		dialogue_box.dialogue_finished.connect(_on_tutorial_selesai)
+
 	gender_label.add_theme_font_override("font", icon_font)
+
 	peek_button.pressed.connect(on_peek_pressed)
 	pop_button.pressed.connect(on_pop_pressed)
 	keep_button.pressed.connect(on_keep_pressed)
 	back_button.pressed.connect(on_back_pressed)
 	push_button.pressed.connect(on_push_pressed)
-	
-	# Untuk Confirmation tab
+
 	confirmation_tab.confirmed.connect(on_keep_confirmed)
 	confirmation_tab.cancelled.connect(on_keep_cancelled)
 
-	mask.visible = true
-	kosong.visible = false
-	push_button.visible = false
-	pop_button.visible = false
-	keep_button.visible = false
-	peek_button.visible = true
+	darkOverlay.color = Color(0, 0, 0, 0.55)
+	darkOverlay.visible = false
+	darkOverlay.z_index = 900
+
+	reset_ui_to_start()
 
 	load_people_data()
 
@@ -87,34 +84,69 @@ func _ready():
 
 	current_loop_data = GlobalData.curr_stack_data  # pull after potential pic
 
-	# measure actual card size after one frame
 	var temp = card_scene.instantiate()
 	card_stack_control.add_child(temp)
 	await get_tree().process_frame
 	card_size = temp.size
 	temp.queue_free()
 
-	darkOverlay.color = Color(0, 0, 0, 0.55)
-	darkOverlay.visible = false
-	darkOverlay.z_index = 900
-
 	rebuild_stack()
 	clear_data_box()
 
+	if not GlobalData.is_tutorial_completed("stack_menu"):
+		dialogue_step = "stack_menu_intro"
+		dialogue_box.start_dialogue("stack_menu", "on_first_enter")
+	else:
+		dialogue_box.hide()
+
+
 func _on_tutorial_selesai():
-	print("Player selesai membaca tutorial, game bisa dilanjutkan!")
+	if dialogue_step == "stack_menu_intro":
+		GlobalData.mark_tutorial_completed("stack_menu")
+		dialogue_step = "none"
+
+	elif dialogue_step == "stack_peek":
+		GlobalData.mark_tutorial_seen("stack_peek")
+		dialogue_step = "none"
+		_run_pending_action()
+
+	elif dialogue_step == "stack_pop":
+		GlobalData.mark_tutorial_seen("stack_pop")
+		dialogue_step = "none"
+		_run_pending_action()
+
+	elif dialogue_step == "stack_keep":
+		GlobalData.mark_tutorial_seen("stack_keep")
+		dialogue_step = "none"
+		_run_pending_action()
+
+	elif dialogue_step == "stack_push":
+		GlobalData.mark_tutorial_seen("stack_push")
+		dialogue_step = "none"
+		_run_pending_action()
+
+	elif dialogue_step == "stack_empty":
+		GlobalData.mark_tutorial_seen("stack_empty")
+		dialogue_step = "none"
+
+
+func _run_pending_action():
+	if pending_action.is_valid():
+		pending_action.call()
+	pending_action = Callable()
+
 
 func load_people_data():
-	var type = GlobalData.Broker.STACK
-	people_data = GlobalData.get_list(type)
-
-	print("Loaded data: ", people_data.size())
+	people_data = GlobalData.get_list(GlobalData.Broker.STACK)
+	print("Loaded stack data: ", people_data.size())
 
 
 func pick_and_pop() -> Array:
 	var picked := people_data.slice(0, ONE_LOOP_COUNT)
 	people_data = people_data.slice(ONE_LOOP_COUNT)
-	GlobalData.lists[GlobalData.Broker.STACK] = people_data  # ← sync back
+
+	GlobalData.lists[GlobalData.Broker.STACK] = people_data
+
 	return picked
 
 
@@ -137,7 +169,6 @@ func rebuild_stack():
 
 	var throw_start_x = card_stack_control.size.x + 500.0
 
-	# i=0 is back card, i=visible_count-1 is front card
 	for i in range(visible_count):
 		var card = card_scene.instantiate()
 		card_stack_control.add_child(card)
@@ -153,7 +184,7 @@ func rebuild_stack():
 		else:
 			card.setup(null)
 
-		var delay = i * 0.08 
+		var delay = i * 0.08
 
 		var tween = create_tween()
 		tween.tween_interval(delay)
@@ -166,6 +197,16 @@ func on_peek_pressed():
 	if is_processing or current_loop_data.is_empty():
 		return
 
+	if not GlobalData.has_seen_tutorial("stack_peek"):
+		dialogue_step = "stack_peek"
+		pending_action = Callable(self, "_do_peek")
+		dialogue_box.start_dialogue("stack_menu", "on_peek_first_pressed")
+		return
+
+	_do_peek()
+
+
+func _do_peek():
 	peek_button.visible = false
 	mask.visible = false
 	pop_button.visible = true
@@ -175,27 +216,45 @@ func on_peek_pressed():
 
 
 func on_pop_pressed():
-	
+	if is_processing or current_loop_data.is_empty() or current_loop_count <= 0:
+		return
+
+	if not GlobalData.has_seen_tutorial("stack_pop"):
+		dialogue_step = "stack_pop"
+		pending_action = Callable(self, "_do_pop")
+		dialogue_box.start_dialogue("stack_menu", "on_pop_first_pressed")
+		return
+
+	_do_pop()
+
+
+func _do_pop():
 	if is_processing or current_loop_data.is_empty() or current_loop_count <= 0:
 		return
 
 	is_processing = true
 
 	var all_children = card_stack_control.get_children()
+
+	if all_children.is_empty():
+		is_processing = false
+		show_empty_state()
+		return
+
 	var top_card = all_children.back()
 	var remaining_children = all_children.slice(0, all_children.size() - 1)
 
-	# slide top card downward
 	var exit_y = card_stack_control.size.y + 40.0
 	var tween = create_tween()
+
 	tween.tween_property(top_card, "position:y", exit_y, 0.3)\
 		.set_ease(Tween.EASE_IN)\
 		.set_trans(Tween.TRANS_BACK)
 
 	await tween.finished
+
 	top_card.queue_free()
 	current_loop_data.pop_back()
-	
 	current_loop_count -= 1
 
 	if current_loop_data.is_empty() or current_loop_count <= 0:
@@ -210,7 +269,6 @@ func on_pop_pressed():
 	var origin_y = (card_stack_control.size.y - card_size.y) / 2.0
 	var front_x = origin_x + total_spread
 
-	# spawn new back card at its final position immediately (no offset)
 	if current_loop_data.size() > remaining_children.size():
 		var new_card = card_scene.instantiate()
 		card_stack_control.add_child(new_card)
@@ -222,27 +280,34 @@ func on_pop_pressed():
 		var back_pos = Vector2(front_x - abs(STACK_OFFSET.x) * back_depth, origin_y)
 		new_card.position = back_pos
 
-	# shift existing cards (not the new one) rightward first to reveal new card
 	var reveal_tween = create_tween()
 	var existing = card_stack_control.get_children()
-	# skip index 0 which is the new back card
+
 	for i in range(1, existing.size()):
 		var current_pos = existing[i].position
-		reveal_tween.parallel().tween_property(existing[i], "position", current_pos + Vector2(abs(STACK_OFFSET.x), 0), 0.15)\
-			.set_ease(Tween.EASE_OUT)\
-			.set_trans(Tween.TRANS_QUART)
+		reveal_tween.parallel().tween_property(
+			existing[i],
+			"position",
+			current_pos + Vector2(abs(STACK_OFFSET.x), 0),
+			0.15
+		).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUART)
 
 	await reveal_tween.finished
 
-	# now shift everything including new card into final centered positions
 	var shift_tween = create_tween()
 	var all_cards = card_stack_control.get_children()
-	for i in all_cards.size():
+
+	for i in range(all_cards.size()):
 		var depth = all_cards.size() - 1 - i
 		var target_pos = Vector2(front_x - abs(STACK_OFFSET.x) * depth, origin_y)
-		shift_tween.parallel().tween_property(all_cards[i], "position", target_pos, 0.25)\
-			.set_ease(Tween.EASE_OUT)\
-			.set_trans(Tween.TRANS_QUART)
+
+		shift_tween.parallel().tween_property(
+			all_cards[i],
+			"position",
+			target_pos,
+			0.25
+		).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUART)
+
 		all_cards[i].z_index = i
 
 	await shift_tween.finished
@@ -255,11 +320,25 @@ func on_keep_pressed():
 	if is_processing or current_loop_data.is_empty():
 		return
 
+	if not GlobalData.has_seen_tutorial("stack_keep"):
+		dialogue_step = "stack_keep"
+		pending_action = Callable(self, "_do_keep")
+		dialogue_box.start_dialogue("stack_menu", "on_keep_first_pressed")
+		return
+
+	_do_keep()
+
+
+func _do_keep():
+	if is_processing or current_loop_data.is_empty():
+		return
+
 	var selected_person: Dictionary = current_loop_data.back()
 	var odp_person: Dictionary = GlobalData.selected_suspect
 
 	pop_button.disabled = true
 	keep_button.disabled = true
+
 	darkOverlay.visible = true
 	confirmation_tab.open(odp_person, selected_person)
 
@@ -271,7 +350,7 @@ func peek_front():
 		keep_button.disabled = true
 		return
 
-	var data: Dictionary = current_loop_data.back()  # was queue[0]
+	var data: Dictionary = current_loop_data.back()
 	show_data_box(data)
 
 	pop_button.disabled = false
@@ -280,11 +359,46 @@ func peek_front():
 
 func show_empty_state():
 	clear_data_box()
+
 	pop_button.visible = false
 	keep_button.visible = false
 	peek_button.visible = false
 	push_button.visible = true
+
+	kosong.text = "HABIS"
 	kosong.visible = true
+
+	if not GlobalData.has_seen_tutorial("stack_empty"):
+		dialogue_step = "stack_empty"
+		GlobalData.mark_tutorial_seen("stack_empty")
+		dialogue_box.start_dialogue("stack_menu", "on_stack_empty")
+
+
+func on_push_pressed():
+	if people_data.is_empty() and current_loop_data.is_empty():
+		print("No more data on stack")
+		return
+
+	if not GlobalData.has_seen_tutorial("stack_push"):
+		dialogue_step = "stack_push"
+		pending_action = Callable(self, "_do_push")
+		dialogue_box.start_dialogue("stack_menu", "on_push_button_appears")
+		return
+
+	_do_push()
+
+
+func _do_push():
+	if people_data.is_empty() and current_loop_data.is_empty():
+		print("No more data on stack")
+		return
+
+	current_loop_data = pick_and_pop()
+	current_loop_count = ONE_LOOP_COUNT
+
+	reset_ui_to_start()
+	rebuild_stack()
+	clear_data_box()
 
 
 func show_data_box(data: Dictionary):
@@ -314,6 +428,7 @@ func load_suspect_image(sprite_path: String):
 
 	suspect_image.texture = texture
 
+
 func reset_ui_to_start():
 	is_processing = false
 
@@ -333,12 +448,14 @@ func reset_ui_to_start():
 
 func clear_data_box():
 	id_label.text = ""
+	name_suspect_Label.text = ""
 	name_label.text = ""
 	age_label.text = ""
 	gender_label.text = ""
 	height_label.text = ""
 	weight_label.text = ""
 	blood_label.text = ""
+	suspect_image.texture = null
 
 
 func get_gender_text(is_male: bool) -> String:
@@ -347,25 +464,34 @@ func get_gender_text(is_male: bool) -> String:
 
 func on_back_pressed():
 	get_tree().change_scene_to_file("res://scripts/suspect_menu.tscn")
-	
-func on_push_pressed():
-	if people_data.is_empty() and current_loop_data.is_empty():
-		print("No more data on stack")
-		return
-		
-	current_loop_data = pick_and_pop()
-	current_loop_count = ONE_LOOP_COUNT
-	reset_ui_to_start()
-	rebuild_stack()
-	
+
 func on_keep_confirmed(data: Dictionary):
 	darkOverlay.visible = false
 
-	if not GlobalData.kept_suspects.has(data):
-		GlobalData.kept_suspects.append(data)
+	var success: bool = GlobalData.add_kept_suspect(data)
 
-	on_pop_pressed()
-	
+	if not success:
+		if GlobalData.is_suspect_list_full():
+			dialogue_box.start_dialogue(
+				"global_alerts",
+				"suspect_list_full"
+			)
+
+		pop_button.disabled = false
+		keep_button.disabled = false
+		return
+
+	GlobalData.check_reveal_from_kept(data)
+
+	if GlobalData.kept_suspects.size() == 5:
+		dialogue_box.start_dialogue(
+			"global_alerts",
+			"suspect_list_almost_full"
+		)
+
+	_do_pop()
+
+
 func on_keep_cancelled():
 	darkOverlay.visible = false
 

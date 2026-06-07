@@ -51,21 +51,27 @@ var global_target_id;
 #dialog
 @onready var dialogue_box = $DialogBox
 
+var textures: Dictionary = {
+	"searching": preload("res://assets/hashmap_searching.png"),
+	"found": preload("res://assets/hashmap_found.png"),
+	"not_found": preload("res://assets/hashmap_notfound.png"),
+}
+
+var is_processing := false
+var people_map: Dictionary = {}
+
+var dialogue_step := "none"
+var pending_action: Callable = Callable()
+
+
 func _ready():
-	#DIALOG
-	# 1. CEK APAKAH TUTORIAL BELUM PERNAH DIJALANKAN
-	if not GlobalData.tutorials_completed.get("hashmap_menu", false):
-		dialogue_box.dialogue_finished.connect(_on_tutorial_selesai)
-		dialogue_box.start_dialogue("hashmap_menu")
-		GlobalData.tutorials_completed["hashmap_menu"] = true
-	else:
-		#JIKA SUDAH DI HIDE
-		dialogue_box.hide()
-		print("Tutorial untuk Hashmap Menu sudah pernah dilewati.")
-	
 	randomize()
 
 	gender_label.add_theme_font_override("font", icon_font)
+
+	if not dialogue_box.dialogue_finished.is_connected(_on_tutorial_selesai):
+		dialogue_box.dialogue_finished.connect(_on_tutorial_selesai)
+
 	back_button.pressed.connect(on_back_pressed)
 	search_button.pressed.connect(on_search_pressed)
 	form.text_submitted.connect(func(_t): on_search_pressed())
@@ -87,29 +93,84 @@ func _ready():
 	clear_data_box()
 	switch_texture("searching")
 
+	if not GlobalData.is_tutorial_completed("hashmap_menu"):
+		dialogue_step = "hashmap_intro"
+		dialogue_box.start_dialogue("hashmap_menu", "on_first_enter")
+	else:
+		dialogue_box.hide()
+
+
 func _on_tutorial_selesai():
-	print("Player selesai membaca tutorial, game bisa dilanjutkan!")
+	if dialogue_step == "hashmap_intro":
+		GlobalData.mark_tutorial_completed("hashmap_menu")
+		dialogue_step = "none"
+
+	elif dialogue_step == "hashmap_search":
+		GlobalData.mark_tutorial_seen("hashmap_search")
+		dialogue_step = "none"
+		_run_pending_action()
+
+	elif dialogue_step == "hashmap_result_rules":
+		GlobalData.mark_tutorial_seen("hashmap_result_rules")
+		dialogue_step = "none"
+
+
+func _run_pending_action():
+	if pending_action.is_valid():
+		pending_action.call()
+
+	pending_action = Callable()
+
 
 func load_people_data():
+	people_map.clear()
+
 	var list = GlobalData.get_list(GlobalData.Broker.HASH_MAP)
+
 	for person in list:
 		var id: int = int(person["id"])
 		people_map[id] = person
 	print("Loaded into hashmap: ", people_map.size(), " entries")
 
 
+func switch_texture(key: String) -> void:
+	if not textures.has(key):
+		push_error("Texture key not found: %s" % key)
+		return
+
+	bg_card.texture = textures[key]
+
+
 func on_search_pressed():
-	var raw: String= form.text.strip_edges()
+	if is_processing:
+		return
+
+	if not GlobalData.has_seen_tutorial("hashmap_search"):
+		dialogue_step = "hashmap_search"
+		pending_action = Callable(self, "_do_search")
+		dialogue_box.start_dialogue("hashmap_menu", "on_search_first_pressed")
+		return
+
+	_do_search()
+
+
+func _do_search():
+	is_processing = true
+
+	var raw: String = form.text.strip_edges()
+
 	print(raw)
-	
+
 	if raw.is_empty():
 		switch_texture("searching")
 		clear_data_box()
+		is_processing = false
 		return
 
 	if not raw.is_valid_int():
 		switch_texture("not_found")
 		clear_data_box()
+		is_processing = false
 		return
 
 	var target_id := raw.to_int()
@@ -117,6 +178,7 @@ func on_search_pressed():
 	if not people_map.has(target_id):
 		switch_texture("not_found")
 		clear_data_box()
+		is_processing = false
 		return
 
 	pop_button.visible = true
@@ -152,22 +214,27 @@ func load_suspect_image(sprite_path: String):
 	if sprite_path == "":
 		suspect_image.texture = null
 		return
+
 	var fixed_path := sprite_path.replace("./", "res://assets/characters/")
 	var texture = load(fixed_path)
+
 	if texture == null:
 		push_error("Cannot load suspect image: " + fixed_path)
 		return
+
 	suspect_image.texture = texture
 
 
 func clear_data_box():
 	id_label.text = ""
+	name_suspect_Label.text = ""
 	name_label.text = ""
 	age_label.text = ""
 	gender_label.text = ""
 	height_label.text = ""
 	weight_label.text = ""
 	blood_label.text = ""
+	suspect_image.texture = null
 
 func reset_ui_to_start():
 	formpar.visible = true
