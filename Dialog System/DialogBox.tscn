@@ -14,7 +14,7 @@ fill_from = Vector2(0, 1)
 fill_to = Vector2(0, 0.00390625)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0nvhq"]
-content_margin_left = 320.0
+content_margin_left = 330.0
 content_margin_top = 88.0
 content_margin_right = 32.0
 content_margin_bottom = 16.0
@@ -75,9 +75,9 @@ scroll_active = false
 
 [node name="Label_name" type="Label" parent="DialogPanel" unique_id=1436384135]
 layout_mode = 0
-offset_left = 367.0
+offset_left = 375.0
 offset_top = 835.0
-offset_right = 1740.0
+offset_right = 1748.0
 offset_bottom = 915.0
 theme_override_fonts/font = ExtResource("2_sg7mc")
 theme_override_font_sizes/font_size = 48

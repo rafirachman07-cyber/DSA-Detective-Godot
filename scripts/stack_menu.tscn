@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bf48yqiltdw62" path="res://assets/Buttons/BackButton (1).png" id="12_av6x2"]
 [ext_resource type="Texture2D" uid="uid://cb00mf5e5ipme" path="res://assets/Buttons/KeepButton (3).png" id="13_fad0k"]
 [ext_resource type="Texture2D" uid="uid://cwqa7pj0p77ox" path="res://assets/Buttons/KeepButton_active.png" id="14_7rhsf"]
+[ext_resource type="Texture2D" uid="uid://v8n4unyw0go2" path="res://assets/KeepButtonDisable.png" id="15_81iyd"]
 [ext_resource type="Texture2D" uid="uid://ba6te6mm0sp8e" path="res://assets/push.png" id="15_epyy0"]
 [ext_resource type="Texture2D" uid="uid://0440f7xkidna" path="res://assets/push_pressed.png" id="16_thggk"]
 [ext_resource type="Texture2D" uid="uid://dt5ock103ipui" path="res://assets/Brokers Card.png" id="17_v38ny"]
@@ -173,6 +174,7 @@ offset_bottom = 683.0
 texture_normal = ExtResource("13_fad0k")
 texture_pressed = ExtResource("14_7rhsf")
 texture_hover = ExtResource("14_7rhsf")
+texture_disabled = ExtResource("15_81iyd")
 ignore_texture_size = true
 stretch_mode = 4
 
