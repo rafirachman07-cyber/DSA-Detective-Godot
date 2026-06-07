@@ -65,8 +65,7 @@ func mark_tutorial_completed(key: String) -> void:
 enum Broker {
 	STACK = 0,
 	QUEUE = 1,
-	FAX = 2,
-	HASH_MAP = 3
+	HASH_MAP = 2,
 }
 
 var json_path := "res://assets/characters/characters.json"

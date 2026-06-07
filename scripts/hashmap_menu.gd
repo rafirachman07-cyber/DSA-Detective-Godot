@@ -171,7 +171,7 @@ func on_search_pressed():
 	pop_button.visible = true
 	pop_button.disabled = false
 	keep_button.visible = true
-	keep_button.disabled = true
+	keep_button.disabled = false
 	
 	search_button.visible = false
 	search_button.disabled = false
