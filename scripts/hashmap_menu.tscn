@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://ybf7amw2ye6u" path="res://assets/Clip.png" id="20_6khms"]
 [ext_resource type="Texture2D" uid="uid://7nkjhs26exgp" path="res://assets/Mask Broker.png" id="21_0iox8"]
 [ext_resource type="Texture2D" uid="uid://twanw7h554nx" path="res://assets/suspect_board/Clamp.png" id="22_rup4u"]
+[ext_resource type="PackedScene" uid="uid://bvner3lrvk63r" path="res://scripts/confirmationTab.tscn" id="23_d1ple"]
 [ext_resource type="AudioStream" uid="uid://d1mddv2t3lx6k" path="res://assets/audio/bgm2.mp3" id="23_dipiw"]
 [ext_resource type="PackedScene" uid="uid://bhu1w5qfnbqax" path="res://Dialog System/DialogBox.tscn" id="23_ud4ve"]
 
@@ -247,7 +248,7 @@ offset_right = 1350.0
 offset_bottom = 680.0
 texture_normal = ExtResource("17_sqnva")
 
-[node name="TextureRect" type="TextureRect" parent="Background/Board/Paper" unique_id=208014886]
+[node name="formpar" type="TextureRect" parent="Background/Board/Paper" unique_id=208014886]
 layout_mode = 0
 offset_left = 685.0
 offset_top = 486.0
@@ -255,7 +256,7 @@ offset_right = 1214.0
 offset_bottom = 680.0
 texture = ExtResource("18_esje1")
 
-[node name="LineEdit" type="LineEdit" parent="Background/Board/Paper/TextureRect" unique_id=1111079227]
+[node name="LineEdit" type="LineEdit" parent="Background/Board/Paper/formpar" unique_id=1111079227]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 71.0
@@ -277,11 +278,20 @@ offset_right = 187.0
 offset_bottom = 596.5
 texture = ExtResource("22_rup4u")
 
+[node name="darkOverlay" type="ColorRect" parent="Background" unique_id=11781622]
+visible = false
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.003921569, 0.003921569, 0.003921569, 0.5882353)
+
 [node name="BGM" type="AudioStreamPlayer2D" parent="." unique_id=631106808]
 position = Vector2(913, 497)
 stream = ExtResource("23_dipiw")
 autoplay = true
 parameters/looping = true
+
+[node name="confirmationTab" parent="." unique_id=1579016805 instance=ExtResource("23_d1ple")]
 
 [node name="DialogBox" parent="." unique_id=517866619 instance=ExtResource("23_ud4ve")]
 

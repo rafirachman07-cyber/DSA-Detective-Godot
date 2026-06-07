@@ -20,6 +20,10 @@ var warning_flags: Dictionary = {
 	"suspect_list_full": false
 }
 
+# ---------------------------------------------------------------------------------------------------
+# Data Manager
+# ---------------------------------------------------------------------------------------------------
+var curr_stack_data: Array = []
 
 # ---------------------------------------------------------------------------------------------------
 # Tutorial / Dialogue State
@@ -80,6 +84,9 @@ func load_and_split(guaranteed: Dictionary = {}) -> void:
 	if suspects.is_empty():
 		push_error("SuspectLoader: failed to load or empty JSON")
 		return
+	
+	for s in suspects:
+		s["id"] = int(s["id"])
 
 	suspects.shuffle()
 
