@@ -27,6 +27,8 @@ var warning_flags: Dictionary = {
 
 var tutorial_seen: Dictionary = {}
 
+
+#nandain scene dialog yg belum sama yg udah user lewatin 
 var tutorials_completed: Dictionary = {
 	"prolog": false,
 	"suspect_menu": false,
@@ -36,6 +38,12 @@ var tutorials_completed: Dictionary = {
 	"hashmap_menu": false,
 	"choose_suspect_menu": false,
 }
+# ---------------------------------------------------------------------------------------------------
+# Data Manager
+# ---------------------------------------------------------------------------------------------------
+
+var curr_stack_data: Array = []
+
 
 
 func has_seen_tutorial(key: String) -> bool:
@@ -80,11 +88,23 @@ func load_and_split(guaranteed: Dictionary = {}) -> void:
 	if suspects.is_empty():
 		push_error("SuspectLoader: failed to load or empty JSON")
 		return
+		
+	# Normalize id to int for every suspect
+	for s in suspects:
+		s["id"] = int(s["id"])
 
 	suspects.shuffle()
 
 	if suspects.size() > total_to_use:
 		suspects = suspects.slice(0, total_to_use)
+		
+	# Ensure guaranteed suspect is in the pool
+	if not guaranteed.is_empty():
+		guaranteed["id"] = int(guaranteed["id"])
+		var already_in := suspects.any(func(s): return s["id"] == guaranteed["id"])
+		if not already_in:
+			# Replace a random entry to keep total_to_use intact
+			suspects[randi() % suspects.size()] = guaranteed
 
 	if not guaranteed.is_empty():
 		_ensure_suspect_in_pool(suspects, guaranteed)
@@ -107,6 +127,29 @@ func load_and_split(guaranteed: Dictionary = {}) -> void:
 		_ensure_suspect_in_lists(guaranteed)
 
 	for i in range(4):
+		var found := false
+		for lst in lists:
+			for s in lst:
+				if s["id"] == guaranteed["id"]:
+					found = true
+					break
+			if found:
+				break
+		if not found:
+			# Insert into a random list, replacing a random entry there
+			var target_list := randi() % 4
+			lists[target_list][randi() % lists[target_list].size()] = guaranteed
+		for i in 4:
+			for j in lists[i].size():
+				if lists[i][j]["id"] == guaranteed["id"]:
+					print("Guaranteed suspect '%s' is in list %d at index %d" % [guaranteed["name"], i, j])
+					for key in lists[i][j]:
+						print("  %s: %s" % [key, lists[i][j][key]])
+	else:
+		print("Something wrong on guaranteed suspect")
+			
+	# Debug print
+	for i in 4:
 		print("List %d: %d suspects" % [i, lists[i].size()])
 
 

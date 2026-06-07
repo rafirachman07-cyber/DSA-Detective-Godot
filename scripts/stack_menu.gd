@@ -41,8 +41,25 @@ var current_loop_count := ONE_LOOP_COUNT
 var pending_action: Callable = Callable()
 var dialogue_step := "none"
 
+# Loop Handler
+const ONE_LOOP_COUNT = 8
+var current_loop_data = []
+var current_loop_count = ONE_LOOP_COUNT
+var is_loop_empty = false
+
 
 func _ready():
+	#DIALOG
+	# 1. CEK APAKAH TUTORIAL BELUM PERNAH DIJALANKAN
+	if not GlobalData.tutorials_completed.get("stack_menu", false):
+		dialogue_box.dialogue_finished.connect(_on_tutorial_selesai)
+		dialogue_box.start_dialogue("stack_menu")
+		GlobalData.tutorials_completed["stack_menu"] = true
+	else:
+		#JIKA SUDAH DI HIDE
+		dialogue_box.hide()
+		print("Tutorial untuk Stack Menu sudah pernah dilewati.")
+	
 	randomize()
 
 	if not dialogue_box.dialogue_finished.is_connected(_on_tutorial_selesai):
@@ -66,7 +83,11 @@ func _ready():
 	reset_ui_to_start()
 
 	load_people_data()
-	current_loop_data = pick_and_pop()
+
+	if GlobalData.curr_stack_data.is_empty():
+		GlobalData.curr_stack_data = pick_and_pop()
+
+	current_loop_data = GlobalData.curr_stack_data  # pull after potential pic
 
 	var temp = card_scene.instantiate()
 	card_stack_control.add_child(temp)
