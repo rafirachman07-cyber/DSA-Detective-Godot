@@ -20,6 +20,7 @@ extends Node2D
 @onready var failed = $Failed
 @onready var suceed = $Suceed
 
+@onready var dialogue_box = $DialogBox
 
 func _ready() -> void:
 	var selected_suspect = GlobalData.selected_kept_suspect 
@@ -27,10 +28,12 @@ func _ready() -> void:
 	
 	GlobalData.is_censored = false
 	show_odp_card(odp)
-	
+
 	if selected_suspect == odp:
+		dialogue_box.start_dialogue("ending", "correct_answer")
 		suceed.visible = true
 	else:
+		dialogue_box.start_dialogue("ending", "wrong_answer")
 		failed.visible = true
 		
 

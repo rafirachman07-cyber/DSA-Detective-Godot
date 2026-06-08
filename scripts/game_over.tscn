@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b1p0gtjvwu6rq" path="res://assets/game_over/play_again_pressed.png" id="7_1k4tl"]
 [ext_resource type="AudioStream" uid="uid://c05whq1dd6x18" path="res://assets/audio/bgm.mp3" id="8_l5bl4"]
 [ext_resource type="PackedScene" uid="uid://b4dyc6uwnghl1" path="res://scripts/odp_card.tscn" id="8_n6toa"]
+[ext_resource type="PackedScene" uid="uid://bhu1w5qfnbqax" path="res://Dialog System/DialogBox.tscn" id="9_to7wu"]
 
 [node name="GameOver" type="Node2D" unique_id=1260368284]
 position = Vector2(0, -7)
@@ -68,5 +69,7 @@ offset_left = 74.0
 offset_top = 524.0
 offset_right = 933.0
 offset_bottom = 1026.0
+
+[node name="DialogBox" parent="." unique_id=517866619 instance=ExtResource("9_to7wu")]
 
 [connection signal="pressed" from="PlayAgain" to="." method="_on_play_again_pressed"]

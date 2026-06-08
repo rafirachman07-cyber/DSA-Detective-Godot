@@ -291,6 +291,7 @@ offset_bottom = 452.0
 texture = ExtResource("5_any58")
 
 [node name="Sensor_5" type="TextureRect" parent="." unique_id=1544087171]
+visible = false
 layout_mode = 0
 offset_left = 29.86
 offset_top = 8.675995

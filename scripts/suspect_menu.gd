@@ -307,7 +307,7 @@ func hide_hover_preview():
 func on_suspect_selected():
 	var selected_suspect = GlobalData.selected_kept_suspect 
 	
-	selected_name.text = str(selected_suspect.get("first_name", selected_suspect.get("name", "-")))
+	selected_name.text = str(selected_suspect.get("name", selected_suspect.get("name", "-")))
 	selected_id.text = str(selected_suspect.get("id", "-"))
 	selected_age.text = str(selected_suspect.get("age", "-"))
 	selected_gender.text = get_gender_icon(bool(selected_suspect.get("is_male", true)))
