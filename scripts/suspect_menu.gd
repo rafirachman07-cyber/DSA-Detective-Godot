@@ -275,6 +275,7 @@ func refresh_suspect_list():
 			if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 				GlobalData.selected_kept_suspect = suspect
 				on_suspect_selected()
+				dialogue_box.start_dialogue("choose_suspect_menu", "on_suspect_photo_first_pressed")
 				gameTab.visible = true
 				darkOverlay.visible = true
 		)

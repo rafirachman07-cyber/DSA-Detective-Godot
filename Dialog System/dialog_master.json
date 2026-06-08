@@ -314,14 +314,14 @@
 					"name": "Senior Bram",
 					"text": "Karena datanya [color=red][b]tidak cocok[/b][/color], kita harus menyingkirkannya.",
 					"portrait": "res://assets/npc/senior.png"
+				},
+				{
+					"name": "Senior Bram",
+					"text": "Perhatikan [wave][color=cyan]tombol biru bertuliskan pop()[/color][/wave] di bawah kertas itu. Coba kamu klik.",
+					"portrait": "res://assets/npc/senior.png"
 				}
 			],
 			"on_pop_first_pressed": [
-				{
-					"name": "Senior Bram",
-					"text": "Perhatikan [wave][color=cyan]tombol biru bertuliskan pop()[/color][/wave] di bawah kertas itu. ",
-					"portrait": "res://assets/npc/senior.png"
-				},
 				{
 					"name": "Senior Bram",
 					"text": "Di dalam [color=lime][b]\"struktur data Stack\"[/b][/color], operasi [color=lime][b]pop()[/b][/color] berfungsi untuk [color=lime][b]\"menghapus\"[/b][/color] atau [color=lime][b]\"mengeluarkan\"[/b][/color] elemen yang berada di posisi [color=lime][b]teratas tumpukan[/b][/color].",
@@ -336,9 +336,7 @@
 					"name": "Senior Bram",
 					"text": "Benar. Dan setelah elemen teratas berhasil di-pop(), kertas yang berada [color=lime][b]tepat di bawahnya[/b][/color]  secara otomatis akan naik menjadi elemen [color=lime][b]teratas[/b][/color]  yang baru untuk bisa kita periksa lagi. Itulah sifat asli Stack.",
 					"portrait": "res://assets/npc/senior.png"
-				}
-			],
-			"on_keep_first_pressed": [
+				},
 				{
 					"name": "Senior Bram",
 					"text": "Tapi, Kalau datanya ternyata [color=yellow][b]\"cocok\"[/b][/color], kamu [pulse color=red][b]jangan[/b][/pulse] pakai pop(), melainkan tekan [wave][color=cyan]tombol Keep[/color][/wave] untuk menjadikannya tersangka.",
@@ -348,7 +346,9 @@
 					"name": "Sofyan (kamu)",
 					"text": "Paham! Kalau datanya sampah, kita pop(). Kalau datanya berguna, kita Keep. Aku coba tekan Keep dulu untuk berjaga-jaga!.",
 					"portrait": "res://assets/npc/mc.png"
-				},
+				}
+			],
+			"on_keep_first_pressed": [
 				{
 					"name": "Senior Bram",
 					"text": "Akan muncul \"Pop-up\" konfirmasi ini muncul untuk memastikan apakah kamu yakin ingin memasukkan nama tersebut ke dalam Suspect List agensi.",
@@ -571,14 +571,14 @@
 					"name": "Senior Bram",
 					"text": "Kalau kesaksiannya [color=red][b]tidak cocok[/b][/color] , kita harus mempersilakannya jalan.",
 					"portrait": "res://assets/npc/senior.png"
-				}
-			],
-			"on_dequeue_first_pressed": [
+				},
 				{
 					"name": "Senior Bram",
-					"text": "Perhatikan [wave][color=cyan]tombol ungu bertuliskan dequeue()[/color][/wave] di bawah datanya. ",
+					"text": "Perhatikan [wave][color=cyan]tombol ungu bertuliskan dequeue()[/color][/wave] di bawah datanya. Coba kamu klik",
 					"portrait": "res://assets/npc/senior.png"
 				},
+			],
+			"on_dequeue_first_pressed": [
 				{
 					"name": "Senior Bram",
 					"text": "Nah, dalam [color=lime][b]\"teori Queue\"[/b][/color] , operasi [color=lime][b]dequeue()[/b][/color] berfungsi untuk [color=lime][b]\"menghapus\"[/b][/color]  atau [color=lime][b]\"mengeluarkan\"[/b][/color] elemen dari posisi terdepan antrean.",
@@ -591,16 +591,16 @@
 				},
 				{
 					"name": "Senior Bram",
-					"text": "Betul sekali. Dan begitu orang pertama keluar lewat proses dequeue(), orang yang berada tepat di belakangnya[/b][/color]  secara otomatis akan maju menjadi barisan [color=lime][b]terdepan[/b][/color]  yang baru untuk kita dengarkan kesaksiannya.",
+					"text": "Betul sekali. Dan begitu orang pertama keluar lewat proses dequeue(), orang yang berada tepat  [color=lime][b]di belakangnya[/b][/color]  secara otomatis akan maju menjadi barisan [color=lime][b]terdepan[/b][/color]  yang baru untuk kita dengarkan kesaksiannya.",
+					"portrait": "res://assets/npc/senior.png"
+				},
+				{
+					"name": "Senior Bram",
+					"text": "Tapi ingat, jika kesaksian warga tersebut [color=yellow][b]\"sangat mencurigakan\"[/b][/color]  dan [color=yellow][b]\"mengarah ke pelaku\"[/b][/color] , [pulse color=red][b]jangan di-dequeue()[/b][/pulse], melainkan tekan [wave][color=cyan]tombol Keep[/color][/wave].",
 					"portrait": "res://assets/npc/senior.png"
 				}
 			],
 			"on_keep_first_pressed": [
-				{
-					"name": "Senior Bram",
-					"text": "Antrean akan terus bergerak maju ke depan. Tapi ingat, jika kesaksian warga tersebut [color=yellow][b]\"sangat mencurigakan\"[/b][/color]  dan [color=yellow][b]\"mengarah ke pelaku\"[/b][/color] , [pulse color=red][b]jangan di-dequeue()[/b][/pulse], melainkan tekan [wave][color=cyan]tombol Keep[/color][/wave].",
-					"portrait": "res://assets/npc/senior.png"
-				},
 				{
 					"name": "Senior Bram",
 					"text": "Tombol Keep ini sama seperti penjelasanku ketika di tempat anton.",
@@ -610,17 +610,17 @@
 					"name": "Sofyan (kamu)",
 					"text": "Paham, Senior! Kalau kesaksiannya tidak berguna kita dequeue() biar orang di belakangnya bisa maju memberikan keterangan. Kalau mencurigakan kita Keep! Aku akan menyaring barisan saksi ini dengan sangat ketat!",
 					"portrait": "res://assets/npc/mc.png"
-				}
+				},
+				{
+					"name": "Senior Bram",
+					"text": "Bagus. Namun ingat, jika kamu terus melakukan dequeue() atau memindahkan orang ke daftar tersangka, barisan warga di depan meja Pak Raditya [color=yellow][b]lama-lama akan habis[/b][/color].",
+					"portrait": "res://assets/npc/senior.png"
+				},
 			],
 			"on_queue_empty": [
 				{
-					"name": "Senior Bram",
-					"text": "Bagus. Namun ingat, jika kamu terus melakukan dequeue() atau memindahkan orang ke daftar tersangka, barisan warga di depan meja Pak Raditya [color=yellow][b]lama-lama akan habis[/b][/color] .",
-					"portrait": "res://assets/npc/senior.png"
-				},
-				{
 					"name": "Sofyan (kamu)",
-					"text": "Ah, jika barisannya sudah \"Kosong\" dan tidak ada orang lagi yang tersisa di ruangan, dan petunjuknya masih kurang untuk mengetahui informasi pelaku. Bagaimana senior?.",
+					"text": "Ah, barisannya sudah [color=cyan][b]\"Kosong\"[/b][/color] dan tidak ada orang lagi yang tersisa di ruangan, dan petunjuknya masih kurang untuk mengetahui informasi pelaku. Bagaimana senior?.",
 					"portrait": "res://assets/npc/mc.png"
 				},
 				{
@@ -630,7 +630,7 @@
 				},
 				{
 					"name": "Senior Bram",
-					"text": "Kamu lihat[wave][color=cyan]tombol baru yang muncul, tulisannya enqueue()[/color][/wave]. Coba kamu klik.",
+					"text": "Kamu lihat [wave][color=cyan]tombol baru yang muncul, tulisannya enqueue()[/color][/wave]. Coba kamu klik.",
 					"portrait": "res://assets/npc/senior.png"
 				}
 			],
@@ -865,7 +865,7 @@
 				},
 				{
 					"name": "Senior Bram",
-					"text": "Sekarang, perhatikan [color=yellow][b]\"suspect list\"[/b][/color] disebelah kanan. Coba kamu [wave][color=cyan]klik salah satu foto tersangka[/color][/wave] yang paling mencurigakan dari Suspect List tersebut.",
+					"text": "Sekarang, perhatikan [color=cyan][b]\"suspect list\"[/b][/color] disebelah kanan. Coba kamu [wave][color=cyan]klik salah satu foto tersangka[/color][/wave] yang paling mencurigakan dari Suspect List tersebut.",
 					"portrait": "res://assets/npc/senior.png"
 				}
 			],
@@ -879,56 +879,15 @@
 					"name": "Senior Bram",
 					"text": "Benar. Jendela itu untuk memastikan ingatanmu. Jika kamu merasa salah klik atau profilnya tidak cocok dengan petunjuk, [wave][color=cyan]klik tombol [X][/color][/wave] untuk menutupnya. Tapi karena kita yakin dengan bukti orang ini, sekarang [wave][color=cyan]klik tombol [TINDAK LANJUT][/color][/wave] itu.",
 					"portrait": "res://assets/npc/senior.png"
-				}
-			],
-			"on_follow_up_first_pressed": [
-				{
-					"name": "Sofyan (kamu)",
-					"text": "Layar berganti lagi, Senior Bram! Sekarang ada dua lembar data di sebelah kliri.",
-					"portrait": "res://assets/npc/mc.png"
 				},
 				{
 					"name": "Senior Bram",
-					"text": "Ini adalah tahap penentuan, Sofyan. Perhatikan baik-baik. ",
-					"portrait": "res://assets/npc/senior.png"
-				},
-				{
-					"name": "Senior Bram",
-					"text": "[color=cyan][b]Lembar Atas:[/b][/color] Adalah data suspect yang baru saja kamu \"pilih\" dari broker kita.",
-					"portrait": "res://assets/npc/senior.png"
-				},
-				{
-					"name": "Senior Bram",
-					"text": "[color=cyan][b]Lembar Bawah:[/b][/color] Adalah data \"bukti DPO\" yang dicari oleh pihak Kepolisian. ",
-					"portrait": "res://assets/npc/senior.png"
-				},
-				{
-					"name": "Senior Bram",
-					"text": "Sekarang tugasmu adalah menetapkan setiap poinnya dengan teliti. Apakah ID, umur, berat badan, tinggi, hingga golongan darah di kedua lembar itu sudah [color=yellow][b]\"100%\"[/b][/color] identik?",
+					"text": "Sekarang tugasmu adalah menetapkan setiap poinnya dengan teliti. Apakah ID, umur, berat badan, tinggi, hingga golongan darah di kedua lembar itu sudah [color=yellow][b]\"100%\"[/b][/color] identik atau belum",
 					"portrait": "res://assets/npc/senior.png"
 				},
 				{
 					"name": "Sofyan (kamu)",
-					"text": "Ah, aku mengerti! Jadi aku harus mengawasi kedua data ini dengan super teliti!.",
-					"portrait": "res://assets/npc/mc.png"
-				}
-			],
-			"on_cancel_hint": [
-				{
-					"name": "Senior Bram",
-					"text": "Tepat. Jika setelah kamu amati ada satu saja data yang meleset, langsung klik [wave][color=cyan]tombol merah [BATALKAN][/color][/wave] untuk kembali ke papan awal. ",
-					"portrait": "res://assets/npc/senior.png"
-				}
-			],
-			"on_confirm_hint": [
-				{
-					"name": "Senior Bram",
-					"text": "Tapi, jika semua data dari atas sampai bawah sudah sama persis...",
-					"portrait": "res://assets/npc/senior.png"
-				},
-				{
-					"name": "Sofyan (kamu)",
-					"text": "...Aku tinggal klik [wave][color=cyan]tombol hijau [SETUJUI][/color][/wave] untuk menjadikannya pelaku utama, kan Senior?",
+					"text": "Berarti aku tinggal klik [wave][color=cyan]tombol hijau [SETUJUI][/color][/wave] untuk menjadikannya pelaku utama, kan Senior?",
 					"portrait": "res://assets/npc/mc.png"
 				},
 				{
@@ -936,7 +895,7 @@
 					"text": "Benar, Sofyan. Sekali tombol itu ditekan, Polisi akan langsung bergerak melakukan penangkapan. Pikirkan matang-matang, cocokkan sekali lagi, dan ambil keputusanmu!.",
 					"portrait": "res://assets/npc/senior.png"
 				}
-			]
+			],
 		},
 		"ending": {
 			"correct_answer": [
